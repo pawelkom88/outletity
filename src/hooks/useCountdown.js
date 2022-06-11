@@ -9,29 +9,6 @@ export default function useCountdown() {
   if (minutes < 10) minutes = `0${minutes}`;
   if (hours < 10) hours = `0${hours}`;
 
-  function calcTimeLeft() {
-    const day = new Date().getDate() + 1;
-    const month = new Date().getMonth() + 1;
-    const nextYear = new Date().getFullYear();
-    const futureDate = `${month}/${day}/${nextYear}`;
-
-    let difference = Number(new Date(futureDate)) - Number(new Date());
-
-    let timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    } else {
-      timeLeft = null;
-    }
-
-    return timeLeft;
-  }
-
   useEffect(() => {
     const countdown = calcTimeLeft();
 
@@ -43,4 +20,27 @@ export default function useCountdown() {
   });
 
   return {hours, minutes, seconds};
+}
+
+function calcTimeLeft() {
+  const day = new Date().getDate() + 1;
+  const month = new Date().getMonth() + 1;
+  const nextYear = new Date().getFullYear();
+  const futureDate = `${month}/${day}/${nextYear}`;
+
+  let difference = Number(new Date(futureDate)) - Number(new Date());
+
+  let timeLeft = {};
+
+  if (difference > 0) {
+    timeLeft = {
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  } else {
+    timeLeft = null;
+  }
+
+  return timeLeft;
 }
