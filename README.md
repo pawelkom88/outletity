@@ -1,3 +1,4 @@
+
 <div style="text-align:center">
 <img src="./src/assets/png/logo.png" alt="Outletity logo" width="350" height="150"/>
 </div>
@@ -26,9 +27,6 @@ E-commerce stores are ...
 - CSS modules are great for styling. They scoped locally by default. To make styling easeir I used Sass for variables and mixins 
 - My plan is to become a front-end developer eventually. I decided to use an existing API rather to create a custom server.
 - Testing is an essential part of production applications. Testing Library is the go-to library in the React community. I covered the essential features of the app with tests.
-## Screenshots
 
-<img src="link.png" alt="screenshot" width="30" height="30"/>
-<img src="link.png" alt="screenshot" width="30" height="30"/>
-<img src="link.png" alt="screenshot" width="30" height="30"/>
+
 
