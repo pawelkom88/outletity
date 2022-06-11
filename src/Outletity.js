@@ -1,11 +1,12 @@
-import PromoBar from './components/promo-bar/PromoBar'
-import Sale from './components/sale/Sale'
+import "./index.scss";
+import PromoBar from "./components/promo-bar/PromoBar";
+import Sale from "./components/sale/Sale";
 
 function Outletity() {
   return (
     <>
       <PromoBar>
-        <Sale/>
+        <Sale />
       </PromoBar>
       {/* <Header/>
       <Main></Main>
