@@ -1,0 +1,15 @@
+@use "../../styles/colors";
+
+.sale {
+  color: colors.$white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.green {
+  color: colors.$green;
+}
+
+.red {
+  color: colors.$red;
+}
