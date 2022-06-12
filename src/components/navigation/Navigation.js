@@ -1,4 +1,4 @@
-import './Navigation.scss'
+import "./Navigation.scss";
 
 export default function Navigation() {
   return (

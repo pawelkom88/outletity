@@ -1,10 +1,8 @@
-@use "../../styles/colors";
+@use "styles/colors";
+@use "styles/mixins";
 
 .sale {
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
-  color: colors.$white;
-  text-align: center;
-  cursor: pointer;
+  @include mixins.promo-bar;
 }
 
 .green {
