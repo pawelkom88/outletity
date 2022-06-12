@@ -1,0 +1,30 @@
+@use "/src/styles/breakpoints";
+
+.header-panel {
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  height: 100%;
+  margin: 1rem auto;
+  cursor: pointer;
+
+  @media (max-width: breakpoints.$mobile) {
+    max-width: 40%;
+    height: auto;
+  }
+}
+
+.user-panel {
+  position: absolute;
+  right: 5%;
+  display: flex;
+}
+
+.user-panel * {
+  margin: 0 0.7rem;
+}

@@ -1,6 +1,7 @@
 @use "../../styles/colors";
 
 .sale {
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
   color: colors.$white;
   text-align: center;
   cursor: pointer;

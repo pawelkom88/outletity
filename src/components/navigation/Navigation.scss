@@ -1,0 +1,20 @@
+@use "/src/styles/breakpoints";
+
+.nav-bar {
+  max-width: breakpoints.$tablet;
+  margin: 1.5rem auto;
+
+  @media (max-width: breakpoints.$desktop) {
+    display: none;
+  }
+}
+
+.nav-bar__items {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: "Meriweather", san-serif;
+  font-size: 2rem;
+  list-style: none;
+  cursor: pointer;
+}

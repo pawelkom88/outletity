@@ -1,0 +1,33 @@
+@use "/src/styles/colors";
+@use "/src/styles/breakpoints";
+
+.basket-container {
+  position: relative;
+  display: flex;
+}
+
+.basket {
+  width: 30px;
+  stroke: colors.$brand-primary;
+  fill: colors.$brand-primary;
+  cursor: pointer;
+
+  @media (max-width: breakpoints.$mobile) {
+    width: 21px;
+  }
+}
+
+.basket-quantity {
+  position: absolute;
+  left: 3.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: colors.$red;
+
+  @media (max-width: breakpoints.$mobile) {
+    font-size: 1rem;
+
+    top: 0.2rem;
+    left: 3rem;
+  }
+}
