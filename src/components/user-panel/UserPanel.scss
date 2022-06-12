@@ -1,0 +1,13 @@
+@use "/src/styles/colors";
+@use "/src/styles/breakpoints";
+
+.user {
+  width: 38px;
+  stroke: colors.$brand-primary;
+  fill: colors.$brand-primary;
+  cursor: pointer;
+
+  @media (max-width: breakpoints.$mobile) {
+    width: 25px;
+  }
+}

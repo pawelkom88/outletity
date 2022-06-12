@@ -7,7 +7,7 @@ export default function Sale() {
   return (
     <p className="sale">
       SALE - UP TO 50% OFF - LAST CHANCE ENDS
-      <span className={hours < 10 ? "red" : "green"}>
+      <span className={hours < 2 ? "red" : "green"}>
         {" "}
         {hours}:{minutes}:{seconds}
       </span>
