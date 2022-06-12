@@ -13,7 +13,7 @@
     color: colors.$text-color;
   }
 
-  @media (max-width: breakpoints.$tablet) {
+  @media (max-width: breakpoints.$desktop) {
     display: none;
   }
 }

@@ -1,4 +1,5 @@
 @use "/src/styles/breakpoints";
+@use "styles/mixins";
 
 .nav-bar {
   max-width: breakpoints.$tablet;
@@ -10,9 +11,7 @@
 }
 
 .nav-bar__items {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  @include mixins.flex(space-evenly, center);
   font-family: "Meriweather", san-serif;
   font-size: 2rem;
   list-style: none;

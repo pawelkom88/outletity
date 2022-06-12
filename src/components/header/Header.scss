@@ -8,14 +8,18 @@
 }
 
 .logo {
-  display: block;
   height: 100%;
   margin: 1rem auto;
   cursor: pointer;
+}
+
+.logo img {
+  display: block;
 
   @media (max-width: breakpoints.$mobile) {
-    max-width: 40%;
+    max-width: 50%;
     height: auto;
+    margin: 0 auto;
   }
 }
 
