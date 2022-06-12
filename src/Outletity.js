@@ -1,6 +1,7 @@
 import "./index.scss";
 import PromoBar from "./components/promo-bar/PromoBar";
 import Sale from "./components/sale/Sale";
+import Header from "./components/header/Header";
 
 function Outletity() {
   return (
@@ -8,7 +9,10 @@ function Outletity() {
       <PromoBar>
         <Sale />
       </PromoBar>
-      {/* <Header/>
+      <Header />
+      <PromoBar>xyz</PromoBar>
+      {/* React router */}
+      {/*
       <Main></Main>
       <PromoBar>
         <Newsletter/>
