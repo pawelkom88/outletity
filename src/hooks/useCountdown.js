@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 
 export default function useCountdown() {
   const [timeLeft, setTimeLeft] = useState(calcTimeLeft());
-
   let {hours, minutes, seconds} = timeLeft;
   // to be refactored
   if (seconds < 10) seconds = `0${seconds}`;
@@ -38,8 +37,6 @@ function calcTimeLeft() {
       minutes: Math.floor((difference / 1000 / 60) % 60),
       seconds: Math.floor((difference / 1000) % 60),
     };
-  } else {
-    timeLeft = null;
   }
 
   return timeLeft;
