@@ -11,10 +11,10 @@ import "./index.scss";
 
 // pages
 import Home from "./pages/home/Home";
-import Electronics from "pages/Electronics";
-import Mens from "pages/Mens";
-import Womens from "pages/Womens";
-import Jewelery from "pages/Jewelery";
+import Electronics from "pages/electronics/Electronics";
+import Mens from "pages/mens/Mens";
+import Womens from "pages/womens/Womens";
+import Jewelery from "pages/jewelery/Jewelery";
 
 function Outletity() {
   return (
