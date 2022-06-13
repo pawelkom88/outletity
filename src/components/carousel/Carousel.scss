@@ -1,0 +1,53 @@
+@use "/src/styles/colors";
+
+.container-slider {
+  position: relative;
+  min-height: 60vh;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.slider-msg {
+  position: absolute;
+  top: 20vh;
+  left: 0;
+  right: 0;
+  font-family: "Merriweather", san-serif;
+  font-size: clamp(3.5rem, 4vw, 6rem);
+  color: colors.$white;
+  text-align: center;
+  text-shadow: 0 0 2px colors.$black, 0 0 2px colors.$black, 0 0 2px colors.$green,
+    0 0 2px colors.$green;
+  letter-spacing: 3px;
+  z-index: 1;
+}
+
+.slide button {
+  display: block;
+  position: absolute;
+  bottom: 5rem;
+  left: 0;
+  right: 0;
+  width: 100px;
+  margin: 0 auto;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background: rgba(34, 34, 34, 0.3);
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

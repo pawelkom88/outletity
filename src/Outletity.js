@@ -21,8 +21,8 @@ function Outletity() {
       <PromoBar>
         <Voucher />
       </PromoBar>
+      <Carousel />
       <Main>
-        <Carousel />
         {/* <Routes>
       </Routes> */}
       </Main>
