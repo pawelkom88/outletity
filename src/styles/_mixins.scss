@@ -1,0 +1,14 @@
+@use "colors";
+
+@mixin promo-bar {
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  color: colors.$white;
+  text-align: center;
+  cursor: pointer;
+}
+
+@mixin flex($property1, $property2) {
+  display: flex;
+  justify-content: $property1;
+  align-items: $property2;
+}

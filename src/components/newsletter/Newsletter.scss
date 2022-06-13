@@ -1,0 +1,11 @@
+@use "styles/mixins";
+
+.newsletter {
+  @include mixins.flex(center, center);
+  flex-wrap: wrap;
+}
+
+.newsletter-title {
+  @include mixins.promo-bar;
+  margin-right: 2rem;
+}
