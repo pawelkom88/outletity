@@ -6,10 +6,10 @@ export default function Carousel() {
   const {currentImage} = useCarousel(imagesArray);
   return (
     <div className="container-slider">
-      <p className="slider-msg">
+      <h1 className="slider-msg">
         Favorite brands <br />
         and hottest trends.
-      </p>
+      </h1>
       <div className="slide">
         <div className="overlay"></div>
         <img src={currentImage.src} alt="Carousel images" />
