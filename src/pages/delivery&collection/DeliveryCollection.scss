@@ -1,0 +1,69 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.container {
+  max-width: clamp(1000px, 800px, 90%);
+  min-height: 60vh;
+  @include mixins.flex(center, center);
+  font-family: "Merriweather", sans-serif;
+}
+
+.delivery-collection {
+  min-width: clamp(90%, 20vw, 800px);
+  border: 1px solid colors.$black;
+}
+
+.delivery-collection-header {
+  font-size: 2rem;
+  text-align: center;
+  background-color: colors.$light-grey;
+  padding: 1.5rem 0;
+}
+
+.delivery-collection-tab {
+  @include mixins.flex(center, center);
+}
+
+.delivery-collection-tab__delivery svg {
+  width: 30px;
+}
+.delivery-collection-tab__collection svg {
+  width: 40px;
+}
+
+.delivery-collection-tab li {
+  flex-basis: 50%;
+  @include mixins.flex(center, center);
+  padding: 1rem 0;
+}
+
+.active {
+  background-color: colors.$brand-primary;
+  fill: colors.$white;
+}
+
+.delivery-options {
+  @include mixins.flex(space-evenly, center);
+  flex-direction: column;
+  min-height: 30vh;
+
+  & .delivery-options__standard,
+  .delivery-options__next {
+    border: 1px solid colors.$black;
+    padding: 1rem 2rem;
+    @include mixins.box-shadow;
+  }
+
+  & h5 {
+    font-size: 1.8rem;
+  }
+
+  & p {
+    font-size: 1.4rem;
+  }
+}
+
+.delivery-options__standard__price,
+.delivery-options__next__price {
+  @include mixins.flex(space-between, center);
+}
