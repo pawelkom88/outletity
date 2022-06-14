@@ -1,10 +1,10 @@
 import Button from "components/button/Button";
 import useCarousel from "hooks/useCarousel";
-import {imagesArray} from "utilities/images";
+import {carouselImages} from "utilities/images";
 import "./Carousel.scss";
 
 export default function Carousel() {
-  const {currentImage} = useCarousel(imagesArray);
+  const {currentImage} = useCarousel(carouselImages);
   return (
     <div className="container-slider">
       <h1 className="slider-msg">

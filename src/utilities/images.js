@@ -15,16 +15,22 @@ import shopping2 from "../assets/png/shopping2.jpg";
 import cart from "../assets/svg/cart.svg";
 import user from "../assets/svg/user.svg";
 
-export const imagesArray = [
+export const carouselImages = [
   {id: uuidv4(), src: shopping1},
   {id: uuidv4(), src: shopping2},
 ];
 
 export const categoriesImages = [
-  {id: uuidv4(), src: mensPng, title: "Men's", desc: "Men's clothes"},
-  {id: uuidv4(), src: womensPng, title: "Women's", desc: "Women's clothes"},
-  {id: uuidv4(), src: jeweleryPng, title: "Jewelery", desc: "Jewelery"},
-  {id: uuidv4(), src: electronicsPng, title: "Electronics", desc: "Electronics"},
+  {id: uuidv4(), src: mensPng, title: "Men's", desc: "Men's clothes", path: "/Mens"},
+  {id: uuidv4(), src: womensPng, title: "Women's", desc: "Women's clothes", path: "/Womens"},
+  {id: uuidv4(), src: jeweleryPng, title: "Jewelery", desc: "Jewelery", path: "/Jewelery"},
+  {
+    id: uuidv4(),
+    src: electronicsPng,
+    title: "Electronics",
+    desc: "Electronics",
+    path: "/Electronics",
+  },
 ];
 
 export {

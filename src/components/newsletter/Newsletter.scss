@@ -1,11 +1,21 @@
 @use "styles/mixins";
+@use "styles/breakpoints";
 
 .newsletter {
   @include mixins.flex(center, center);
   flex-wrap: wrap;
+  // margin-top: 2rem;
 }
 
 .newsletter-title {
   @include mixins.promo-bar;
   margin-right: 2rem;
+
+  @media (max-width: breakpoints.$mobile) {
+    margin: 0.7rem;
+  }
+}
+
+.newsletter-btn {
+  padding: 0.5rem 2rem;
 }
