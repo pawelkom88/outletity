@@ -14,6 +14,9 @@ import shopping1 from "../assets/png/shopping1.jpg";
 import shopping2 from "../assets/png/shopping2.jpg";
 import cart from "../assets/svg/cart.svg";
 import user from "../assets/svg/user.svg";
+import facebook from "../assets/svg/facebook.svg";
+import twitter from "../assets/svg/twitter.svg";
+import instagram from "../assets/svg/instagram.svg";
 
 export const carouselImages = [
   {id: uuidv4(), src: shopping1},
@@ -47,4 +50,7 @@ export {
   jeweleryPng,
   electronicsPng,
   shoppingspreePng,
+  facebook,
+  twitter,
+  instagram,
 };

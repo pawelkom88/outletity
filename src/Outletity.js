@@ -7,6 +7,7 @@ import PromoBar from "components/promo-bar/PromoBar";
 import Sale from "components/sale/Sale";
 import Voucher from "components/voucher/Voucher";
 import Newsletter from "components/newsletter/Newsletter";
+import FooterDesktop from "components/footer/FooterDesktop";
 import "./index.scss";
 
 // pages
@@ -39,7 +40,7 @@ function Outletity() {
       <PromoBar>
         <Newsletter />
       </PromoBar>
-      {/* <Footer></Footer>   */}
+      <FooterDesktop></FooterDesktop>
       {/* <FooterMobile></FooterMobile>   */}
     </>
   );
