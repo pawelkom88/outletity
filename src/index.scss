@@ -55,12 +55,12 @@ a {
 
 button {
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 600;
   color: colors.$brand-primary;
   padding: 1rem 2.5rem;
   background-color: colors.$white;
-  border: none;
+  border: 2px solid colors.$white;
   border-radius: 2rem;
   letter-spacing: 1px;
   cursor: pointer;
@@ -70,5 +70,6 @@ button {
     background-color: colors.$black;
     color: colors.$white;
     transition: all 0.3s ease-in-out;
+    border: 2px solid colors.$white;
   }
 }

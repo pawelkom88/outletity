@@ -12,7 +12,7 @@ export default function Home() {
         <h2 className="heading">Shop by category</h2>
         <div className="categories-container">
           {categoriesImages.map(img => (
-            <Card key={img.id} desc={img.desc} content={img.title} src={img.src} />
+            <Card key={img.id} desc={img.desc} content={img.title} src={img.src} path={img.path} />
           ))}
         </div>
       </section>
