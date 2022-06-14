@@ -1,3 +1,4 @@
+import Button from "components/button/Button";
 import useCarousel from "hooks/useCarousel";
 import {imagesArray} from "utilities/images";
 import "./Carousel.scss";
@@ -13,7 +14,7 @@ export default function Carousel() {
       <div className="slide">
         <div className="overlay"></div>
         <img src={currentImage.src} alt="Carousel images" />
-        <button>Shop now</button>
+        <Button content={"Shop now"} />
       </div>
     </div>
   );

@@ -1,0 +1,40 @@
+@use "src/styles/colors";
+@use "src/styles/mixins";
+
+.card {
+  position: relative;
+  width: 100%;
+}
+
+.card-overlay {
+  @include mixins.overlay;
+  opacity: 0;
+  transition: 0.5s ease;
+
+  & span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: colors.$white;
+    font-family: "Merriweather", san-serif;
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  &:hover {
+    opacity: 1;
+    transition: 0.5s ease;
+  }
+}
+
+.card-img {
+  @include mixins.responsive-img;
+}
+
+.card-btn {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
