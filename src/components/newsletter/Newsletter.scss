@@ -4,7 +4,7 @@
 .newsletter {
   @include mixins.flex(center, center);
   flex-wrap: wrap;
-  // margin-top: 2rem;
+  padding: 1rem 0;
 }
 
 .newsletter-title {
