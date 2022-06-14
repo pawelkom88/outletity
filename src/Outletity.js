@@ -40,6 +40,7 @@ function Outletity() {
         <Newsletter />
       </PromoBar>
       {/* <Footer></Footer>   */}
+      {/* <FooterMobile></FooterMobile>   */}
     </>
   );
 }

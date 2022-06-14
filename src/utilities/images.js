@@ -20,6 +20,13 @@ export const imagesArray = [
   {id: uuidv4(), src: shopping2},
 ];
 
+export const categoriesImages = [
+  {id: uuidv4(), src: mensPng, title: "Men's", desc: "Men's clothes"},
+  {id: uuidv4(), src: womensPng, title: "Women's", desc: "Women's clothes"},
+  {id: uuidv4(), src: jeweleryPng, title: "Jewelery", desc: "Jewelery"},
+  {id: uuidv4(), src: electronicsPng, title: "Electronics", desc: "Electronics"},
+];
+
 export {
   logo,
   cart,

@@ -1,0 +1,21 @@
+@use "/src/styles/breakpoints";
+
+.categories-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 5rem;
+
+  @media (max-width: breakpoints.$tablet) {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
+}
+
+.heading {
+  font-size: clamp(2rem, 3vw, 4rem);
+  font-family: "Merriweather", san-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 4rem 0;
+}
