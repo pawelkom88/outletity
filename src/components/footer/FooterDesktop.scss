@@ -1,8 +1,13 @@
 @use "src/styles/mixins";
+@use "src/styles/breakpoints";
 
 footer {
   @include mixins.flex(center, center);
   flex-direction: column;
+
+  @media (max-width: breakpoints.$mobile) {
+    display: none;
+  }
 }
 
 .footer-nav_items {
