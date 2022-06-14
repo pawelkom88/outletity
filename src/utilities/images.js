@@ -17,6 +17,8 @@ import user from "../assets/svg/user.svg";
 import facebook from "../assets/svg/facebook.svg";
 import twitter from "../assets/svg/twitter.svg";
 import instagram from "../assets/svg/instagram.svg";
+import house from "../assets/svg/house.svg";
+import delivery from "../assets/svg/delivery.svg";
 
 export const carouselImages = [
   {id: uuidv4(), src: shopping1},
@@ -53,4 +55,6 @@ export {
   facebook,
   twitter,
   instagram,
+  house,
+  delivery,
 };

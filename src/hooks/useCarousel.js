@@ -7,7 +7,7 @@ export default function useCarousel(images) {
   activeSlide.current = nextSlide;
 
   function nextSlide() {
-    if (index < images.length - 1) {
+    if (Array.isArray(images) && index < images.length - 1) {
       setIndex(prevIndex => prevIndex + 1);
     } else {
       setIndex(0);
