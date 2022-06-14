@@ -12,6 +12,9 @@ import "./index.scss";
 
 // pages
 import Home from "./pages/home/Home";
+import Contact from "./pages/contact/Contact";
+import DeliveryCollection from "./pages/delivery&collection/DeliveryCollection";
+import ReturnsRefunds from "./pages/returns&refunds/ReturnsRefunds";
 import Electronics from "pages/electronics/Electronics";
 import Mens from "pages/mens/Mens";
 import Womens from "pages/womens/Womens";
@@ -34,6 +37,9 @@ function Outletity() {
           <Route path="/Mens" element={<Mens />} />
           <Route path="/Womens" element={<Womens />} />
           <Route path="/Jewelery" element={<Jewelery />} />
+          <Route path="/Delivery-Collections" element={<DeliveryCollection />} />
+          <Route path="/Returns-Refunds" element={<ReturnsRefunds />} />
+          <Route path="/Contact" element={<Contact />} />
           {/* <Route path="/Products" element={<Products />} /> */}
         </Routes>
       </Main>
