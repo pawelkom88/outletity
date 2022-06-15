@@ -1,5 +1,12 @@
 @use "/src/styles/mixins";
 @use "/src/styles/colors";
+@use "/src/styles/breakpoints";
+
+.hidden {
+  @media (max-width: breakpoints.$mobile) {
+    display: none;
+  }
+}
 
 .delivery-collection-tab {
   @include mixins.flex(center, center);
@@ -65,12 +72,4 @@
   & span {
     font-size: 1.5rem;
   }
-}
-
-.flex {
-  @include mixins.flex(space-between, center);
-}
-
-.padding {
-  padding: 1rem;
 }
