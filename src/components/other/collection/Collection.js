@@ -3,7 +3,7 @@ export default function Collection() {
     <div className="delivery-options">
       <div className="collection">
         <header className="delivery-collection-header flex padding">
-          <h4 className="delivery-collection-heading">Outletity shop</h4>
+          <h5>Outletity shop</h5>
           <span>FREE</span>
         </header>
         <p className="padding">Order Monday to Friday for collection in 4 working days</p>

@@ -1,4 +1,5 @@
 @use "styles/colors";
+@use "/src/styles/mixins";
 
 /*****************
 * Screen readers *
@@ -78,4 +79,22 @@ button {
 
 li {
   list-style: none;
+}
+
+.flex {
+  @include mixins.flex(space-between, center);
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.goUp {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 5rem;
+  bottom: 3rem;
+  border-radius: 50%;
+  background-color: black;
 }
