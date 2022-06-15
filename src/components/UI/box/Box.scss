@@ -1,0 +1,22 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.container {
+  max-width: clamp(1000px, 800px, 90%);
+  min-height: 60vh;
+  @include mixins.flex(center, center);
+  font-family: "Merriweather", sans-serif;
+  padding: 10rem 0;
+}
+
+.wrapper {
+  min-width: clamp(90%, 20vw, 800px);
+  @include mixins.border(1px, colors.$black);
+}
+
+.wrapper-header {
+  font-size: 2rem;
+  text-align: center;
+  background-color: colors.$light-grey;
+  padding: 1rem 0;
+}

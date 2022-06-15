@@ -2,7 +2,7 @@ export default function Collection() {
   return (
     <div className="delivery-options">
       <div className="collection">
-        <header className="delivery-collection-header flex">
+        <header className="delivery-collection-header flex padding">
           <h4 className="delivery-collection-heading">Outletity shop</h4>
           <span>FREE</span>
         </header>

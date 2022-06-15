@@ -2,11 +2,11 @@ import {Routes, Route} from "react-router-dom";
 
 // components
 import Header from "components/header/Header";
-import Main from "components/main/Main";
-import PromoBar from "components/promo-bar/PromoBar";
-import Sale from "components/sale/Sale";
-import Voucher from "components/voucher/Voucher";
-import Newsletter from "components/newsletter/Newsletter";
+import Main from "components/UI/main/Main";
+import PromoBar from "components/UI/promo-bar/PromoBar";
+import Sale from "components/UI/sale/Sale";
+import Voucher from "components/UI/voucher/Voucher";
+import Newsletter from "components/UI/newsletter/Newsletter";
 import FooterDesktop from "components/footer/FooterDesktop";
 import "./index.scss";
 

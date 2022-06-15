@@ -1,4 +1,4 @@
-import Button from "components/button/Button";
+import Button from "components/UI/button/Button";
 import "./Card.scss";
 
 export default function Card({src, desc = "", content = "", path}) {

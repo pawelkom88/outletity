@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 
-import SearchBar from "../search-bar/SearchBar";
-import Basket from "../basket/Basket";
-import UserPanel from "../user-panel/UserPanel";
+import SearchBar from "../UI/search-bar/SearchBar";
+import Basket from "../UI/basket/Basket";
+import UserPanel from "../UI/user-panel/UserPanel";
 import Navigation from "../navigation/Navigation";
 
 import {logo} from "../../utilities/images";
