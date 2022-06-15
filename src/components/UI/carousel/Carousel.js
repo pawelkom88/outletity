@@ -1,4 +1,4 @@
-import Button from "components/button/Button";
+import Button from "components/UI/button/Button";
 import useCarousel from "hooks/useCarousel";
 import {carouselImages} from "utilities/images";
 import "./Carousel.scss";

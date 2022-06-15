@@ -1,4 +1,4 @@
-import Button from "components/button/Button";
+import Button from "components/UI/button/Button";
 import "./Newsletter.scss";
 
 export default function Newsletter() {

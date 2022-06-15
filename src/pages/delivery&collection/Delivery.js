@@ -6,7 +6,10 @@ export default function Delivery() {
           <h5>Standard Delivery</h5>
           <span>£3.95</span>
         </div>
-        <p>3-5 working days FREE on orders over £55</p>
+        <div className="flex">
+          <p>3-5 working days </p>
+          <p>FREE on orders over £55 </p>
+        </div>
       </div>
 
       <div className="delivery-options__next padding">
