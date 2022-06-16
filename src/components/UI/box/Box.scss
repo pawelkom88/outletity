@@ -12,6 +12,7 @@
 .wrapper {
   min-width: clamp(90%, 20vw, 800px);
   @include mixins.border(1px, colors.$black);
+  margin: 0 1rem;
 }
 
 .wrapper-header {

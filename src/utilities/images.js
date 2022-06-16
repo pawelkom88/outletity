@@ -21,6 +21,8 @@ import house from "../assets/svg/house.svg";
 import delivery from "../assets/svg/delivery.svg";
 import up from "../assets/svg/up.svg";
 import creditcard from "../assets/svg/creditcard.svg";
+import chevronup from "../assets/svg/chevronup.svg";
+import chevrondown from "../assets/svg/chevrondown.svg";
 
 export const carouselImages = [
   {id: uuidv4(), src: shopping1},
@@ -60,5 +62,7 @@ export {
   house,
   delivery,
   up,
-  creditcard
+  creditcard,
+  chevronup,
+  chevrondown,
 };

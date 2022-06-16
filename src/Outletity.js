@@ -1,4 +1,5 @@
 import {Routes, Route} from "react-router-dom";
+import useMatchMedia from "hooks/useMatchMedia";
 
 // components
 import Header from "components/header/Header";
@@ -7,7 +8,8 @@ import PromoBar from "components/UI/promo-bar/PromoBar";
 import Sale from "components/UI/sale/Sale";
 import Voucher from "components/UI/voucher/Voucher";
 import Newsletter from "components/UI/newsletter/Newsletter";
-import FooterDesktop from "components/footer/FooterDesktop";
+import FooterDesktop from "components/footer/footer-desktop/FooterDesktop";
+import FooterMobile from "components/footer/footer-mobile/FooterMobile";
 import GoUp from "components/UI/goUp/GoUp";
 import SocialMedia from "components/UI/social-media/SocialMedia";
 import "./index.scss";
@@ -23,6 +25,7 @@ import Womens from "pages/womens/Womens";
 import Jewelery from "pages/jewelery/Jewelery";
 
 function Outletity() {
+  const {matches} = useMatchMedia("(max-width: 450px)");
   return (
     <>
       <PromoBar>
@@ -48,7 +51,7 @@ function Outletity() {
       <PromoBar>
         <Newsletter />
       </PromoBar>
-      <FooterDesktop></FooterDesktop>
+      {matches ? <FooterMobile /> : <FooterDesktop />}
       <SocialMedia />
       <GoUp />
     </>
