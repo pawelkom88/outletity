@@ -1,10 +1,7 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function useCarousel(images) {
   const [index, setIndex] = useState(0);
-
-  const activeSlide = useRef();
-  activeSlide.current = nextSlide;
 
   function nextSlide() {
     if (Array.isArray(images) && index < images.length - 1) {
@@ -15,7 +12,7 @@ export default function useCarousel(images) {
   }
 
   useEffect(() => {
-    const interval = setInterval(activeSlide.current, 10000);
+    const interval = setInterval(nextSlide, 10000);
     return () => clearInterval(interval);
   });
 

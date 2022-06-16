@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 
 export default function GoUp() {
   const [showIcon, setShowIcon] = useState();
-  console.log("render");
+
   const scrollHandler = _ => {
     if (window.pageYOffset > 1800) {
       setShowIcon(true);

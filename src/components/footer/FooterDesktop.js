@@ -20,7 +20,7 @@ export default function FooterDesktop() {
           </Link>
         </ul>
       </div>
-      <div className="footer-social-media">
+      {/* <div className="footer-social-media">
         <span>follow us</span>
         <div className="social-media__icons">
           <a href="https://en-gb.facebook.com/" target="_blank" rel="noreferrer">
@@ -33,7 +33,7 @@ export default function FooterDesktop() {
             <img src={instagram} alt="Instagram icon" />
           </a>
         </div>
-      </div>
+      </div> */}
       <hr />
       <time className="footer-copyright">&copy; Outletity {new Date().getFullYear()}</time>
     </footer>
