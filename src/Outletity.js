@@ -9,6 +9,7 @@ import Voucher from "components/UI/voucher/Voucher";
 import Newsletter from "components/UI/newsletter/Newsletter";
 import FooterDesktop from "components/footer/FooterDesktop";
 import GoUp from "components/UI/goUp/GoUp";
+import SocialMedia from "components/UI/social-media/SocialMedia";
 import "./index.scss";
 
 // pages
@@ -48,7 +49,7 @@ function Outletity() {
         <Newsletter />
       </PromoBar>
       <FooterDesktop></FooterDesktop>
-      {/* <FooterMobile></FooterMobile>   */}
+      <SocialMedia />
       <GoUp />
     </>
   );
