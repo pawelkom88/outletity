@@ -1,45 +1,33 @@
 import "./FooterMobile.scss";
 
+import Delivery from "../../other/delivery/Delivery";
+import Collection from "../../other/collection/Collection";
+import ReturnsRefunds from "../../../pages/returns&refunds/ReturnsRefunds";
+
 export default function FooterMobile() {
   return (
     <div className="footer-mobile-container">
       <details className="footer-mobile-details">
-        <summary className="footer-mobile-summary">Delivery and Collection</summary>
+        <summary className="footer-mobile-summary ">Delivery and Collection</summary>
 
         <details className="footer-mobile-details">
-          <summary className="footer-mobile-summary">Delivery</summary>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem deserunt dolorem
-            perferendis ducimus magni ipsa asperiores esse voluptates veniam quaerat?
-          </p>
+          <summary id="flip" className="footer-mobile-summary">
+            Delivery
+          </summary>
+          <Delivery />
         </details>
 
         <details className="footer-mobile-details">
-          <summary className="footer-mobile-summary">Collection</summary>
-          <p>
-            Epcot is a theme park at Walt Disney World Resort featuring exciting attractions,
-            international pavilions, award-winning fireworks and seasonal special events.
-          </p>
+          <summary id="flip" className="footer-mobile-summary">
+            Collection
+          </summary>
+          <Collection />
         </details>
       </details>
       <details className="footer-mobile-details">
         <summary className="footer-mobile-summary">Returns and Refunds</summary>
 
-        <details className="footer-mobile-details">
-          <summary className="footer-mobile-summary">Returns</summary>
-          <p>
-            Epcot is a theme park at Walt Disney World Resort featuring exciting attractions,
-            international pavilions, award-winning fireworks and seasonal special events.
-          </p>
-        </details>
-
-        <details className="footer-mobile-details">
-          <summary className="footer-mobile-summary">Refunds</summary>
-          <p>
-            Epcot is a theme park at Walt Disney World Resort featuring exciting attractions,
-            international pavilions, award-winning fireworks and seasonal special events.
-          </p>
-        </details>
+        <ReturnsRefunds />
       </details>
       <details className="footer-mobile-details">
         <summary className="footer-mobile-summary">Contact us</summary>

@@ -1,5 +1,6 @@
 @use "styles/colors";
 @use "/src/styles/mixins";
+@use "./src/styles/breakpoints";
 
 /*****************
 * Screen readers *
@@ -83,6 +84,10 @@ li {
 
 .flex {
   @include mixins.flex(space-between, center);
+
+  @media (max-width: breakpoints.$mobile) {
+    flex-direction: column;
+  }
 }
 
 .padding {
