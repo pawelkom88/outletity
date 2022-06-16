@@ -1,0 +1,36 @@
+@use "./src/styles/mixins";
+@use "./src/styles/colors";
+
+.delivery-options {
+  @include mixins.flex(space-evenly, center);
+  flex-direction: column;
+  min-height: 30vh;
+
+  & .delivery-options__standard,
+  .delivery-options__next,
+  .collection {
+    @include mixins.border(1px, colors.$black);
+    @include mixins.box-shadow;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  & h5 {
+    font-size: 1.8rem;
+  }
+
+  & p {
+    font-size: 1.4rem;
+  }
+}
+
+.delivery-options__standard__price,
+.delivery-options__next__price {
+  @include mixins.flex(space-between, center);
+  margin-bottom: 1rem;
+
+  & span {
+    font-size: 1.5rem;
+  }
+}
+

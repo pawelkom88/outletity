@@ -1,3 +1,5 @@
+import "./Delivery.scss";
+
 export default function Delivery() {
   return (
     <div className="delivery-options">

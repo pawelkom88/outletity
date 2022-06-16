@@ -1,5 +1,6 @@
 @use "/src/styles/mixins";
 @use "/src/styles/colors";
+@use "/src/styles/breakpoints";
 
 .container {
   max-width: clamp(1000px, 800px, 90%);
@@ -7,6 +8,10 @@
   @include mixins.flex(center, center);
   font-family: "Merriweather", sans-serif;
   padding: 10rem 0;
+
+  @media (max-width: breakpoints.$mobile) {
+    padding: 5rem 0;
+  }
 }
 
 .wrapper {

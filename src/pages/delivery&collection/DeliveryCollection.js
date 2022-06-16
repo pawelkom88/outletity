@@ -37,11 +37,7 @@ export default function DeliveryCollection() {
             </li>
           </ul>
           {/* hide react */}
-          {showTab === "tab1" ? (
-            <Delivery setShowTab={setShowTab} />
-          ) : (
-            <Collection setShowTab={setShowTab} />
-          )}
+          {showTab === "tab1" ? <Delivery /> : <Collection />}
         </div>
       </Box>
     </div>

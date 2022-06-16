@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .footer-mobile-details {
   font-size: 1.2rem;
   margin: 2rem 0;
@@ -15,18 +17,18 @@
   }
 
   &::after {
-    display: inline-block;
-    content: url("/assets/svg/chevrondown.svg");
-    width: 25px;
-    position: absolute;
-    right: 2rem;
+    @include mixins.icon(chevrondown);
   }
 }
 
 .footer-mobile-details[open] .footer-mobile-summary:after {
-  display: inline-block;
-  content: url("/assets/svg/chevronup.svg");
-  width: 25px;
-  position: absolute;
-  right: 2rem;
+  @include mixins.icon(chevronup);
+}
+
+#flip::after {
+  @include mixins.icon(chevronup);
+}
+
+.footer-mobile-details[open] #flip:after {
+  @include mixins.icon(chevrondown);
 }
