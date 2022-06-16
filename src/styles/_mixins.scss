@@ -1,7 +1,7 @@
 @use "colors";
 
 @mixin promo-bar {
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  font-size: clamp(0.9rem, 1vw, 1.2rem);
   color: colors.$white;
   text-align: center;
   cursor: pointer;

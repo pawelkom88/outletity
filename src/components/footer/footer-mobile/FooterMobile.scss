@@ -1,0 +1,32 @@
+.footer-mobile-details {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  padding: 0 2rem;
+}
+
+.footer-mobile-summary {
+  font-family: "Merriweather", sans-serif;
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  list-style: none;
+
+  &::marker {
+    display: none;
+  }
+
+  &::after {
+    display: inline-block;
+    content: url("/assets/svg/chevrondown.svg");
+    width: 25px;
+    position: absolute;
+    right: 2rem;
+  }
+}
+
+.footer-mobile-details[open] .footer-mobile-summary:after {
+  display: inline-block;
+  content: url("/assets/svg/chevronup.svg");
+  width: 25px;
+  position: absolute;
+  right: 2rem;
+}
