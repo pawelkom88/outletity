@@ -20,23 +20,23 @@ footer {
   margin: 3rem;
 }
 
-.social-media__icons {
-  @include mixins.flex(center, center);
+// .social-media__icons {
+//   @include mixins.flex(center, center);
 
-  & img {
-    width: 25px;
-    margin: 2rem;
-  }
-}
+//   & img {
+//     width: 25px;
+//     margin: 2rem;
+//   }
+// }
 
-.footer-social-media {
-  text-align: center;
+// .footer-social-media {
+//   text-align: center;
 
-  & span {
-    font-size: 1.4rem;
-  }
-}
+//   & span {
+//     font-size: 1.4rem;
+//   }
+// }
 
-.footer-copyright {
-  margin-bottom: 1rem;
-}
+// .footer-copyright {
+//   margin-bottom: 1rem;
+// }
