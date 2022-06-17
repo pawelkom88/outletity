@@ -1,0 +1,30 @@
+@use "/src/styles/colors";
+
+.hamburger-menu {
+  position: absolute;
+  left: 3rem;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.menu-bar0,
+.menu-bar1,
+.menu-bar2 {
+  width: 25px;
+  height: 2px;
+  background-color: colors.$brand-primary;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.menu-bar0.open {
+  transform: rotate(-45deg) translate(-0.5rem, 0.1rem);
+}
+
+.menu-bar1.open {
+  opacity: 0;
+}
+
+.menu-bar2.open {
+  transform: rotate(45deg) translate(-0.6rem, -0.2rem);
+}

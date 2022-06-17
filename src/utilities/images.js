@@ -29,7 +29,7 @@ export const carouselImages = [
   {id: uuidv4(), src: shopping2},
 ];
 
-export const categoriesImages = [
+export const categories = [
   {id: uuidv4(), src: mensPng, title: "Men's", desc: "Men's clothes", path: "/Mens"},
   {id: uuidv4(), src: womensPng, title: "Women's", desc: "Women's clothes", path: "/Womens"},
   {id: uuidv4(), src: jeweleryPng, title: "Jewelery", desc: "Jewelery", path: "/Jewelery"},

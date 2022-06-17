@@ -1,4 +1,4 @@
-import {Routes, Route} from "react-router-dom";
+import {useState} from "react";
 import useMatchMedia from "hooks/useMatchMedia";
 
 // components
@@ -12,41 +12,27 @@ import FooterDesktop from "components/footer/footer-desktop/FooterDesktop";
 import FooterMobile from "components/footer/footer-mobile/FooterMobile";
 import GoUp from "components/UI/goUp/GoUp";
 import SocialMedia from "components/UI/social-media/SocialMedia";
+import NavMobile from "components/navigation/navigation-mobile/NavMobile";
+import RouterRoutes from "components/RouterRoutes";
+
 import "./index.scss";
 
-// pages
-import Home from "./pages/home/Home";
-import Contact from "./pages/contact/Contact";
-import DeliveryCollection from "./pages/delivery&collection/DeliveryCollection";
-import ReturnsRefunds from "./pages/returns&refunds/ReturnsRefunds";
-import Electronics from "pages/electronics/Electronics";
-import Mens from "pages/mens/Mens";
-import Womens from "pages/womens/Womens";
-import Jewelery from "pages/jewelery/Jewelery";
-
 function Outletity() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const {matches} = useMatchMedia("(max-width: 450px)");
+
   return (
     <>
       <PromoBar>
         <Sale />
       </PromoBar>
-      <Header />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <PromoBar>
         <Voucher />
       </PromoBar>
       <Main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Electronics" element={<Electronics />} />
-          <Route path="/Mens" element={<Mens />} />
-          <Route path="/Womens" element={<Womens />} />
-          <Route path="/Jewelery" element={<Jewelery />} />
-          <Route path="/Delivery-Collections" element={<DeliveryCollection />} />
-          <Route path="/Returns-Refunds" element={<ReturnsRefunds />} />
-          <Route path="/Contact" element={<Contact />} />
-          {/* <Route path="/Products" element={<Products />} /> */}
-        </Routes>
+        {menuOpen && <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+        <RouterRoutes />
       </Main>
       <PromoBar>
         <Newsletter />

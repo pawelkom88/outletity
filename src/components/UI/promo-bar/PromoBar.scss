@@ -1,6 +1,7 @@
 @use "styles/colors";
 
 .promo-bar {
+  width: 100%;
   background-color: colors.$brand-secondary;
   padding: 0.7rem 0;
 }

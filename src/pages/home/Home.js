@@ -2,7 +2,7 @@ import Carousel from "components/UI/carousel/Carousel";
 import Card from "components/UI/card/Card";
 import "./Home.scss";
 
-import {categoriesImages} from "utilities/images";
+import {categories} from "utilities/images";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <section>
         <h2 className="heading">Shop by category</h2>
         <div className="categories-container">
-          {categoriesImages.map(img => (
+          {categories.map(img => (
             <Card key={img.id} desc={img.desc} content={img.title} src={img.src} path={img.path} />
           ))}
         </div>
