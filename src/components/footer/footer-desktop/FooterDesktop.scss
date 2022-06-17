@@ -3,7 +3,7 @@
 
 footer {
   @include mixins.flex(center, center);
-  flex-direction: column;
+  // flex-direction: column;
 
   @media (max-width: breakpoints.$mobile) {
     display: none;
@@ -18,4 +18,9 @@ footer {
   font-size: 1.7rem;
   font-family: "Merriweather", san-serif;
   margin: 3rem;
+
+  @media (max-width: breakpoints.$tablet) {
+    font-size: 1.1rem;
+    margin: 2rem 1rem;
+  }
 }

@@ -21,7 +21,7 @@ export default function GoUp() {
       {showIcon && (
         <a href="#">
           <svg
-            style={{position: "fixed", bottom: "4rem", right: "3rem"}}
+            style={{position: "fixed", bottom: "4rem", right: "3rem", width: "50px"}}
             xmlns="http://www.w3.org/2000/svg"
             width="60"
             height="60"
