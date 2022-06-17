@@ -3,8 +3,8 @@
 .header-panel {
   position: relative;
   display: flex;
-  height: 100%;
   align-items: center;
+  height: 100%;
 }
 
 .logo {
@@ -15,6 +15,10 @@
 
 .logo img {
   display: block;
+
+  @media (min-width: breakpoints.$tablet) and (max-width: breakpoints.$desktop) {
+    width: 50%;
+  }
 
   @media (max-width: breakpoints.$mobile) {
     max-width: 50%;

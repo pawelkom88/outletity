@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import "./Navigation.scss";
+import "./NavDesktop.js.scss";
 
-export default function Navigation() {
+export default function NavDesktop() {
   return (
     <nav className="nav-bar">
       <ul className="nav-bar__items">
