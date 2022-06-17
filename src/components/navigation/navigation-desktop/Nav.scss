@@ -4,10 +4,7 @@
 .nav-bar {
   max-width: breakpoints.$tablet;
   margin: 1.5rem auto;
-
-  @media (max-width: breakpoints.$tablet) {
-    display: none;
-  }
+  z-index: 100;
 }
 
 .nav-bar__items {
@@ -15,4 +12,15 @@
   font-family: "Meriweather", san-serif;
   font-size: 2rem;
   cursor: pointer;
+
+  @media (max-width: breakpoints.$mobile) {
+    flex-direction: column;
+    padding: 2rem 0;
+  }
+}
+
+.nav-bar__item {
+  @media (max-width: breakpoints.$mobile) {
+    padding: 2rem 0;
+  }
 }

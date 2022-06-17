@@ -1,0 +1,14 @@
+@use "/src/styles/colors";
+@use "/src/styles/mixins";
+
+.menu-mobile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  @include mixins.flex(center, center);
+  flex-direction: column;
+  background-color: colors.$white;
+  z-index: 10;
+}
