@@ -29,6 +29,6 @@
   @include mixins.icon(chevronup);
 }
 
-.footer-mobile-details[open] #flip:after {
+#flip[open] #flip::after {
   @include mixins.icon(chevrondown);
 }
