@@ -9,14 +9,12 @@ export default function FooterMobile() {
     <div className="footer-mobile-container">
       <details className="footer-mobile-details">
         <summary className="footer-mobile-summary ">Delivery and Collection</summary>
-
         <details className="footer-mobile-details">
           <summary id="flip" className="footer-mobile-summary">
             Delivery
           </summary>
           <Delivery />
         </details>
-
         <details className="footer-mobile-details">
           <summary id="flip" className="footer-mobile-summary">
             Collection
@@ -26,7 +24,6 @@ export default function FooterMobile() {
       </details>
       <details className="footer-mobile-details">
         <summary className="footer-mobile-summary">Returns and Refunds</summary>
-
         <ReturnsRefunds />
       </details>
       <details className="footer-mobile-details">

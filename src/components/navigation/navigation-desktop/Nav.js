@@ -8,10 +8,7 @@ export default function NavDesktop({setMenuOpen}) {
       <ul className="nav-bar__items">
         {categories.map(link => {
           return (
-            // close menu
-            // onClick={() => setMenuOpen(prevState => !prevState)}
-
-            <Link key={link.id} to={link.path}>
+            <Link key={link.id} to={link.path} onClick={() => setMenuOpen(false)}>
               <li className="nav-bar__item">{link.desc}</li>
             </Link>
           );

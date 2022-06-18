@@ -1,18 +1,10 @@
 .returns-refunds-wrapper {
+  font-size: 1.4rem;
   padding: 2rem;
 }
 
-.returns-refunds-item,
-.returns-refunds-paragraph {
+.returns-refunds-items li {
   font-size: 1.4rem;
-}
-
-.returns-refunds-paragraph {
-  font-size: 1.4rem;
-  padding: 1.4rem 0;
-}
-
-.returns-refunds-item {
   font-weight: bold;
   padding: 1rem 0;
 }

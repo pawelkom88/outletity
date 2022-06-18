@@ -18,7 +18,7 @@ import RouterRoutes from "components/RouterRoutes";
 import "./index.scss";
 
 function Outletity() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const {matches} = useMatchMedia("(max-width: 450px)");
 
   return (
@@ -26,12 +26,12 @@ function Outletity() {
       <PromoBar>
         <Sale />
       </PromoBar>
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Header menuOpen={menuIsOpen} setMenuOpen={setMenuIsOpen} />
       <PromoBar>
         <Voucher />
       </PromoBar>
       <Main>
-        {menuOpen && <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+        {menuIsOpen && <NavMobile menuOpen={menuIsOpen} setMenuOpen={setMenuIsOpen} />}
         <RouterRoutes />
       </Main>
       <PromoBar>

@@ -5,6 +5,10 @@
   max-width: breakpoints.$tablet;
   margin: 1.5rem auto;
   z-index: 100;
+
+  @media (max-width: breakpoints.$mobile) {
+    margin-bottom: auto;
+  }
 }
 
 .nav-bar__items {
@@ -15,7 +19,6 @@
 
   @media (max-width: breakpoints.$mobile) {
     flex-direction: column;
-    padding: 2rem 0;
   }
 }
 
