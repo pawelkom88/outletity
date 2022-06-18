@@ -3,13 +3,13 @@ import SearchBar from "../../UI/search-bar/SearchBar";
 import SocialMedia from "../../UI/social-media/SocialMedia";
 import "./NavMobile.scss";
 
-export default function NavMobile({menuOpen}) {
+export default function NavMobile({menuIsOpen, setMenuOpen}) {
   return (
     <>
-      {menuOpen && (
-        <div className={` ${menuOpen ? "menu-mobile fadeIn" : "menu-mobile"}`}>
+      {menuIsOpen && (
+        <div className="menu-mobile">
           <SearchBar />
-          <Nav />
+          <Nav menuIsOpen={menuIsOpen} setMenuOpen={setMenuOpen} />
           <SocialMedia />
         </div>
       )}

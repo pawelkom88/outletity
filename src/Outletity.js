@@ -1,4 +1,3 @@
-import {useState} from "react";
 import useMatchMedia from "hooks/useMatchMedia";
 
 // components
@@ -12,13 +11,12 @@ import FooterDesktop from "components/footer/footer-desktop/FooterDesktop";
 import FooterMobile from "components/footer/footer-mobile/FooterMobile";
 import GoUp from "components/UI/goUp/GoUp";
 import SocialMedia from "components/UI/social-media/SocialMedia";
-import NavMobile from "components/navigation/navigation-mobile/NavMobile";
+// import NavMobile from "components/navigation/navigation-mobile/NavMobile";
 import RouterRoutes from "components/RouterRoutes";
 
 import "./index.scss";
 
 function Outletity() {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const {matches} = useMatchMedia("(max-width: 450px)");
 
   return (
@@ -26,12 +24,11 @@ function Outletity() {
       <PromoBar>
         <Sale />
       </PromoBar>
-      <Header menuOpen={menuIsOpen} setMenuOpen={setMenuIsOpen} />
+      <Header />
       <PromoBar>
         <Voucher />
       </PromoBar>
       <Main>
-        {menuIsOpen && <NavMobile menuOpen={menuIsOpen} setMenuOpen={setMenuIsOpen} />}
         <RouterRoutes />
       </Main>
       <PromoBar>
