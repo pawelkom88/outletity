@@ -1,9 +1,13 @@
-import Button from "components/UI/button/Button";
+import useMatchMedia from "hooks/useMatchMedia";
 import useCarousel from "hooks/useCarousel";
+import Button from "components/UI/button/Button";
 import {carouselImages} from "utilities/images";
+
 import "./Carousel.scss";
 
 export default function Carousel() {
+  const {matches} = useMatchMedia("(max-width: 450px)");
+
   const {currentImage} = useCarousel(carouselImages);
   return (
     <div className="container-slider">
@@ -13,7 +17,7 @@ export default function Carousel() {
       </h1>
       <div className="slide">
         <div className="overlay"></div>
-        <img src={currentImage.src} alt="Carousel images" />
+        <img src={matches ? currentImage.srcMobile : currentImage.src} alt="Carousel images" />
         <Button content={"Shop now"} />
       </div>
     </div>

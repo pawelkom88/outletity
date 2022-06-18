@@ -79,6 +79,11 @@ button {
     color: colors.$white;
     transition: all 0.3s ease-in-out;
     border: 2px solid colors.$white;
+    @include mixins.box-shadow;
+  }
+
+  &:active {
+    transform: translateY(3px);
   }
 }
 

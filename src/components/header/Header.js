@@ -36,8 +36,8 @@ export default function Header() {
           </Link>
           <div className="user-panel">
             {!matches && <SearchBar />}
-            <UserPanel />
-            <Basket />
+            <UserPanel menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
+            <Basket menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
           </div>
         </div>
         {matches ? <NavMobile menuIsOpen={menuIsOpen} setMenuOpen={setMenuIsOpen} /> : <Nav />}

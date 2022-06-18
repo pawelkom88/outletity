@@ -2,7 +2,6 @@
 @use "/src/styles/mixins";
 
 .header-panel {
-  // position: relative;
   @include mixins.flex(center, center);
 }
 

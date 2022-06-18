@@ -1,7 +1,7 @@
 import Button from "components/UI/button/Button";
-import "./Card.scss";
+import "./CategoryCard.scss";
 
-export default function Card({src, desc = "", content = "", path}) {
+export default function CategoryCard({src, desc = "", content = "", path}) {
   return (
     <div className="card">
       <div className="card-overlay">
