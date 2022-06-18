@@ -1,5 +1,5 @@
 import Carousel from "components/UI/carousel/Carousel";
-import Card from "components/UI/card/Card";
+import Card from "components/UI/category-card/CategoryCard";
 import "./Home.scss";
 
 import {categories} from "utilities/images";

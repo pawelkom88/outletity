@@ -1,0 +1,48 @@
+@use "/src/styles/colors";
+@use "/src/styles/mixins";
+
+.contact-form {
+  @include mixins.flex(center, center);
+  flex-direction: column;
+}
+
+.contact-form__description {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.contact-form__wrapper {
+  max-width: 100%;
+  @include mixins.flex(center, flex-start);
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.contact-form__label {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.contact-form__input {
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  width: 100%;
+  border: none;
+  @include mixins.border(1px, colors.$black);
+}
+
+.contact-form__btn {
+  display: block;
+  margin: 2rem auto;
+  @include mixins.border(2px, colors.$black);
+
+  &:hover {
+    @include mixins.border(2px, colors.$black);
+  }
+}

@@ -11,7 +11,7 @@ export default function Nav({menuIsOpen, setMenuOpen}) {
             <Link
               key={link.id}
               to={link.path}
-              onClick={menuIsOpen && (() => setMenuOpen(prevState => !prevState))}>
+              onClick={menuIsOpen ? () => setMenuOpen(prevState => !prevState) : undefined}>
               <li className="nav-bar__item">{link.desc}</li>
             </Link>
           );
