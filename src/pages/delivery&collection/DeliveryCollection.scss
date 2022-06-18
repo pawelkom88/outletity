@@ -35,9 +35,8 @@
 }
 
 .active {
-  background-color: colors.$brand-primary;
-  fill: colors.$white;
-  color: colors.$white;
+  background-color: colors.$light-grey;
+  fill: colors.$brand-primary;
+  color: colors.$brand-primary;
   transition: all 0.3s ease-in-out;
 }
-
