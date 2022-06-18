@@ -5,7 +5,7 @@ export default function Box({children, content}) {
     <section className="container">
       <div className="wrapper">
         <header className="wrapper-header">
-          <h4>{content}</h4>
+          <h4 className='wrapper-header__heading'>{content}</h4>
         </header>
         {children}
       </div>

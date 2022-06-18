@@ -18,7 +18,7 @@ export default function Carousel() {
       <div className="slide">
         <div className="overlay"></div>
         <img src={matches ? currentImage.srcMobile : currentImage.src} alt="Carousel images" />
-        <Button content={"Shop now"} />
+        <Button path="/Products" content={"Shop now"} />
       </div>
     </div>
   );
