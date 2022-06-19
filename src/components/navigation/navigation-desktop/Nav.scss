@@ -6,7 +6,7 @@
   margin: 1.5rem auto;
   z-index: 100;
 
-  @media (max-width: breakpoints.$mobile) {
+  @media (max-width: breakpoints.$tablet) {
     margin-bottom: auto;
   }
 }
@@ -17,13 +17,13 @@
   font-size: 2rem;
   cursor: pointer;
 
-  @media (max-width: breakpoints.$mobile) {
+  @media (max-width: breakpoints.$tablet) {
     flex-direction: column;
   }
 }
 
 .nav-bar__item {
-  @media (max-width: breakpoints.$mobile) {
+  @media (max-width: breakpoints.$tablet) {
     padding: 2rem 0;
   }
 }

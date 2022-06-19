@@ -2,7 +2,7 @@
 @use "/src/styles/mixins";
 
 .categories-container {
-  @include mixins.grid2columns;
+  @include mixins.grid2columns(1fr 1fr);
 }
 
 .heading {

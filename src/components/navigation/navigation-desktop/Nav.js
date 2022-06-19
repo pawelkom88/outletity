@@ -1,4 +1,4 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {categories} from "utilities/images";
 import "./Nav.scss";
 
@@ -10,7 +10,7 @@ export default function Nav({menuIsOpen, setMenuOpen}) {
           return (
             <Link
               key={link.id}
-              to={link.path}
+              to={`/Products${link.path}`}
               onClick={menuIsOpen ? () => setMenuOpen(prevState => !prevState) : undefined}>
               <li className="nav-bar__item">{link.desc}</li>
             </Link>

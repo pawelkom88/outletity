@@ -3,26 +3,50 @@
 // @use "/src/styles/breakpoints";
 
 .product-card {
+  width: 100%;
+  max-width: 400px;
+  min-height: 500px;
   @include mixins.border(1px, colors.$black);
+  cursor: pointer;
 }
 
-.product-card__img {
+.product-card-discount {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: colors.$red;
+  padding: 0.5rem 2rem;
+  color: colors.$white;
+}
+
+.product-card-img {
+  position: relative;
+}
+
+.product-card-img img {
+  min-height: 350px;
   @include mixins.responsive-img;
 }
 
-.basket-quantity::before {
-  position: absolute;
-  top: 0;
-  width: 2.4rem;
-  height: 2.4rem;
-  @include mixins.flex(center, center);
-  font-size: 1.2rem;
-  content: attr(data-count);
-  background-color: colors.$red;
-  color: colors.$white;
-  border-radius: 50%;
-}
+.product-card-desc {
+  padding: 0 4rem;
 
-// .basket-quantity:hover::before {
-//   color: black;
-// }
+  & h6 {
+    font-family: "Merriweather", sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  span {
+    font-size: 1.2rem;
+    text-decoration: line-through;
+  }
+
+  & .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: colors.$red;
+    margin: 1rem 0;
+  }
+}
