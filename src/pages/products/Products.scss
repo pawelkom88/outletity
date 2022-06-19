@@ -1,12 +1,19 @@
 @use "/src/styles/colors";
 @use "/src/styles/mixins";
+@use "/src/styles/breakpoints";
 
 .category-sortable-panel {
   @include mixins.flex(space-between, center);
   margin: 8rem 0;
 
+  @media (max-width: breakpoints.$tablet) {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 4rem 0;
+  }
+
   & span {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 1.2rem, 2rem);
   }
 }
 
@@ -14,11 +21,17 @@
   @include mixins.flex(center, center);
 
   & * {
-    margin: 0 1rem;
+    margin: 0 0.3rem;
+  }
+
+  img {
+    @media (max-width: breakpoints.$tablet) {
+      display: none;
+    }
   }
 }
 
-.black {
+.background {
   background-color: colors.$black;
   color: colors.$white;
   border: none;
@@ -29,5 +42,12 @@
 }
 
 .category-products {
-  @include mixins.grid2columns;
+  @include mixins.flex(center, center);
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+.product-quantity {
+  text-align: center;
+  margin: 1rem;
 }

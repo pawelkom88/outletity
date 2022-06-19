@@ -45,10 +45,9 @@
   right: 2rem;
 }
 
-@mixin grid2columns {
+@mixin grid2columns($columns) {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   grid-gap: 5rem;
 
   @media (max-width: breakpoints.$tablet) {

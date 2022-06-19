@@ -16,13 +16,14 @@
   &::placeholder {
     color: colors.$text-color;
 
-    @media (max-width: breakpoints.$mobile) {
+    @media (max-width: breakpoints.$tablet) {
       text-indent: 1rem;
     }
   }
 
-  @media (max-width: breakpoints.$mobile) {
+  @media (max-width: breakpoints.$tablet) {
     width: 70%;
     padding: 1rem 3rem;
+    margin: 2rem;
   }
 }

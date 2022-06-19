@@ -1,5 +1,6 @@
 @use "/src/styles/colors";
 @use "/src/styles/breakpoints";
+@use "/src/styles/mixins";
 
 .basket-container {
   position: relative;
@@ -18,17 +19,20 @@
   }
 }
 
-.basket-quantity {
+.basket-quantity::before {
   position: absolute;
-  left: 3.5rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: colors.$red;
-
-  @media (max-width: breakpoints.$mobile) {
-    font-size: 1rem;
-
-    top: 0.2rem;
-    left: 3rem;
-  }
+  top: 0;
+  right: 0.1rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  @include mixins.flex(center, center);
+  font-size: 1.2rem;
+  content: attr(data-count);
+  background-color: colors.$red;
+  color: colors.$white;
+  border-radius: 50%;
 }
+
+// .basket-quantity:hover::before {
+//   color: black;
+// }

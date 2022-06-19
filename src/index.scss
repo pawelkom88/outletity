@@ -63,7 +63,7 @@ a {
 
 button {
   display: inline-block;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 600;
   color: colors.$brand-primary;
   padding: 1rem 2.5rem;
@@ -73,6 +73,10 @@ button {
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+
+  @media (max-width: breakpoints.$mobile) {
+    padding: 0.5rem 1rem;
+  }
 
   &:hover {
     background-color: colors.$black;
