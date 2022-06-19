@@ -1,3 +1,4 @@
+import useMatchMedia from "hooks/useMatchMedia";
 import Carousel from "components/UI/carousel/Carousel";
 import CategoryCard from "components/UI/category-card/CategoryCard";
 import "./Home.scss";
@@ -5,6 +6,8 @@ import "./Home.scss";
 import {categories} from "utilities/images";
 
 export default function Home() {
+  const {matches} = useMatchMedia("(max-width: 450px)");
+
   return (
     <>
       <Carousel />
@@ -16,7 +19,7 @@ export default function Home() {
               key={img.id}
               desc={img.desc}
               content={img.title}
-              src={img.src}
+              src={matches ? img.srcMobile : img.src}
               path={img.path}
             />
           ))}

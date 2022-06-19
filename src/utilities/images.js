@@ -15,6 +15,7 @@ import shopping1webp from "../assets/webp/shopping1.webp";
 import shopping2webp from "../assets/webp/shopping2.webp";
 import shopping3webp from "../assets/webp/shopping3.webp";
 import cart from "../assets/svg/cart.svg";
+import sort from "../assets/svg/sort.svg";
 import user from "../assets/svg/user.svg";
 import facebook from "../assets/svg/facebook.svg";
 import twitter from "../assets/svg/twitter.svg";
@@ -33,11 +34,33 @@ export const carouselImages = [
 ];
 
 export const categories = [
-  {id: uuidv4(), src: mensPng, title: "Men's", desc: "Men's clothes", path: "/Mens"},
-  {id: uuidv4(), src: womensPng, title: "Women's", desc: "Women's clothes", path: "/Womens"},
-  {id: uuidv4(), src: jeweleryPng, title: "Jewelery", desc: "Jewelery", path: "/Jewelery"},
   {
     id: uuidv4(),
+    srcMobile: mens,
+    src: mensPng,
+    title: "Men's",
+    desc: "Men's clothes",
+    path: "/Mens",
+  },
+  {
+    id: uuidv4(),
+    srcMobile: womens,
+    src: womensPng,
+    title: "Women's",
+    desc: "Women's clothes",
+    path: "/Womens",
+  },
+  {
+    id: uuidv4(),
+    srcMobile: jewelery,
+    src: jeweleryPng,
+    title: "Jewelery",
+    desc: "Jewelery",
+    path: "/Jewelery",
+  },
+  {
+    id: uuidv4(),
+    srcMobile: electronics,
     src: electronicsPng,
     title: "Electronics",
     desc: "Electronics",
@@ -72,4 +95,5 @@ export {
   creditcard,
   chevronup,
   chevrondown,
+  sort,
 };

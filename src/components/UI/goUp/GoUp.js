@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import "./GoUp.scss";
 
 export default function GoUp() {
   const [showIcon, setShowIcon] = useState();

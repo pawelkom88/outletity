@@ -10,7 +10,7 @@ export default function Basket({menuIsOpen, setMenuIsOpen}) {
         alt="Cart icon"
         onClick={menuIsOpen ? () => setMenuIsOpen(prevState => !prevState) : undefined}
       />
-      <span className="basket-quantity">0</span>
+      <span data-count="10" className="basket-quantity"></span>
     </div>
   );
 }
