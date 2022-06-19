@@ -1,4 +1,5 @@
 @use "colors";
+@use "breakpoints";
 
 @mixin promo-bar {
   font-size: clamp(0.9rem, 1vw, 1.2rem);
@@ -42,4 +43,16 @@
   width: 25px;
   position: absolute;
   right: 2rem;
+}
+
+@mixin grid2columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 5rem;
+
+  @media (max-width: breakpoints.$tablet) {
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+  }
 }

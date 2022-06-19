@@ -1,0 +1,28 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+// @use "/src/styles/breakpoints";
+
+.product-card {
+  @include mixins.border(1px, colors.$black);
+}
+
+.product-card__img {
+  @include mixins.responsive-img;
+}
+
+.basket-quantity::before {
+  position: absolute;
+  top: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  @include mixins.flex(center, center);
+  font-size: 1.2rem;
+  content: attr(data-count);
+  background-color: colors.$red;
+  color: colors.$white;
+  border-radius: 50%;
+}
+
+// .basket-quantity:hover::before {
+//   color: black;
+// }
