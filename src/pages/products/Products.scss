@@ -44,7 +44,7 @@
 .category-products {
   @include mixins.flex(center, center);
   flex-wrap: wrap;
-  gap: 5rem;
+  gap: 8rem;
 }
 
 .product-quantity {

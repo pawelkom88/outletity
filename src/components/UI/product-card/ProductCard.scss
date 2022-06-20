@@ -5,9 +5,10 @@
 .product-card {
   width: 100%;
   max-width: 400px;
-  min-height: 500px;
-  @include mixins.border(1px, colors.$black);
+  height: 600px;
   cursor: pointer;
+  @include mixins.box-shadow;
+
 }
 
 .product-card-discount {
@@ -21,10 +22,10 @@
 
 .product-card-img {
   position: relative;
+  height: 400px;
 }
 
 .product-card-img img {
-  min-height: 350px;
   @include mixins.responsive-img;
 }
 
