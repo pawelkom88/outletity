@@ -19,6 +19,7 @@ export default function RouterRoutes() {
       <Route path="/Products" element={<Products data={data} />} />
       <Route path="/Products/:category" element={<Products data={data} />} />
       {/* <Route path="/Products/:category/:id" element={<Product />} /> */}
+      {/* <Route path="/Products/:category/:id" element={<Product />} /> */}
       <Route path="*" element={<Page404 />} />
     </Routes>
   );
