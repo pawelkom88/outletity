@@ -5,6 +5,7 @@ import Contact from "../pages/contact/Contact";
 import DeliveryCollection from "../pages/delivery&collection/DeliveryCollection";
 import ReturnsRefunds from "../pages/returns&refunds/ReturnsRefunds";
 import Products from "../pages/products/Products";
+import Product from "../pages/product/Product";
 import Page404 from "../pages/Page404";
 
 export default function RouterRoutes() {
