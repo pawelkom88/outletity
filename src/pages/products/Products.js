@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 import ProductCard from "components/UI/product-card/ProductCard";
 import Button from "components/UI/button/Button";
-import "./Products.scss";
 import {sort} from "utilities/images";
+import "./Products.scss";
 
 export default function Products({data}) {
   const {category} = useParams();

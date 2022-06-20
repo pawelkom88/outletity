@@ -2,7 +2,6 @@ import useMatchMedia from "hooks/useMatchMedia";
 import Carousel from "components/UI/carousel/Carousel";
 import CategoryCard from "components/UI/category-card/CategoryCard";
 import "./Home.scss";
-
 import {categories} from "utilities/images";
 
 export default function Home() {
@@ -20,7 +19,7 @@ export default function Home() {
               desc={img.desc}
               content={img.title}
               src={matches ? img.srcMobile : img.src}
-              path={img.path}
+              path={`/Products${img.path}`}
             />
           ))}
         </div>

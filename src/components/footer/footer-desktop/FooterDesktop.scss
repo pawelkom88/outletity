@@ -3,11 +3,6 @@
 
 footer {
   @include mixins.flex(center, center);
-  // flex-direction: column;
-
-  @media (max-width: breakpoints.$mobile) {
-    display: none;
-  }
 }
 
 .footer-nav_items {
