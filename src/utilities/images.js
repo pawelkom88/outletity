@@ -40,7 +40,7 @@ export const categories = [
     src: mensPng,
     title: "Men's",
     desc: "Men's clothes",
-    path: "/Mens",
+    path: "/men's clothing",
   },
   {
     id: uuidv4(),
@@ -48,7 +48,7 @@ export const categories = [
     src: womensPng,
     title: "Women's",
     desc: "Women's clothes",
-    path: "/Womens",
+    path: "/women's clothing",
   },
   {
     id: uuidv4(),
@@ -56,7 +56,7 @@ export const categories = [
     src: jeweleryPng,
     title: "Jewelery",
     desc: "Jewelery",
-    path: "/Jewelery",
+    path: "/jewelery",
   },
   {
     id: uuidv4(),
@@ -64,7 +64,7 @@ export const categories = [
     src: electronicsPng,
     title: "Electronics",
     desc: "Electronics",
-    path: "/Electronics",
+    path: "/electronics",
   },
 ];
 
