@@ -11,8 +11,7 @@ import FooterDesktop from "components/footer/footer-desktop/FooterDesktop";
 import FooterMobile from "components/footer/footer-mobile/FooterMobile";
 import GoUp from "components/UI/goUp/GoUp";
 import SocialMedia from "components/UI/social-media/SocialMedia";
-// import NavMobile from "components/navigation/navigation-mobile/NavMobile";
-import RouterRoutes from "components/RouterRoutes";
+import Routes from "components/Routes";
 
 import "./index.scss";
 
@@ -29,7 +28,7 @@ function Outletity() {
         <Voucher />
       </PromoBar>
       <Main>
-        <RouterRoutes />
+        <Routes />
       </Main>
       <PromoBar>
         <Newsletter />
