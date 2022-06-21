@@ -3,8 +3,7 @@
 // @use "/src/styles/breakpoints";
 
 .product-card {
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
   height: 600px;
   cursor: pointer;
   @include mixins.box-shadow;
@@ -16,8 +15,8 @@
   bottom: 0;
   right: 0;
   background-color: colors.$red;
-  padding: 0.5rem 2rem;
   color: colors.$white;
+  padding: 0.5rem 2rem;
 }
 
 .product-card-img {
