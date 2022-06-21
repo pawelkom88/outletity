@@ -1,4 +1,6 @@
 import {useParams} from "react-router-dom";
+import Loader from "components/UI/loader/Loader";
+import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
 import "./Product.scss";
 
@@ -14,7 +16,7 @@ export default function Product({data}) {
 
   return (
     <section>
-      {filteredProduct &&
+      {filteredProduct ? (
         filteredProduct.map(product => {
           return (
             <div key={product.id} className="product-container">
@@ -34,19 +36,15 @@ export default function Product({data}) {
                   </div>
                   <span className="discount">SAVE 30 %</span>
                 </div>
-
-                <div className="size-guide">
-                  <span className="size">8</span>
-                  <span className="size">10</span>
-                  <span className="size">12</span>
-                  <span className="size">14</span>
-                  <span className="size">16</span>
-                </div>
+                <SizeGuide product={product} />
                 <Button content="Add to basket" className="background" />
               </article>
             </div>
           );
-        })}
+        })
+      ) : (
+        <Loader />
+      )}
     </section>
   );
 }
