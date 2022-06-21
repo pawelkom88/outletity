@@ -17,10 +17,10 @@ export default function RouterRoutes() {
       <Route path="/Delivery-Collections" element={<DeliveryCollection />} />
       <Route path="/Returns-Refunds" element={<ReturnsRefunds />} />
       <Route path="/Contact" element={<Contact />} />
-      <Route path="/Products" element={<Products data={data} />} />
-      <Route path="/Products/:category" element={<Products data={data} />} />
-      {/* <Route path="/Products/:category/:id" element={<Product />} /> */}
-      {/* <Route path="/Products/:category/:id" element={<Product />} /> */}
+      <Route path="/Products" element={<Products data={data} />}>
+        <Route path=":category" element={<Products data={data} />} />
+      </Route>
+      <Route path="/Product/:id" element={<Product data={data} />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );

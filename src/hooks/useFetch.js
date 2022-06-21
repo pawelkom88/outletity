@@ -10,21 +10,25 @@ export default function useFetch(url) {
 
     async function fetchData() {
       setLoading(true);
-      if (!didCancel) {
-        const response = await fetch(url);
 
-        if (!response.ok) {
-          const message = `An error has occured: ${response.status}`;
-          setError(message);
+      try {
+        if (!didCancel) {
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            const message = `An error has occured: ${response.status}`;
+            setError(message);
+            setLoading(false);
+          }
+          const data = await response.json();
+          setData(data);
           setLoading(false);
+          setError(false);
         }
-        const data = await response.json();
-        setData(data);
+      } catch (error) {
+        console.log("zjebalo sie, error");
       }
-      setLoading(false);
-      setError(false);
     }
-
     fetchData();
 
     return () => (didCancel = true);
