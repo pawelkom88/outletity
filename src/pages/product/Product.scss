@@ -1,0 +1,80 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.product-container {
+  min-height: 700px;
+
+  @include mixins.flex(center, center);
+  flex-wrap: wrap;
+  margin: 10rem auto;
+  gap: 2%;
+  @include mixins.box-shadow;
+  @include mixins.border(1px, colors.$black);
+}
+
+.product-img {
+  flex-basis: 49%;
+}
+
+.product-img img {
+  @include mixins.responsive-img;
+  padding: 2rem;
+}
+
+.product-content {
+  min-height: 700px;
+  flex-basis: 49%;
+  @include mixins.flex(space-evenly, center);
+  flex-direction: column;
+  padding: 4rem 2rem;
+}
+
+.product-desc {
+  font-size: 1.3rem;
+}
+
+.product-price {
+  width: 100%;
+  font-size: 1.5rem;
+  @include mixins.flex(space-between, center);
+}
+
+.price span {
+  display: block;
+
+  &:first-child {
+    text-decoration: line-through;
+  }
+
+  &:nth-child(2) {
+    font-weight: bold;
+    color: colors.$red;
+  }
+}
+
+.discount {
+  background-color: colors.$red;
+  color: colors.$white;
+  padding: 1rem;
+}
+
+.size-guide {
+  width: 100%;
+  @include mixins.flex(center, center);
+  text-align: center;
+
+  & .size {
+    width: 40px;
+    height: 40px;
+    @include mixins.flex(center, center);
+    font-size: 1.2rem;
+    @include mixins.border(1px, colors.$black);
+    margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: colors.$black;
+      color: colors.$white;
+    }
+  }
+}

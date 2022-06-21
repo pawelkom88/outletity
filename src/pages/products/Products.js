@@ -1,15 +1,18 @@
 import {useParams} from "react-router-dom";
 import ProductCard from "components/UI/product-card/ProductCard";
 import Button from "components/UI/button/Button";
+import Loader from "components/UI/loader/Loader";
 import {sort} from "utilities/images";
 import "./Products.scss";
 
 export default function Products({data}) {
   const {category} = useParams();
   let filteredProducts;
+  let categoryName;
 
   if (data && category) {
-    filteredProducts = data.filter(productList => productList.category === `${category}`);
+    filteredProducts = data.filter(productList => productList.category === category);
+    categoryName = filteredProducts[0].category.toUpperCase();
   } else {
     filteredProducts = data;
   }
@@ -18,9 +21,7 @@ export default function Products({data}) {
     <section>
       {filteredProducts ? (
         <>
-          <h2 className="heading">
-            {filteredProducts === data ? "All products" : filteredProducts.category}
-          </h2>
+          <h2 className="heading">{filteredProducts === data ? "All products" : categoryName}</h2>
           <div className="category-sortable-panel">
             <div className="panel-options">
               <span>Sort by</span>
@@ -35,12 +36,12 @@ export default function Products({data}) {
           </div>
           <div className="category-products">
             {filteredProducts.map(product => {
-              return <ProductCard key={product.id} product={product} />;
+              return <ProductCard key={product.id} product={product} category={category} />;
             })}
           </div>
         </>
       ) : (
-        "loading"
+        <Loader />
       )}
     </section>
   );
