@@ -39,7 +39,7 @@ export const categories = [
     srcMobile: mens,
     src: mensPng,
     title: "Men's",
-    desc: "Men's clothes",
+    desc: "Men's clothing",
     path: "/men's clothing",
   },
   {
@@ -47,7 +47,7 @@ export const categories = [
     srcMobile: womens,
     src: womensPng,
     title: "Women's",
-    desc: "Women's clothes",
+    desc: "Women's clothing",
     path: "/women's clothing",
   },
   {
