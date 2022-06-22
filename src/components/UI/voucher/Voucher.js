@@ -15,7 +15,7 @@ export default function Voucher() {
       </p>
       {isShown && (
         <>
-          <VoucherModal isShown={isShown} toggle={toggle} />
+          <VoucherModal toggle={toggle} />
         </>
       )}
     </>
