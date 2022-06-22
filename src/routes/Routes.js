@@ -15,7 +15,7 @@ export default function RouterRoutes() {
   const location = useLocation();
   // Scroll to top if path changes
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 200);
   }, [location.pathname]);
 
   return (
