@@ -26,7 +26,8 @@ export default function useFetch(url) {
           setError(false);
         }
       } catch (error) {
-        console.log("zjebalo sie, error");
+        setError(error.message);
+        setLoading(false);
       }
     }
     fetchData();
