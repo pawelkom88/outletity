@@ -1,10 +1,10 @@
 import {useState} from "react";
+import useOverflow from "hooks/useOverflow.js";
 import useMatchMedia from "hooks/useMatchMedia";
 import {Link} from "react-router-dom";
 
 import SearchBar from "../UI/search-bar/SearchBar";
 import Basket from "../UI/basket/Basket";
-import {useEffect} from "react";
 
 import UserPanel from "../UI/user-panel/UserPanel";
 import Hamburger from "../navigation/navigation-mobile/Hamburger";
@@ -18,13 +18,7 @@ export default function Header() {
   const {matches} = useMatchMedia("(max-width: 860px)");
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (menuIsOpen) {
-      document.body.classList.add("overflow");
-    } else {
-      document.body.classList.remove("overflow");
-    }
-  }, [menuIsOpen]);
+  useOverflow(menuIsOpen);
 
   return (
     <>

@@ -1,13 +1,11 @@
 @use "/src/styles/mixins";
 @use "/src/styles/colors";
-// @use "/src/styles/breakpoints";
 
 .product-card {
-  width: 400px;
+  width: clamp(300px, 60vw, 400px);
   height: 600px;
   cursor: pointer;
   @include mixins.box-shadow;
-
 }
 
 .product-card-discount {
