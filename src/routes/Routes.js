@@ -1,15 +1,22 @@
-import {Routes, Route} from "react-router-dom";
+import React, {useLayoutEffect} from "react";
+import {Routes, Route, useLocation} from "react-router-dom";
 import useFetch from "hooks/useFetch";
 import Home from "../pages/home/Home";
 import Contact from "../pages/contact/Contact";
 import DeliveryCollection from "../pages/delivery&collection/DeliveryCollection";
 import ReturnsRefunds from "../pages/returns&refunds/ReturnsRefunds";
 import Products from "../pages/products/Products";
-import Product from "../pages/product/Product";
+import ProductInfo from "../pages/product/ProductInfo";
 import Page404 from "../pages/Page404";
 
 export default function RouterRoutes() {
   const {data} = useFetch("https://fakestoreapi.com/products");
+
+  const location = useLocation();
+  // Scroll to top if path changes
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <Routes>
@@ -20,7 +27,7 @@ export default function RouterRoutes() {
       <Route path="/Products" element={<Products data={data} />}>
         <Route path=":category" element={<Products data={data} />} />
       </Route>
-      <Route path="/Product/:id" element={<Product data={data} />} />
+      <Route path="/ProductInfo/:id" element={<ProductInfo data={data} />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );
