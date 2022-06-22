@@ -10,7 +10,7 @@ import ProductInfo from "../pages/product/ProductInfo";
 import Page404 from "../pages/Page404";
 
 export default function RouterRoutes() {
-  const {data} = useFetch("https://fakestoreapi.com/products");
+  const {data, error, loading} = useFetch("https://fakestoreapi.com/products");
 
   const location = useLocation();
   // Scroll to top if path changes
@@ -24,10 +24,16 @@ export default function RouterRoutes() {
       <Route path="/Delivery-Collections" element={<DeliveryCollection />} />
       <Route path="/Returns-Refunds" element={<ReturnsRefunds />} />
       <Route path="/Contact" element={<Contact />} />
-      <Route path="/Products" element={<Products data={data} />}>
-        <Route path=":category" element={<Products data={data} />} />
+      <Route path="/Products" element={<Products data={data} error={error} loading={loading} />}>
+        <Route
+          path=":category"
+          element={<Products data={data} error={error} loading={loading} />}
+        />
       </Route>
-      <Route path="/ProductInfo/:id" element={<ProductInfo data={data} />} />
+      <Route
+        path="/ProductInfo/:id"
+        element={<ProductInfo data={data} error={error} loading={loading} />}
+      />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );

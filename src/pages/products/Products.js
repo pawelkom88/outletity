@@ -3,9 +3,10 @@ import ProductCard from "components/UI/product-card/ProductCard";
 import Button from "components/UI/button/Button";
 import Loader from "components/UI/loader/Loader";
 import {sort} from "utilities/images";
+import ErrorModal from "components/UI/modals/error-modal/ErrorModal";
 import "./Products.scss";
 
-export default function Products({data}) {
+export default function Products({data, error, loading}) {
   const {category} = useParams();
   let filteredProducts;
   let categoryName;
@@ -19,7 +20,9 @@ export default function Products({data}) {
 
   return (
     <section>
-      {filteredProducts ? (
+      {error && <ErrorModal error={error} />}
+      {loading && <Loader />}
+      {filteredProducts && (
         <>
           <h2 className="heading">{filteredProducts === data ? "All products" : categoryName}</h2>
           <div className="category-sortable-panel">
@@ -40,8 +43,6 @@ export default function Products({data}) {
             })}
           </div>
         </>
-      ) : (
-        <Loader />
       )}
     </section>
   );

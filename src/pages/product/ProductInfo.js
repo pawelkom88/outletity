@@ -3,8 +3,9 @@ import Loader from "components/UI/loader/Loader";
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
 import "./ProductInfo.scss";
+import ErrorModal from "components/UI/modals/error-modal/ErrorModal";
 
-export default function ProductInfo({data}) {
+export default function ProductInfo({data, error, loading}) {
   const {id} = useParams();
 
   let filteredProduct;
@@ -16,7 +17,10 @@ export default function ProductInfo({data}) {
 
   return (
     <section>
-      {filteredProduct ? (
+      {error && <ErrorModal error={error} />}
+      {loading && <Loader />}
+
+      {filteredProduct &&
         filteredProduct.map(product => {
           return (
             <div key={product.id} className="product-container">
@@ -41,10 +45,7 @@ export default function ProductInfo({data}) {
               </article>
             </div>
           );
-        })
-      ) : (
-        <Loader />
-      )}
+        })}
     </section>
   );
 }
