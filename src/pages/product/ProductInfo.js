@@ -2,9 +2,9 @@ import {useParams} from "react-router-dom";
 import Loader from "components/UI/loader/Loader";
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
-import "./Product.scss";
+import "./ProductInfo.scss";
 
-export default function Product({data}) {
+export default function ProductInfo({data}) {
   const {id} = useParams();
 
   let filteredProduct;
@@ -32,7 +32,7 @@ export default function Product({data}) {
                 <div className="product-price">
                   <div className="price">
                     <span>£{product.price}</span>
-                    <span>Now: £{product.price - 1}</span>
+                    <span>Now: £{product.price}</span>
                   </div>
                   <span className="discount">SAVE 30 %</span>
                 </div>

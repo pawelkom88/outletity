@@ -6,11 +6,14 @@
   min-height: 700px;
 
   @include mixins.flex(center, center);
-  flex-wrap: wrap;
   margin: 10rem auto;
   gap: 2%;
   @include mixins.box-shadow;
   @include mixins.border(1px, colors.$black);
+
+  @media (max-width: breakpoints.$tablet) {
+    flex-direction: column;
+  }
 }
 
 .product-img {
@@ -31,7 +34,7 @@
 
   @media (max-width: breakpoints.$mobile) {
     margin: -4rem 0;
-    padding: 0;
+    padding: 1rem;
   }
 }
 
