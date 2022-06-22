@@ -17,6 +17,7 @@ import shopping3webp from "../assets/webp/shopping3.webp";
 import cart from "../assets/svg/cart.svg";
 import sort from "../assets/svg/sort.svg";
 import user from "../assets/svg/user.svg";
+import close from "../assets/svg/close.svg";
 import facebook from "../assets/svg/facebook.svg";
 import twitter from "../assets/svg/twitter.svg";
 import instagram from "../assets/svg/instagram.svg";
@@ -96,4 +97,5 @@ export {
   chevronup,
   chevrondown,
   sort,
+  close,
 };
