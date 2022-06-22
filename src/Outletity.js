@@ -1,6 +1,5 @@
 import useMatchMedia from "hooks/useMatchMedia";
 
-// components
 import Header from "components/header/Header";
 import Main from "components/UI/main/Main";
 import PromoBar from "components/UI/promo-bar/PromoBar";
@@ -11,11 +10,11 @@ import FooterDesktop from "components/footer/footer-desktop/FooterDesktop";
 import FooterMobile from "components/footer/footer-mobile/FooterMobile";
 import GoUp from "components/UI/goUp/GoUp";
 import SocialMedia from "components/UI/social-media/SocialMedia";
-import Routes from "components/Routes";
+import Routes from "routes/Routes";
 
 import "./index.scss";
 
-function Outletity() {
+export default function Outletity() {
   const {matches} = useMatchMedia("(max-width: 450px)");
 
   return (
@@ -39,5 +38,3 @@ function Outletity() {
     </>
   );
 }
-
-export default Outletity;

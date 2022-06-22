@@ -75,7 +75,7 @@ button {
   transition: all 0.3s ease-in-out;
 
   @media (max-width: breakpoints.$mobile) {
-    padding: 0.5rem 1rem;
+    padding:  1rem;
   }
 
   &:hover {
@@ -95,14 +95,3 @@ li {
   list-style: none;
 }
 
-.flex {
-  @include mixins.flex(space-between, center);
-
-  @media (max-width: breakpoints.$mobile) {
-    flex-direction: column;
-  }
-}
-
-.padding {
-  padding: 1rem;
-}

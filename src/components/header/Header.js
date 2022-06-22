@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="header">
+      <header>
         <div className="header-panel">
           {matches && <Hamburger menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />}
           <Link className="logo" to="/">

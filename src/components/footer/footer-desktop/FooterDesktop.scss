@@ -1,7 +1,7 @@
 @use "src/styles/mixins";
 @use "src/styles/breakpoints";
 
-footer {
+.footer-nav {
   @include mixins.flex(center, center);
 }
 
