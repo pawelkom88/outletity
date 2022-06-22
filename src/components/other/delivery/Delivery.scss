@@ -13,6 +13,8 @@
     @include mixins.box-shadow;
     width: 100%;
     max-width: 700px;
+    padding: 1rem;
+    margin: 1rem 0;
   }
 
   & h5 {
@@ -24,6 +26,10 @@
   }
 }
 
+.collection * {
+  margin-top: 1rem;
+}
+
 .delivery-options__standard__price,
 .delivery-options__next__price {
   @include mixins.flex(space-between, center);
@@ -33,4 +39,3 @@
     font-size: 1.5rem;
   }
 }
-
