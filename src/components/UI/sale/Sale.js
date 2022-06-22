@@ -9,7 +9,7 @@ export default function Sale() {
     <Link to="/Products">
       <p className="sale">
         SALE - UP TO 50% OFF - LAST CHANCE ENDS
-        <span className={hours < 2 ? "red" : "green"}>
+        <span className={hours < 2 ? "red" : "light-yellow"}>
           {" "}
           {hours}:{minutes}:{seconds}
         </span>

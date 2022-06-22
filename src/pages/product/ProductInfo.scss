@@ -9,7 +9,6 @@
   margin: 10rem auto;
   gap: 2%;
   @include mixins.box-shadow;
-  @include mixins.border(1px, colors.$black);
 
   @media (max-width: breakpoints.$tablet) {
     flex-direction: column;
