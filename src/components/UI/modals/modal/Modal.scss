@@ -1,0 +1,12 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.modal-container {
+  position: relative;
+  width: clamp(16rem, 90vw, 70rem);
+  min-height: 30vh;
+  @include mixins.flex(space-around, center);
+  flex-direction: column;
+  font-family: "Merriweather", san-serif;
+  background-color: colors.$white;
+}
