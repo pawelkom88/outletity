@@ -6,11 +6,11 @@ export default function ProductCard({product}) {
   const {discount, productPrice, discountedPrice} = useDiscount(product);
 
   return (
-    <Link to={`/Product/${product.id}`}>
+    <Link to={`/ProductInfo/${product.id}`}>
       <div className="product-card">
         <div className="product-card-img">
           <img src={product.image} alt="Card cover" />
-          <span className="product-card-discount">{discount}%</span>
+          <span className="product-card-discount">SAVE {discount}%</span>
         </div>
         <div className="product-card-desc">
           <h6>{product.title}</h6>
