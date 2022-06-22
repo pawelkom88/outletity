@@ -23,10 +23,3 @@
 .footer-mobile-details[open] .footer-mobile-summary:after {
   @include mixins.icon(chevronup);
 }
-
-.icon {
-  &::marker {
-    color: blue;
-    font-size: 1.2em;
-  }
-}

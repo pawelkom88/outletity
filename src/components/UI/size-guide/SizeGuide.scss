@@ -1,0 +1,28 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.select-size {
+  font-size: 1.5rem;
+  align-self: flex-start;
+}
+
+.size-guide {
+  width: 100%;
+  @include mixins.flex(flex-start, center);
+  text-align: center;
+
+  & .size {
+    width: 40px;
+    height: 40px;
+    @include mixins.flex(center, center);
+    font-size: 1.2rem;
+    @include mixins.border(1px, colors.$black);
+    margin-right: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: colors.$black;
+      color: colors.$white;
+    }
+  }
+}

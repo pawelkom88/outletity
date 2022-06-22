@@ -1,35 +1,28 @@
 import "./FooterMobile.scss";
 
+import Details from "./Details";
 import Delivery from "../../other/delivery/Delivery";
 import Collection from "../../other/collection/Collection";
-import ReturnsRefunds from "../../../pages/returns&refunds/ReturnsRefunds";
+import Contact from "pages/contact/Contact";
+import ReturnsRefunds from "pages/returns&refunds/ReturnsRefunds";
 
 export default function FooterMobile() {
   return (
-    <div className="footer-mobile-container">
-      <details className="footer-mobile-details">
-        <summary className="footer-mobile-summary ">Delivery and Collection</summary>
-        <details className="footer-mobile-details">
-          <summary id="flip" className="footer-mobile-summary">
-            Delivery
-          </summary>
+    <footer className="footer-mobile-container">
+      <Details title="Delivery and Collection">
+        <Details title="Delivery">
           <Delivery />
-        </details>
-        <details className="footer-mobile-details">
-          <summary id="flip" className="footer-mobile-summary">
-            Collection
-          </summary>
+        </Details>
+        <Details title="Collection">
           <Collection />
-        </details>
-      </details>
-      <details className="footer-mobile-details">
-        <summary className="footer-mobile-summary">Returns and Refunds</summary>
+        </Details>
+      </Details>
+      <Details title="Returns and Refunds">
         <ReturnsRefunds />
-      </details>
-      <details className="footer-mobile-details">
-        <summary className="footer-mobile-summary">Contact us</summary>
-        <p>Contact</p>
-      </details>
-    </div>
+      </Details>
+      <Details title="Contact us">
+        <Contact />
+      </Details>
+    </footer>
   );
 }
