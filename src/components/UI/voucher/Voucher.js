@@ -1,5 +1,19 @@
+import useModal from "hooks/useModal";
+import VoucherModal from "../modals/voucher/VoucherModal";
 import "./Voucher.scss";
 
 export default function Voucher() {
-  return <p className="voucher">GET 10% DISCOUNT VOUCHER NOW</p>;
+  const {isShown, toggle} = useModal();
+  return (
+    <>
+      <p className="voucher" onClick={toggle}>
+        GET 10% DISCOUNT VOUCHER NOW
+      </p>
+      {isShown && (
+        <>
+          <VoucherModal toggle={toggle} />
+        </>
+      )}
+    </>
+  );
 }
