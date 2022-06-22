@@ -6,7 +6,7 @@ import CloseBtn from "components/UI/close-button/CloseBtn";
 import FocusLock from "react-focus-lock";
 import "./Modal.scss";
 
-export default function Modal({heading, children, toggle}) {
+export default function Modal({heading, children, toggle, size = "3"}) {
   useKeyPress("Escape", toggle);
 
   return createPortal(
@@ -19,7 +19,10 @@ export default function Modal({heading, children, toggle}) {
             e.stopPropagation();
           }}>
           <CloseBtn toggle={toggle} />
-          <h2 className="modal-heading">{heading}</h2>
+          <h2 style={{fontSize: `clamp(${size - 1}rem, calc( 12px + 2.475vw ), ${size}rem)`}}>
+            {heading}
+          </h2>
+
           {children}
         </div>
       </FocusLock>
