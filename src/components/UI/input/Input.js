@@ -5,23 +5,28 @@ export default function Input({
   id = "",
   children = "",
   labelFor = "",
-  className = "",
+  className = "input",
   type = "",
   placeholder = "",
   ariaLabel = "",
   onChange,
+  value = "",
+  size = "60",
 }) {
   return (
     <>
-      <label for={labelFor}>{children}</label>
+      <label htmlFor={labelFor}>{children}</label>
       <input
+        style={{width: `${size}%`}}
+        value={value}
         name={inputName}
         id={id}
-        className={`${className}` || 'input'}
+        className={`${className}`}
         type={type}
         placeholder={placeholder}
         aria-label={ariaLabel}
         onChange={onChange}
+        required
       />
     </>
   );

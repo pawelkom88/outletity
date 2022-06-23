@@ -1,11 +1,14 @@
 @use "/src/styles/mixins";
 @use "/src/styles/colors";
+@use "/src/styles/breakpoints";
 
 .input {
-  width: 100%;
-  max-width: 60%;
   padding: 0.8rem;
   @include mixins.border(1px, colors.$black);
   border-radius: 5px;
   @include mixins.box-shadow;
+
+  @media (max-width: breakpoints.$tablet) {
+    width: 100%;
+  }
 }

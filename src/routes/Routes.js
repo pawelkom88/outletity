@@ -2,7 +2,6 @@ import React, {useLayoutEffect} from "react";
 import {Routes, Route, useLocation} from "react-router-dom";
 import useFetch from "hooks/useFetch";
 import Home from "../pages/home/Home";
-import Contact from "../pages/contact/Contact";
 import DeliveryCollection from "../pages/delivery&collection/DeliveryCollection";
 import ReturnsRefunds from "../pages/returns&refunds/ReturnsRefunds";
 import Products from "../pages/products/Products";
@@ -23,7 +22,6 @@ export default function RouterRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/Delivery-Collections" element={<DeliveryCollection />} />
       <Route path="/Returns-Refunds" element={<ReturnsRefunds />} />
-      <Route path="/Contact" element={<Contact />} />
       <Route path="/Products" element={<Products data={data} error={error} loading={loading} />}>
         <Route
           path=":category"
