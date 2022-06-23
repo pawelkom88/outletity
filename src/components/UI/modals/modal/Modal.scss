@@ -1,5 +1,6 @@
 @use "/src/styles/mixins";
 @use "/src/styles/colors";
+@use "/src/styles/breakpoints";
 
 .modal-container {
   position: relative;
@@ -9,4 +10,9 @@
   flex-direction: column;
   font-family: "Merriweather", san-serif;
   background-color: colors.$white;
+  padding: 2rem;
+
+  @media (max-width: breakpoints.$mobile) {
+    padding: 0;
+  }
 }

@@ -37,10 +37,10 @@
   border: $thickness solid $color;
 }
 
-@mixin icon($icon-name) {
+@mixin icon($icon-name, $size: 25px) {
   display: inline-block;
   content: url("/assets/svg/#{$icon-name}.svg");
-  width: 25px;
+  width: $size;
   position: absolute;
   right: 2rem;
 }
