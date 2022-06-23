@@ -3,32 +3,16 @@ import Modal from "../modal/Modal";
 import Button from "components/UI/button/Button";
 import toast, {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
-
 import "./ContactFormModal.scss";
 
-function notifyUser() {
-  toast.success("One of our advisor will be in touch shortly !");
-  // // future use
-  // toast.promise(
-  //   Promise,
-  //    {
-  //      loading: 'Saving...',
-  //      success: <b>Thank you for subscribing !</b>,
-  //      error: <b>Something went wrong...Try again</b>,
-  //    }
-  //  );
-  // setTimeout(toggle, 3000);
-}
-
 export default function ContactFormModal({toggle}) {
-  // TO BE DONE
   const formik = useFormik({
     initialValues: {
+      name: "",
       email: "",
     },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    validate,
+    onSubmit: notifyUser,
   });
 
   return (
@@ -54,25 +38,35 @@ export default function ContactFormModal({toggle}) {
           <form className="contact-form" onSubmit={formik.handleSubmit}>
             <Input
               size="100"
-              onChange={formik.handleChange}
               labelFor="name"
               id="name"
-              for="name"
               name="name"
               type="text"
-              placeholder="Enter name">
-              Name:
+              placeholder="Enter name"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.name}>
+              {formik.touched.name && formik.errors.name ? (
+                <span className="contact-form-error-msg">{formik.errors.name}</span>
+              ) : (
+                "Name:"
+              )}
             </Input>
             <Input
               size="100"
-              onChange={formik.handleChange}
               labelFor="email"
               id="email"
-              for="email"
               name="email"
               type="email"
-              placeholder="Enter e-mail">
-              E-mail:
+              placeholder="Enter e-mail"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.email}>
+              {formik.touched.email && formik.errors.email ? (
+                <span className="contact-form-error-msg">{formik.errors.email}</span>
+              ) : (
+                "E-mail:"
+              )}
             </Input>
             <label htmlFor="texarea">Message:</label>
             <textarea
@@ -83,12 +77,42 @@ export default function ContactFormModal({toggle}) {
               placeholder="Enter message"
               required
             />
-            <Button onClick={notifyUser} content="Send" className="background" />
+            <Button type="submit" content="Send" className="background" />
           </form>
         </div>
       </Modal>
       <Toaster position="top-center" />
-      {/* <Button onClick={toggle} content={"Sign up"} className="newsletter-btn" /> */}
     </>
   );
+}
+
+function validate(values) {
+  const errors = {};
+  console.log(values);
+  if (!values.name) {
+    errors.name = "Required";
+  } else if (values.name.trim().length === 0) {
+    errors.name = "At least 1 character";
+  }
+
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+  return errors;
+}
+
+function notifyUser() {
+  toast.success("One of our advisor will be in touch shortly !");
+  // // future use
+  // toast.promise(
+  //   Promise,
+  //    {
+  //      loading: 'Saving...',
+  //      success: <b>Thank you for subscribing !</b>,
+  //      error: <b>Something went wrong...Try again</b>,
+  //    }
+  //  );
+  // setTimeout(toggle, 3000);
 }

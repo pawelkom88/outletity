@@ -6,19 +6,13 @@ import {useFormik} from "formik";
 import "./NewsletterModal.scss";
 
 export default function NewsletterModal({toggle}) {
-  // TO BE DONE
   const formik = useFormik({
     initialValues: {
       email: "",
     },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    validate,
+    onSubmit: notifyUser,
   });
-
-  function notifyUser() {
-    toast.success("Thank you for subscribing !");
-  }
 
   // // future use
   // toast.promise(
@@ -41,18 +35,36 @@ export default function NewsletterModal({toggle}) {
           <Input
             labelFor="email"
             id="email"
-            for="email"
             name="email"
             type="email"
             placeholder="Enter e-mail"
             ariaLabel="Press enter to submit"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            value={formik.values.email}
-          />
-          <Button onClick={notifyUser} content="Send" className="background" />
+            value={formik.values.email}>
+            {" "}
+            {formik.touched.email && formik.errors.email ? (
+              <span className="newsletter-error-message">{formik.errors.email}</span>
+            ) : null}
+          </Input>
+          <Button type="submit" content="Send" className="background" />
         </form>
       </Modal>
       <Toaster position="top-center" />
     </>
   );
+}
+
+function validate(values) {
+  const errors = {};
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+  return errors;
+}
+
+function notifyUser() {
+  toast.success("One of our advisor will be in touch shortly !");
 }
