@@ -55,3 +55,30 @@
     grid-gap: 2rem;
   }
 }
+
+@mixin error-message($top) {
+  width: 100%;
+  position: absolute;
+  top: $top;
+  left: 0;
+  right: 0;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.3rem 0.7rem;
+  background-color: colors.$red;
+  color: colors.$white;
+}
+
+@mixin fadeIn {
+  animation: fadein 1s ease-in-out;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

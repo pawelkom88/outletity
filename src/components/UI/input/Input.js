@@ -10,6 +10,7 @@ export default function Input({
   placeholder = "",
   ariaLabel = "",
   onChange,
+  onBlur,
   value = "",
   size = "60",
 }) {
@@ -26,7 +27,7 @@ export default function Input({
         placeholder={placeholder}
         aria-label={ariaLabel}
         onChange={onChange}
-        required
+        onBlur={onBlur}
       />
     </>
   );
