@@ -1,0 +1,40 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.contact-form-modal {
+  padding: 0 7rem;
+}
+
+.contact-form-description li {
+  margin: 2rem 0;
+  font-size: clamp(1.5vmin, 1.2rem, 3vmin);
+
+  :last-of-type {
+    text-align: center;
+  }
+}
+
+.contact-form {
+  @include mixins.flex(center, center);
+  flex-direction: column;
+
+  & label {
+    margin: 1rem 0;
+    align-self: flex-start;
+  }
+
+  &__textarea {
+    position: relative;
+    width: 100%;
+    @include mixins.box-shadow;
+    margin-bottom: 2rem;
+
+    &::placeholder {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      font-family: 'Inter',sans-serif;
+      
+    }
+  }
+}
