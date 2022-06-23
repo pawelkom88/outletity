@@ -10,6 +10,7 @@
   font-size: 1.5rem;
   padding: 1rem 0;
   list-style: none;
+  cursor: pointer;
 
   &::marker {
     display: none;
@@ -17,6 +18,13 @@
 
   &::after {
     @include mixins.icon(chevrondown);
+  }
+
+  &:last-child {
+    &::after {
+      @include mixins.icon(contact-us, 18px);
+      margin-right: 5px;
+    }
   }
 }
 
