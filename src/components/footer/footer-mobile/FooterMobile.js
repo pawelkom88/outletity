@@ -1,12 +1,12 @@
-import "./FooterMobile.scss";
-
 import Details from "./Details";
 import Delivery from "../../other/delivery/Delivery";
 import Collection from "../../other/collection/Collection";
-import Contact from "pages/contact/Contact";
+import ContactFormModal from "components/UI/modals/contact-form/ContactFormModal";
 import ReturnsRefunds from "pages/returns&refunds/ReturnsRefunds";
 
-export default function FooterMobile() {
+import "./FooterMobile.scss";
+
+export default function FooterMobile({isShown, toggle}) {
   return (
     <footer className="footer-mobile-container">
       <Details title="Delivery and Collection">
@@ -20,9 +20,10 @@ export default function FooterMobile() {
       <Details title="Returns and Refunds">
         <ReturnsRefunds />
       </Details>
-      <Details title="Contact us">
-        <Contact />
-      </Details>
+      <span className="footer-mobile-summary" onClick={toggle}>
+        Contact us
+      </span>
+      {isShown && <ContactFormModal isShown={isShown} toggle={toggle} />}
     </footer>
   );
 }
