@@ -1,6 +1,7 @@
 import Button from "components/UI/button/Button";
 import Modal from "../modal/Modal";
 import toast, {Toaster} from "react-hot-toast";
+import Input from "components/UI/input/Input";
 
 function notifyUser() {
   toast.success("Thank you for subscribing !");
@@ -22,7 +23,15 @@ export default function NewsletterModal({toggle}) {
         <p style={{fontSize: "clamp(2vmin,1.2rem,3vmin)"}}>
           Sign up for our newsletter to stay in the loop.
         </p>
-        <input type="text" />
+        <Input
+          labelFor="email"
+          id="email"
+          for="email"
+          name="email"
+          type="email"
+          placeholder="Enter e-mail"
+          ariaLabel="Press enter to submit"
+        />
         <Button onClick={notifyUser} content="Send" className="background" />
       </Modal>
       <Toaster position="top-center" />
