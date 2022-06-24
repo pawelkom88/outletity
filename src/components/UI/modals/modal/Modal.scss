@@ -13,6 +13,7 @@
   padding: 2rem;
 
   @media (max-width: breakpoints.$mobile) {
-    padding: 0;
+
+    padding-top: 2rem;
   }
 }

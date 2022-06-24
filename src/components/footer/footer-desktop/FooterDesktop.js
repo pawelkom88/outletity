@@ -6,12 +6,12 @@ export default function FooterDesktop({isShown, toggle}) {
   return (
     <footer className="footer-nav">
       <ul className="footer-nav_items">
-        <Link to="/Delivery-Collections">
-          <li className="footer-nav_item">Delivery and collection</li>
-        </Link>
-        <Link to="/Returns-Refunds">
-          <li className="footer-nav_item">Returns and Refunds</li>
-        </Link>
+        <li className="footer-nav_item">
+          <Link to="/Delivery-Collections">Delivery and collection</Link>
+        </li>
+        <li className="footer-nav_item">
+          <Link to="/Returns-Refunds">Returns and Refunds</Link>
+        </li>
         <li style={{cursor: "pointer"}} className="footer-nav_item" onClick={toggle}>
           Contact us
         </li>

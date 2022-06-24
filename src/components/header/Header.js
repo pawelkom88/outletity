@@ -20,21 +20,39 @@ export default function Header() {
 
   useOverflow(menuIsOpen);
 
+  function closeMobileMenu() {
+    setMenuIsOpen(false);
+  }
+
+  function openMobileMenu() {
+    setMenuIsOpen(true);
+  }
+
   return (
     <>
-      <header>
+      <header aria-label='header'>
         <div className="header-panel">
-          {matches && <Hamburger menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />}
-          <Link className="logo" to="/">
+          {matches && (
+            <Hamburger
+              menuIsOpen={menuIsOpen}
+              openMobileMenu={openMobileMenu}
+              closeMobileMenu={closeMobileMenu}
+            />
+          )}
+          <Link className="logo" to="/" onClick={closeMobileMenu}>
             <img src={logo} alt="Outletity logo" />
           </Link>
           <div className="user-panel">
             {!matches && <SearchBar />}
-            <UserPanel menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
-            <Basket menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
+            <UserPanel closeMobileMenu={closeMobileMenu} />
+            <Basket closeMobileMenu={closeMobileMenu} />
           </div>
         </div>
-        {matches ? <NavMobile menuIsOpen={menuIsOpen} setMenuOpen={setMenuIsOpen} /> : <Nav />}
+        {matches ? (
+          <NavMobile menuIsOpen={menuIsOpen} closeMobileMenu={closeMobileMenu} />
+        ) : (
+          <Nav />
+        )}
       </header>
     </>
   );
