@@ -76,7 +76,7 @@ export default function ContactFormModal({toggle}) {
               rows="8"
               placeholder="Enter message"
             />
-            <Button type="submit" content="Send" className="background" />
+            <Button type="submit" content="Send" id="dark-background" />
           </form>
         </div>
       </Modal>

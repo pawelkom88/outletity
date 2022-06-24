@@ -22,6 +22,7 @@ export default function ProductInfo({data, error, loading}) {
 
       {filteredProduct &&
         filteredProduct.map(product => {
+          console.log(product)
           return (
             <div key={product.id} className="product-container">
               <div className="product-img">
@@ -41,7 +42,7 @@ export default function ProductInfo({data, error, loading}) {
                   <span className="discount">SAVE 30 %</span>
                 </div>
                 <SizeGuide product={product} />
-                <Button content="Add to basket" className="background" />
+                <Button content="Add to basket" id="dark-background" />
               </article>
             </div>
           );

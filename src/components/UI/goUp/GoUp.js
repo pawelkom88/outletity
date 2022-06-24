@@ -4,8 +4,11 @@ import "./GoUp.scss";
 export default function GoUp() {
   const [showIcon, setShowIcon] = useState();
 
-  const scrollHandler = _ => {
-    if (window.pageYOffset > 1800) {
+  const scrollHandler = () => {
+    const footer = document.querySelector("footer");
+    const {y: footerHeight} = footer.getBoundingClientRect();
+
+    if (window.pageYOffset >= footerHeight) {
       setShowIcon(true);
     } else {
       setShowIcon(false);

@@ -1,17 +1,24 @@
 import {Link} from "react-router-dom";
 
-export default function Button({type = "button", onClick, content = "", className = "", path}) {
+export default function Button({
+  id = "",
+  type = "button",
+  onClick,
+  content = "",
+  className = "",
+  path,
+}) {
   return (
     <>
       {path ? (
         <Link to={path}>
-          <button type={type} onClick={onClick} className={className}>
+          <button id={id} type={type} onClick={onClick} className={`btn ${className}`}>
             {content}
           </button>
           ;
         </Link>
       ) : (
-        <button type={type} onClick={onClick} className={className}>
+        <button id={id} type={type} onClick={onClick} className={`btn ${className}`}>
           {content}
         </button>
       )}
