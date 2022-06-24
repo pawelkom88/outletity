@@ -16,7 +16,7 @@ export default function Outletity() {
       <PromoBar>
         <Sale />
       </PromoBar>
-      <Header />
+      <Header />  
       <PromoBar>
         <Voucher />
       </PromoBar>

@@ -5,7 +5,6 @@
 .basket-container {
   position: relative;
   display: flex;
-  z-index: 11;
 }
 
 .basket {
@@ -31,6 +30,13 @@
   background-color: colors.$red;
   color: colors.$white;
   border-radius: 50%;
+
+  @media (max-width: breakpoints.$mobile) {
+    font-size: 0.8rem;
+    right: -0.5rem;
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 // .basket-quantity:hover::before {

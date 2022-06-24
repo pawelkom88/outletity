@@ -1,8 +1,14 @@
 @use "/src/styles/mixins";
 @use "/src/styles/colors";
+@use "/src/styles/breakpoints";
 
 .contact-form-modal {
   padding: 0 7rem;
+
+  @media (max-width: breakpoints.$mobile) {
+    margin: 3rem 0;
+    padding: 0 4rem;
+  }
 }
 
 .contact-form-description li {

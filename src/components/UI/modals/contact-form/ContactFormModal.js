@@ -75,7 +75,6 @@ export default function ContactFormModal({toggle}) {
               id="message"
               rows="8"
               placeholder="Enter message"
-              required
             />
             <Button type="submit" content="Send" className="background" />
           </form>
@@ -88,7 +87,7 @@ export default function ContactFormModal({toggle}) {
 
 function validate(values) {
   const errors = {};
-  console.log(values);
+
   if (!values.name) {
     errors.name = "Required";
   } else if (values.name.trim().length === 0) {

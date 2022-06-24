@@ -13,7 +13,6 @@ export default function DeliveryCollection() {
         <div className="delivery-collection-tabs">
           <ul className="delivery-collection-tab" aria-label="Tabs">
             <li
-              role="presentation"
               tabIndex="0"
               className={`delivery-collection-tab__collection ${
                 showTab === "tab1" ? "active" : ""
@@ -26,7 +25,6 @@ export default function DeliveryCollection() {
               <span>Delivery</span>
             </li>
             <li
-              role="presentation"
               tabIndex="0"
               className={`delivery-collection-delivery ${showTab === "tab2" ? "active" : ""} `}
               onClick={() => setShowTab("tab2")}>

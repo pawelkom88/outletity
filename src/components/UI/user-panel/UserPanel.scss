@@ -6,7 +6,11 @@
   stroke: colors.$brand-primary;
   fill: colors.$brand-primary;
   cursor: pointer;
-  z-index: 11;
+
+  & img {
+    margin-top: 5px;
+    width: 100%;
+  }
 
   @media (max-width: breakpoints.$mobile) {
     width: 25px;
