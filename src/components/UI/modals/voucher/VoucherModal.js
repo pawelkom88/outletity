@@ -17,7 +17,7 @@ export default function VoucherModal({toggle}) {
       <Modal heading={"Your voucher code:"} toggle={toggle}>
         <span className="voucher-code">{voucherCode}</span>
         <CopyToClipboard text={voucherCode}>
-          <Button onClick={notifyUser} className="background" content="Copy code" />
+          <Button onClick={notifyUser} id="dark-background" content="Copy code" />
         </CopyToClipboard>
       </Modal>
       <Toaster position="top-center" />

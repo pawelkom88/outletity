@@ -31,16 +31,6 @@
   }
 }
 
-.background {
-  background-color: colors.$black;
-  color: colors.$white;
-  border: none;
-
-  &:hover {
-    border: none;
-  }
-}
-
 .category-products {
   @include mixins.flex(center, center);
   flex-wrap: wrap;

@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import {categories} from "utilities/images";
-
 import "./Nav.scss";
 
 export default function Nav({menuIsOpen, closeMobileMenu}) {

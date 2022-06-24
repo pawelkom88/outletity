@@ -12,11 +12,11 @@ export default function FooterDesktop({isShown, toggle}) {
         <li className="footer-nav_item">
           <Link to="/Returns-Refunds">Returns and Refunds</Link>
         </li>
-        <li style={{cursor: "pointer"}} className="footer-nav_item" onClick={toggle}>
-          Contact us
-        </li>
-        {isShown && <ContactFormModal isShown={isShown} toggle={toggle} />}
       </ul>
+      <button className="footer-nav_item no-styles" onClick={toggle}>
+        Contact us
+      </button>
+      {isShown && <ContactFormModal isShown={isShown} toggle={toggle} />}
     </footer>
   );
 }

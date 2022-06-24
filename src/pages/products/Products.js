@@ -29,9 +29,9 @@ export default function Products({data, error, loading}) {
             <div className="panel-options">
               <span>Sort by</span>
               <img src={sort} alt="Sort icon" />
-              <Button content="title" className="background" />
-              <Button content="price" className="background" />
-              <Button content="discount" className="background" />
+              <Button content="title" id="dark-background" />
+              <Button content="price" id="dark-background" />
+              <Button content="discount" id="dark-background" />
             </div>
             <span className="product-quantity">
               {filteredProducts.length} {filteredProducts.length > 1 ? "products" : "product"}

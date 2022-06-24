@@ -5,7 +5,7 @@ import "./Hamburger.scss";
 export default function Hamburger({menuIsOpen, openMobileMenu, closeMobileMenu}) {
   const [hasFocus, setFocus] = useState(false);
 
-  function handleMobileMenu() {
+  function toggleMobileMenu() {
     if (menuIsOpen && hasFocus) {
       closeMobileMenu();
     } else if (!menuIsOpen && hasFocus) {
@@ -13,9 +13,10 @@ export default function Hamburger({menuIsOpen, openMobileMenu, closeMobileMenu})
     }
   }
 
-  useKeyPress("Enter", handleMobileMenu);
+  useKeyPress("Enter", toggleMobileMenu);
   useKeyPress("Escape", closeMobileMenu);
 
+  // Add hamburger icon animation when mobile menu is open
   const isOpen = menuIsOpen ? "open" : "";
   const numberOfBars = new Array(3).fill("bar");
 
@@ -27,7 +28,7 @@ export default function Hamburger({menuIsOpen, openMobileMenu, closeMobileMenu})
       id="hamburger"
       tabIndex="0"
       className="hamburger-menu"
-      onClick={handleMobileMenu}
+      onClick={toggleMobileMenu}
       aria-expanded={menuIsOpen ? true : false}
       aria-label="show navigation menu">
       {numberOfBars.map((_, i) => (

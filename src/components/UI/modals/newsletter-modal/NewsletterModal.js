@@ -38,7 +38,6 @@ export default function NewsletterModal({toggle}) {
             name="email"
             type="email"
             placeholder="Enter e-mail"
-            ariaLabel="Press enter to submit"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.email}>
@@ -47,7 +46,7 @@ export default function NewsletterModal({toggle}) {
               <span className="newsletter-error-message">{formik.errors.email}</span>
             ) : null}
           </Input>
-          <Button type="submit" content="Send" className="background" />
+          <Button type="submit" content="Send" id="dark-background" />
         </form>
       </Modal>
       <Toaster position="top-center" />
