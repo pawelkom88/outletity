@@ -10,8 +10,10 @@ export default function SizeGuide({product}) {
         <>
           <p className="select-size">Select size:</p>
           <div className="size-guide">
-            {sizes.map(size => (
-              <span className="size">{size}</span>
+            {sizes.map((size, index) => (
+              <span key={size - index} className="size">
+                {size}
+              </span>
             ))}
           </div>
         </>
