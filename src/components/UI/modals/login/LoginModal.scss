@@ -1,0 +1,38 @@
+@use "/src/styles/colors";
+@use "/src/styles/mixins";
+
+.create-account,
+label,
+.underline {
+  font-size: clamp(1.5vmin, 1.2rem, 3vmin);
+  margin: 1rem 0;
+}
+
+.login-divider {
+  max-width: 80%;
+}
+
+.underline {
+  color: colors.$brand-primary;
+  text-decoration: underline;
+}
+
+.login-form {
+  width: 100%;
+  @include mixins.flex(center, center);
+  flex-direction: column;
+
+  & input {
+    margin-bottom: 1rem;
+  }
+
+  & label {
+    align-self: flex-start;
+    margin: 1rem 20%;
+  }
+
+  & button {
+    margin: 1rem 0;
+    align-self: center;
+  }
+}
