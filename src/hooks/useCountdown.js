@@ -27,7 +27,7 @@ function calcTimeLeft() {
   const nextYear = new Date().getFullYear();
   const futureDate = `${month}/${day}/${nextYear}`;
 
-  let difference = Number(new Date(futureDate)) - Number(new Date());
+  let difference = Number(new Date(futureDate)) - new Date();
 
   let timeLeft = {};
 

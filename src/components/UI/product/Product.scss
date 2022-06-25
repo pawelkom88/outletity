@@ -15,6 +15,18 @@
   }
 }
 
+.product-title {
+  margin-bottom: 1rem;
+}
+
+.product-rating {
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: colors.$light-yellow;
+  padding: .5rem 1rem;
+  border-radius: 5px;
+}
+
 .product-img {
   flex-basis: 49%;
 }
