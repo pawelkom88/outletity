@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import Product from "components/UI/product/Product";
 import Loader from "components/UI/loader/Loader";
 import ErrorModal from "components/UI/modals/error-modal/ErrorModal";
+import ProductCarousel from "components/UI/product-carousel/ProductCarousel";
 
 export default function ProductInfo({data, error, loading}) {
   const {id} = useParams();
@@ -17,11 +18,11 @@ export default function ProductInfo({data, error, loading}) {
     <section>
       {error && <ErrorModal error={error} />}
       {loading && <Loader />}
-
       {filteredProduct &&
         filteredProduct.map(product => {
           return <Product key={product.id} product={product} />;
         })}
+      {data && <ProductCarousel data={data} />}
     </section>
   );
 }
