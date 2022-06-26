@@ -1,7 +1,8 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 import useOverflow from "hooks/useOverflow.js";
 import useMatchMedia from "hooks/useMatchMedia";
-import {Link} from "react-router-dom";
+import useModal from "hooks/useModal";
 import SearchBar from "../UI/search-bar/SearchBar";
 import Basket from "../UI/basket/Basket";
 import UserPanel from "../UI/user-panel/UserPanel";
@@ -14,6 +15,7 @@ import "./Header.scss";
 export default function Header() {
   const {matches} = useMatchMedia("(max-width: 860px)");
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const {isShown, toggle} = useModal();
 
   useOverflow(menuIsOpen);
 
@@ -27,7 +29,7 @@ export default function Header() {
 
   return (
     <>
-      <header aria-label='header'>
+      <header aria-label="header">
         <div className="header-panel">
           {matches && (
             <Hamburger
@@ -41,7 +43,7 @@ export default function Header() {
           </Link>
           <div className="user-panel">
             {!matches && <SearchBar />}
-            <UserPanel closeMobileMenu={closeMobileMenu} />
+            <UserPanel toggle={toggle} isShown={isShown} />
             <Basket closeMobileMenu={closeMobileMenu} />
           </div>
         </div>

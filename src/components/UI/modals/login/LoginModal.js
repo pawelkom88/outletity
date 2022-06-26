@@ -3,12 +3,10 @@ import {Link} from "react-router-dom";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
 import toast, {Toaster} from "react-hot-toast";
-
 import {useFormik} from "formik";
-
 import "./LoginModal.scss";
 
-export default function LoginModal({isShown, toggle}) {
+export default function LoginModal({isShown, toggle, handleTransition}) {
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -23,9 +21,9 @@ export default function LoginModal({isShown, toggle}) {
       <Modal isShown={isShown} toggle={toggle} heading={"Log in to your account"}>
         <div className="create-account">
           <span>Need an account? </span>
-          <Link onClick={toggle} className="underline" to="/">
+          <button onClick={handleTransition} className="no-styles underline">
             Create on
-          </Link>
+          </button>
         </div>
         <hr className="login-divider" />
         <form className="login-form" onSubmit={formik.handleSubmit}>
@@ -90,5 +88,5 @@ function validate(values) {
 }
 
 function notifyUser() {
-  toast.success("One of our advisor will be in touch shortly !", {duration: 4000});
+  toast.success("Welcome back USER NAME", {duration: 4000});
 }
