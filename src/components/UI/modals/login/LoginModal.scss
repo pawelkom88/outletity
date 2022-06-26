@@ -15,6 +15,7 @@ label,
 .underline {
   color: colors.$brand-primary;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .login-form {
