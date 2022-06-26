@@ -24,13 +24,15 @@ export default function ProductCarousel({data}) {
       <p className="carousel-intro">You may also like: </p>
       <Carousel centerMode={true} keyBoardControl={true} responsive={responsive}>
         {data &&
-          data.map(product => {
-            return (
-              <Link key={product.id} to={`/ProductInfo/${product.id}`}>
-                <img className="product-carousel-img" src={product.image} alt="Product" />
-              </Link>
-            );
-          })}
+          data
+            .sort(_ => 0.5 - Math.random())
+            .map(product => {
+              return (
+                <Link key={product.id} to={`/ProductInfo/${product.id}`}>
+                  <img className="product-carousel-img" src={product.image} alt="Product" />
+                </Link>
+              );
+            })}
       </Carousel>
     </>
   );

@@ -30,9 +30,9 @@ export default function UserPanel({isShown, toggle}) {
           handleTransition={handleTransitionBetweenModals}
         />
       )}
-      <div onClick={toggle} role="button" aria-label="show user-profile" className="user">
+      <button onClick={toggle} aria-label="show user-profile" className="user no-styles">
         <img src={user} alt="User icon" />
-      </div>
+      </button>
 
       {isShown && isSignedIn && (
         <SignupModal

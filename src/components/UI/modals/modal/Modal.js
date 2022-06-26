@@ -18,7 +18,7 @@ export default function Modal({heading, children, toggle, size = "3"}) {
             // do not close modal if anything inside modal content is clicked
             e.stopPropagation();
           }}>
-          <CloseBtn toggle={toggle} />
+          <CloseBtn onClick={toggle} />
           <h2 style={{fontSize: `clamp(${size - 1}rem, calc( 12px + 2.475vw ), ${size}rem)`}}>
             {heading}
           </h2>

@@ -1,0 +1,53 @@
+@use "/src/styles/colors";
+@use "/src/styles/mixins";
+
+.shopping-cart {
+  position: absolute;
+  top: 5em;
+  right: 0;
+  width: 500px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  @include mixins.border(1px, colors.$light-grey);
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.shopping-cart-items-total {
+  min-height: 40px;
+  @include mixins.border(1px, colors.$light-grey);
+
+  & span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 6px 1rem;
+  }
+}
+
+.shopping-cart-items {
+  display: flex;
+  flex-direction: column;
+  @include mixins.border(1px, colors.$light-grey);
+}
+
+.shopping-cart-total {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  padding: 4rem;
+
+  & span {
+    font-size: 2rem;
+    padding: 3rem 0;
+  }
+  & a {
+    margin: 0 auto;
+  }
+}
+
+.amount {
+  @include mixins.flex(space-between, center);
+}

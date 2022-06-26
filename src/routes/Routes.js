@@ -6,6 +6,7 @@ import DeliveryCollection from "../pages/delivery&collection/DeliveryCollection"
 import ReturnsRefunds from "../pages/returns&refunds/ReturnsRefunds";
 import Products from "../pages/products/Products";
 import ProductInfo from "../pages/product/ProductInfo";
+import BasketSummary from "../pages/basket-summary/BasketSummary";
 import Page404 from "../pages/Page404";
 
 export default function RouterRoutes() {
@@ -33,6 +34,7 @@ export default function RouterRoutes() {
         element={<ProductInfo data={data} error={error} loading={loading} />}
       />
       <Route path="*" element={<Page404 />} />
+      <Route path="/BasketSummary" element={<BasketSummary />} />
     </Routes>
   );
 }

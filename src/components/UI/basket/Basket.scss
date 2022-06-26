@@ -3,7 +3,6 @@
 @use "/src/styles/mixins";
 
 .basket-container {
-  position: relative;
   display: flex;
 }
 
@@ -21,7 +20,7 @@
 .basket-quantity::before {
   position: absolute;
   top: 0;
-  right: 0.1rem;
+  right: 2rem;
   width: 2.4rem;
   height: 2.4rem;
   @include mixins.flex(center, center);
@@ -38,7 +37,3 @@
     height: 2rem;
   }
 }
-
-// .basket-quantity:hover::before {
-//   color: black;
-// }

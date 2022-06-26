@@ -71,7 +71,7 @@
 }
 
 @mixin fadeIn {
-  animation: fadein 1s ease-in-out;
+  animation: fadein .5s ease-in-out;
 }
 
 @keyframes fadein {
