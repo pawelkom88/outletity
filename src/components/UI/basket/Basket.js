@@ -5,7 +5,7 @@ import {cart} from "utilities/images";
 import ShoppingCart from "components/UI/shopping-cart/ShoppingCart";
 import "./Basket.scss";
 
-export default function Basket({isShown}) {
+export default function Basket({isShown, closeMobileMenu}) {
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
 
@@ -20,7 +20,11 @@ export default function Basket({isShown}) {
   return (
     <>
       {matches ? (
-        <Link to="/" aria-label="show cart" className="basket-container">
+        <Link
+          to="/BasketSummary"
+          onClick={closeMobileMenu}
+          aria-label="show cart"
+          className="basket-container">
           <img className="basket" src={cart} alt="Cart icon" />
           <span data-count="10" className="basket-quantity"></span>
         </Link>
