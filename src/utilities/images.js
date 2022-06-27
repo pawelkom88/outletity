@@ -15,6 +15,10 @@ import shopping1webp from "../assets/webp/shopping1.webp";
 import shopping2webp from "../assets/webp/shopping2.webp";
 import shopping3webp from "../assets/webp/shopping3.webp";
 import cart from "../assets/svg/cart.svg";
+import visa from "../assets/svg/visa.svg";
+import mastercard from "../assets/svg/mastercard.svg";
+import paypal from "../assets/svg/paypal.svg";
+
 import add from "../assets/svg/add.svg";
 import remove from "../assets/svg/remove.svg";
 import sort from "../assets/svg/sort.svg";
@@ -102,4 +106,7 @@ export {
   close,
   add,
   remove,
+  visa,
+  mastercard,
+  paypal,
 };

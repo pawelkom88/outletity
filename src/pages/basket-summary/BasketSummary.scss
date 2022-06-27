@@ -6,11 +6,16 @@
   margin: 10rem auto;
   gap: 5%;
 
-  @media (max-width: breakpoints.$mobile) {
+  @media (max-width: breakpoints.$tablet) {
     flex-direction: column;
+    margin: 3rem auto;
   }
 }
 
 .basket-products {
-  flex-basis: 70%;
+  flex-basis: 60%;
+
+  & h2 {
+    font-size: 2rem;
+  }
 }

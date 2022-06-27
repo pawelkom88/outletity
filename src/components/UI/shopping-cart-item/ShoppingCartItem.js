@@ -21,12 +21,12 @@ export default function ShoppingCartItem() {
       </div>
       <div className="shopping-cart-item-options">
         <button className="remove-item no-styles">Remove</button>
-        <div class="item-number">
-          <button class="remove no-styles">
+        <div className="item-number">
+          <button className="remove no-styles">
             <img width="16px" src={add} alt="" />
           </button>
           <input type="text" value="1" />
-          <button class="add no-styles">
+          <button className="add no-styles">
             <img width="16px" src={remove} alt="" />
           </button>
         </div>
