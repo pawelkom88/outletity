@@ -73,7 +73,7 @@ export default function ContactFormModal({toggle}) {
               className="contact-form__textarea"
               name="textarea"
               id="message"
-              rows="8"
+              rows="6"
               placeholder="Enter message"
             />
             <Button type="submit" content="Send" id="dark-background" />
