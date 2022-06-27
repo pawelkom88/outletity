@@ -1,11 +1,11 @@
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
 import "./Product.scss";
-import useDiscount from "hooks/useDiscount";
+import {calcDiscount} from 'utilities/functions'
 
 export default function Product({product}) {
 
-  const {discount, productPrice, discountedPrice} = useDiscount(product);
+  const {discount, productPrice, discountedPrice} = calcDiscount(product);
 
   return (
     <div className="product-container">
