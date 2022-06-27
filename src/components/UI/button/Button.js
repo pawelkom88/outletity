@@ -11,11 +11,8 @@ export default function Button({
   return (
     <>
       {path ? (
-        <Link to={path}>
-          <button id={id} type={type} onClick={onClick} className={`btn ${className}`}>
-            {content}
-          </button>
-          ;
+        <Link to={path} id={id} type={type} onClick={onClick} className={`btn ${className}`}>
+          {content}
         </Link>
       ) : (
         <button id={id} type={type} onClick={onClick} className={`btn ${className}`}>

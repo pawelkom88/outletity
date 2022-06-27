@@ -6,14 +6,14 @@
   padding: 0 7rem;
 
   @media (max-width: breakpoints.$mobile) {
-    margin: 3rem 0;
-    padding: 0 4rem;
+    margin: 1rem 0;
+    padding: 0 0.5rem;
   }
 }
 
 .contact-form-description li {
-  margin: 2rem 0;
-  font-size: clamp(1.5vmin, 1.2rem, 3vmin);
+  margin: 1rem 0;
+  font-size: clamp(1.1vmin, 1.1rem, 2.8vmin);
 
   :last-of-type {
     text-align: center;

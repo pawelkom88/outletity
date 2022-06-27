@@ -44,7 +44,7 @@ export default function Header() {
           <div className="user-panel">
             {!matches && <SearchBar />}
             <UserPanel toggle={toggle} isShown={isShown} />
-            <Basket isShown={isShown} />
+            <Basket closeMobileMenu={closeMobileMenu} isShown={isShown} />
           </div>
         </div>
         {matches ? (
