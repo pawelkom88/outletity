@@ -1,0 +1,67 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.discount-container {
+  position: relative;
+  height: min-content;
+  flex-basis: 40%;
+  @include mixins.border(1px, colors.$light-grey);
+  margin-top: 3.2rem;
+  padding: 1rem 2rem;
+
+  & h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+
+  & p {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+  }
+
+  & .apply-discount {
+    & input {
+      width: 80%;
+
+      &::placeholder {
+        text-indent: 1rem;
+      }
+    }
+
+    & button {
+      width: 20%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: colors.$black;
+        color: colors.$white;
+      }
+    }
+
+    & input,
+    button {
+      padding: 1rem 0;
+      border: none;
+      @include mixins.border(1px, colors.$light-grey);
+      background: none;
+    }
+  }
+
+  & .total {
+    @include mixins.flex(space-between, center);
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem 0;
+  }
+
+  & .delivery-info {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  & .payment-icons img {
+    width: 45px;
+    margin-right: 2rem;
+  }
+}
