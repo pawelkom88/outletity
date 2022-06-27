@@ -1,5 +1,6 @@
 import Button from "../button/Button";
 import CloseBtn from "../close-button/CloseBtn";
+import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
 export default function ShoppingCart({handleShoppingCart}) {
@@ -9,14 +10,10 @@ export default function ShoppingCart({handleShoppingCart}) {
         <span>5 Items</span>
         <CloseBtn onClick={handleShoppingCart} />
       </div>
-      <div className="shopping-cart-items">
-        <div className="shopping-cart-item-COMPONENT">create component</div>
-        <div className="shopping-cart-item-COMPONENT">create component</div>
-        <div className="shopping-cart-item-COMPONENT">create component</div>
-        <div className="shopping-cart-item-COMPONENT">create component</div>
-        <div className="shopping-cart-item-COMPONENT">create component</div>
-        <div className="shopping-cart-item-COMPONENT">create component</div>
-      </div>
+      <ul className="shopping-cart-items">
+        <ShoppingCartItem />
+        <ShoppingCartItem />
+      </ul>
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>

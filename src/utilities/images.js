@@ -15,6 +15,8 @@ import shopping1webp from "../assets/webp/shopping1.webp";
 import shopping2webp from "../assets/webp/shopping2.webp";
 import shopping3webp from "../assets/webp/shopping3.webp";
 import cart from "../assets/svg/cart.svg";
+import add from "../assets/svg/add.svg";
+import remove from "../assets/svg/remove.svg";
 import sort from "../assets/svg/sort.svg";
 import user from "../assets/svg/user.svg";
 import close from "../assets/svg/close.svg";
@@ -98,4 +100,6 @@ export {
   chevrondown,
   sort,
   close,
+  add,
+  remove,
 };
