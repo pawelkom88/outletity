@@ -1,12 +1,12 @@
-<div style="text-align:center">
+<p align="center">
 <img src="https://outletity.netlify.app/static/media/logo.98cc0efcf2d1a647672e.webp" alt="Outletity logo" width="350" height="120"/>
-</div>
+</p>
 
 ## About The Project
 
-<div style="text-align:center">
+<p align="center">
 <img src="https://github.com/pawelkom88/outletity/blob/main/Outletity-gif.gif?raw=true" width="600" height="300" />
-</div>
+</p>
 
 Outletity is a fake fully responsive e-commerce store built with React and Firebase with a focus on
 accessibility. Project is still under development.
