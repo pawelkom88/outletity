@@ -1,0 +1,16 @@
+@use "/src/styles/mixins";
+@use "/src/styles/breakpoints";
+
+.basket-summary-container {
+  display: flex;
+  margin: 10rem auto;
+  gap: 5%;
+
+  @media (max-width: breakpoints.$mobile) {
+    flex-direction: column;
+  }
+}
+
+.basket-products {
+  flex-basis: 70%;
+}
