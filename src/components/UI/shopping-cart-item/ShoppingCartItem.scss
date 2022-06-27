@@ -1,0 +1,86 @@
+@use "/src/styles/mixins";
+@use "/src/styles/colors";
+
+.shopping-cart-item-li {
+  @include mixins.border(1px, colors.$light-grey);
+}
+
+.shopping-cart-item {
+  padding: 1rem 0;
+  padding-right: 2rem;
+  @include mixins.flex(space-between, center);
+}
+
+.shopping-cart-item-summary {
+  @include mixins.flex(space-between, center);
+  flex-basis: 80%;
+}
+
+.shopping-cart-item__img {
+  padding: 1rem;
+  max-width: 80px;
+
+  & img {
+    @include mixins.responsive-img;
+  }
+}
+
+.item-details,
+.item-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.item-size {
+  font-size: 1.1rem;
+}
+
+.item-price {
+  font-size: 1.5rem;
+
+  & .price {
+    text-decoration: line-through;
+  }
+
+  & .discounted-price {
+    font-weight: bold;
+    color: colors.$red;
+  }
+}
+
+.shopping-cart-item-options {
+  display: flex;
+  padding: 1rem 2rem;
+
+  & .remove-item {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: colors.$red;
+    margin-right: auto;
+    cursor: pointer;
+  }
+
+  & .item-number {
+    display: flex;
+    align-items: center;
+  }
+
+  & .item-number input {
+    font-weight: bold;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+  }
+
+  & .remove,
+  .add {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+}
