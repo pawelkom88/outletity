@@ -1,4 +1,4 @@
-import {calcDiscount} from 'utilities/functions'
+import {calcDiscount} from 'utilities/helpers'
 import {Link} from "react-router-dom";
 import "./ProductCard.scss";
 

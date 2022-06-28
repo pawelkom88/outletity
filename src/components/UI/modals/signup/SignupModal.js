@@ -1,14 +1,11 @@
-import {useState} from "react";
 import Modal from "../modal/Modal";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
 import toast, {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
-import {displayErrorMsg} from "utilities/functions";
+import {displayErrorMsg} from "utilities/helpers";
 
 export default function SignupModal({isShown, toggle, handleTransition}) {
-  const [isValidated, setIsValidated] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -19,51 +16,6 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
     validate,
     onSubmit: notifyUser,
   });
-
-  function validate(values) {
-    const errors = {};
-
-    switch (true) {
-      case !values.userName: {
-        errors.userName = "Required";
-        break;
-      }
-      case values.userName.trim().length === 0: {
-        errors.userName = "At least 1 character";
-        break;
-      }
-
-      case !values.email: {
-        errors.email = "Required";
-        break;
-      }
-
-      case !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email): {
-        errors.email = "Invalid email address";
-        break;
-      }
-      //add proper validation
-      case values.password.length < 5: {
-        errors.password = "Your password...";
-        break;
-      }
-      case values.passwordConfirmation != values.password: {
-        errors.passwordConfirmation = "Password doesn not match";
-        break;
-      }
-
-      default:
-    }
-
-    // Validate entire form if there are no errors
-    if (Object.keys(errors).length === 0) {
-      setIsValidated(true);
-    } else {
-      setIsValidated(false);
-    }
-
-    return errors;
-  }
 
   return (
     <>
@@ -127,13 +79,60 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
           <Button
             type="submit"
             content="Create account"
-            id={isValidated ? "dark-background" : "disabled"}
+            id={formik.errors.isValidated ? "dark-background" : "disabled"}
           />
         </form>
       </Modal>
       <Toaster position="top-center" />
     </>
   );
+}
+
+function validate(values) {
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+  const errors = {};
+
+  switch (true) {
+    case !values.userName: {
+      errors.userName = "Required";
+      break;
+    }
+    case values.userName.trim().length === 0: {
+      errors.userName = "At least 1 character";
+      break;
+    }
+
+    case !values.email: {
+      errors.email = "Required";
+      break;
+    }
+
+    case !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email): {
+      errors.email = "Invalid email address";
+      break;
+    }
+    //add proper validation
+    case !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/i.test(values.password): {
+      errors.password =
+        "8 to 24 characters Must include uppercase and lowercase letters, a number and a special character. Allowed special characters";
+      break;
+    }
+    case values.passwordConfirmation !== values.password: {
+      errors.passwordConfirmation = "Password doesn not match";
+      break;
+    }
+
+    default:
+  }
+
+  // Validate entire form if there are no errors
+  if (Object.keys(errors).length === 0) {
+    errors.isValidated = true;
+  } else {
+    errors.isValidated = false;
+  }
+
+  return errors;
 }
 
 function notifyUser() {

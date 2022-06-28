@@ -1,89 +1,11 @@
-import {useState} from "react";
 import {useFormik} from "formik";
 import Button from "components/UI/button/Button";
 import Select from "components/UI/select/Select";
-import {displayErrorMsg} from "utilities/functions";
+import {displayErrorMsg} from "utilities/helpers";
+import {months, years, deliveryOptions} from "utilities/helpers";
 import "./Payment.scss";
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-const years = [
-  new Date().getFullYear(),
-  new Date().getFullYear() + 1,
-  new Date().getFullYear() + 2,
-  new Date().getFullYear() + 3,
-  new Date().getFullYear() + 4,
-];
-
-const deliveryOptions = ["Standard : £3.95", "Next day : £6.95", "Collection : Free"];
-
 export default function Payment() {
-  const [isValidated, setIsValidated] = useState(false);
-
-  function validate(values) {
-    const errors = {};
-
-    switch (true) {
-      case !values.card: {
-        errors.card = "Required";
-        break;
-      }
-      case values.card.length !== 19: {
-        errors.card = "Invalid card number. Length must be 19 characters including dashes";
-        break;
-      }
-
-      case !values.name: {
-        errors.name = "Required";
-        break;
-      }
-
-      case !values.ccv: {
-        errors.ccv = "Required";
-        break;
-      }
-      //add proper validation
-      case values.ccv.length !== 3: {
-        errors.ccv = "Invalid. CVV field requires 3 numbers";
-        break;
-      }
-      case values.delivery === "options": {
-        errors.delivery = "Choose delivery method";
-        break;
-      }
-      case values.month === "Month": {
-        errors.month = "Choose month";
-        break;
-      }
-      case values.year === "Year": {
-        errors.year = "Choose year";
-        break;
-      }
-      default:
-    }
-
-    if (Object.keys(errors).length === 0) {
-      setIsValidated(true);
-    } else {
-      setIsValidated(false);
-    }
-
-    return errors;
-  }
-
   const formik = useFormik({
     initialValues: {
       card: "",
@@ -173,11 +95,63 @@ export default function Payment() {
         />
         <h3>Amount due : £200</h3>
         <Button
-          path={isValidated && "/Success"}
+          path={formik.errors.isValidated && "/Success"}
           content="Pay"
-          id={isValidated ? "dark-background" : "disabled"}
+          id={formik.errors.isValidated ? "dark-background" : "disabled"}
         />
       </form>
     </section>
   );
+}
+
+function validate(values) {
+  const errors = {};
+
+  switch (true) {
+    case !values.card: {
+      errors.card = "Required";
+      break;
+    }
+    case values.card.length !== 19: {
+      errors.card = "Invalid card number. Length must be 19 characters including dashes";
+      break;
+    }
+
+    case !values.name: {
+      errors.name = "Required";
+      break;
+    }
+
+    case !values.ccv: {
+      errors.ccv = "Required";
+      break;
+    }
+    //add proper validation
+    case values.ccv.length !== 3: {
+      errors.ccv = "Invalid. CVV field requires 3 numbers";
+      break;
+    }
+    case values.delivery === "options": {
+      errors.delivery = "Choose delivery method";
+      break;
+    }
+    case values.month === "Month": {
+      errors.month = "Choose month";
+      break;
+    }
+    case values.year === "Year": {
+      errors.year = "Choose year";
+      break;
+    }
+    default:
+  }
+
+  // Validate entire form if there are no errors
+  if (Object.keys(errors).length === 0) {
+    errors.isValidated = true;
+  } else {
+    errors.isValidated = false;
+  }
+
+  return errors;
 }
