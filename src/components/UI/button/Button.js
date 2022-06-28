@@ -15,7 +15,6 @@ export default function Button({
           style={{textAlign: "center"}}
           to={path}
           id={id}
-          type={type}
           onClick={onClick}
           className={`btn ${className}`}>
           {content}
