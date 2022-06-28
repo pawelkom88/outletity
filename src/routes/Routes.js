@@ -9,6 +9,7 @@ import ProductInfo from "../pages/product/ProductInfo";
 import Payment from "../pages/payment/Payment";
 import BasketSummary from "../pages/basket-summary/BasketSummary";
 import Page404 from "../pages/Page404";
+import Success from "pages/basket-summary/success-payment/Success";
 
 export default function RouterRoutes() {
   const {data, error, loading} = useFetch("https://fakestoreapi.com/products");
@@ -37,6 +38,7 @@ export default function RouterRoutes() {
       <Route path="*" element={<Page404 />} />
       <Route path="/BasketSummary" element={<BasketSummary />} />
       <Route path="/Payment" element={<Payment />} />
+      <Route path="/Success" element={<Success />} />
     </Routes>
   );
 }

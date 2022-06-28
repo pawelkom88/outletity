@@ -11,7 +11,13 @@ export default function Button({
   return (
     <>
       {path ? (
-        <Link to={path} id={id} type={type} onClick={onClick} className={`btn ${className}`}>
+        <Link
+          style={{textAlign: "center"}}
+          to={path}
+          id={id}
+          type={type}
+          onClick={onClick}
+          className={`btn ${className}`}>
           {content}
         </Link>
       ) : (
