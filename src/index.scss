@@ -101,6 +101,16 @@ a {
   }
 }
 
+#disabled {
+  background-color: colors.$light-grey;
+  border: none;
+
+  &:hover {
+    color: colors.$black;
+    box-shadow: none;
+  }
+}
+
 li {
   list-style: none;
 }

@@ -5,3 +5,7 @@ export function calcDiscount(product) {
 
   return {discount, productPrice, discountedPrice};
 }
+
+export function displayErrorMsg(touched, errors) {
+  return touched && errors && <span className="contact-form-error-msg">{errors}</span>;
+}
