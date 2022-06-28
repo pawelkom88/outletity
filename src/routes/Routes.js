@@ -9,7 +9,7 @@ import ProductInfo from "../pages/product/ProductInfo";
 import Payment from "../pages/payment/Payment";
 import BasketSummary from "../pages/basket-summary/BasketSummary";
 import Page404 from "../pages/Page404";
-import Success from "pages/basket-summary/success-payment/Success";
+import Success from "pages/success/Success";
 
 export default function RouterRoutes() {
   const {data, error, loading} = useFetch("https://fakestoreapi.com/products");

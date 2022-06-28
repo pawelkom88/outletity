@@ -1,0 +1,13 @@
+@use "/src/styles/mixins";
+
+.success-container {
+  min-height: 500px;
+  @include mixins.flex(center, center);
+  background-color: #dff0d8;
+  margin-top: 6rem;
+  text-align: center;
+
+  & h2 {
+    color: #3c763d;
+  }
+}
