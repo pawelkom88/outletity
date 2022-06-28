@@ -18,7 +18,7 @@ import cart from "../assets/svg/cart.svg";
 import visa from "../assets/svg/visa.svg";
 import mastercard from "../assets/svg/mastercard.svg";
 import paypal from "../assets/svg/paypal.svg";
-
+import success from "../assets/svg/success.svg";
 import add from "../assets/svg/add.svg";
 import remove from "../assets/svg/remove.svg";
 import sort from "../assets/svg/sort.svg";
@@ -109,4 +109,5 @@ export {
   visa,
   mastercard,
   paypal,
+  success,
 };
