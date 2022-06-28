@@ -1,41 +1,14 @@
-import {useState} from "react";
 import Modal from "../modal/Modal";
 import {Link} from "react-router-dom";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
 import toast, {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
-import {displayErrorMsg} from "utilities/functions";
+import {displayErrorMsg} from "utilities/helpers";
 
 import "./LoginModal.scss";
 
 export default function LoginModal({isShown, toggle, handleTransition}) {
-  const [isValidated, setIsValidated] = useState(false);
-
-  function validate(values) {
-    const errors = {};
-
-    if (!values.password) {
-      errors.password = "Required";
-    } else if (values.password.length < 5) {
-      errors.password = "Your password ...";
-    }
-
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
-    }
-
-    if (Object.keys(errors).length === 0) {
-      setIsValidated(true);
-    } else {
-      setIsValidated(false);
-    }
-
-    return errors;
-  }
-
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -78,7 +51,11 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
             <div>Password:</div>
             {displayErrorMsg(formik.touched.password, formik.errors.password)}
           </Input>
-          <Button type="submit" content="Login" id={isValidated ? "dark-background" : "disabled"} />
+          <Button
+            type="submit"
+            content="Login"
+            id={formik.errors.isValidated ? "dark-background" : "disabled"}
+          />
         </form>
         <Link onClick={toggle} className="underline" to="/">
           Forgot your password ?
@@ -87,6 +64,29 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
       <Toaster position="top-center" />
     </>
   );
+}
+
+function validate(values) {
+  const errors = {};
+
+  if (!values.password) {
+    errors.password = "Required";
+  }
+
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  // Validate entire form if there are no errors
+  if (Object.keys(errors).length === 0) {
+    errors.isValidated = true;
+  } else {
+    errors.isValidated = false;
+  }
+
+  return errors;
 }
 
 function notifyUser() {

@@ -1,7 +1,7 @@
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
 import "./Product.scss";
-import {calcDiscount} from 'utilities/functions'
+import {calcDiscount} from 'utilities/helpers'
 
 export default function Product({product}) {
 
