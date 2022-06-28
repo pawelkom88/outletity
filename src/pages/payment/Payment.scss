@@ -1,0 +1,47 @@
+@use "/src/styles/colors";
+@use "/src/styles/mixins";
+@use "/src/styles/breakpoints";
+
+.payment-container {
+  margin-top: 6rem;
+  max-width: fit-content;
+
+  & h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+
+  & input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    @include mixins.border(1px, colors.$black);
+  }
+
+  & a {
+    margin-top: 2rem;
+  }
+
+  & h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem;
+  }
+}
+
+.exp-date {
+  margin-bottom: 2rem;
+
+  & select {
+    margin-right: 2rem;
+  }
+}
+
+.select {
+  padding: 0.5rem;
+  border-radius: 5px;
+}
