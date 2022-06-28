@@ -1,10 +1,14 @@
+import {useState} from "react";
 import Modal from "../modal/Modal";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
 import toast, {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
+import {displayErrorMsg} from "utilities/functions";
 
 export default function SignupModal({isShown, toggle, handleTransition}) {
+  const [isValidated, setIsValidated] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -15,6 +19,51 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
     validate,
     onSubmit: notifyUser,
   });
+
+  function validate(values) {
+    const errors = {};
+
+    switch (true) {
+      case !values.userName: {
+        errors.userName = "Required";
+        break;
+      }
+      case values.userName.trim().length === 0: {
+        errors.userName = "At least 1 character";
+        break;
+      }
+
+      case !values.email: {
+        errors.email = "Required";
+        break;
+      }
+
+      case !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email): {
+        errors.email = "Invalid email address";
+        break;
+      }
+      //add proper validation
+      case values.password.length < 5: {
+        errors.password = "Your password...";
+        break;
+      }
+      case values.passwordConfirmation != values.password: {
+        errors.passwordConfirmation = "Password doesn not match";
+        break;
+      }
+
+      default:
+    }
+
+    // Validate entire form if there are no errors
+    if (Object.keys(errors).length === 0) {
+      setIsValidated(true);
+    } else {
+      setIsValidated(false);
+    }
+
+    return errors;
+  }
 
   return (
     <>
@@ -34,14 +83,9 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
             id="userName"
             placeholder="User name"
             name="userName"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.userName}>
-            {formik.touched.userName && formik.errors.userName ? (
-              <span className="contact-form-error-msg">{formik.errors.userName}</span>
-            ) : (
-              "User name:"
-            )}
+            {...formik.getFieldProps("userName")}>
+            <div>User name:</div>
+            {displayErrorMsg(formik.touched.userName, formik.errors.userName)}
           </Input>
           <Input
             size={60}
@@ -50,14 +94,9 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
             id="email"
             placeholder="Enter email"
             name="email"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.email}>
-            {formik.touched.email && formik.errors.email ? (
-              <span className="contact-form-error-msg">{formik.errors.email}</span>
-            ) : (
-              "E-mail:"
-            )}
+            {...formik.getFieldProps("email")}>
+            <div>E-mail:</div>
+            {displayErrorMsg(formik.touched.email, formik.errors.email)}
           </Input>
           <Input
             size={60}
@@ -67,14 +106,9 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
             placeholder="Enter password"
             name="password"
             autocomplete="off"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.password}>
-            {formik.touched.password && formik.errors.password ? (
-              <span className="contact-form-error-msg">{formik.errors.password}</span>
-            ) : (
-              "Password:"
-            )}
+            {...formik.getFieldProps("password")}>
+            <div>Password:</div>
+            {displayErrorMsg(formik.touched.password, formik.errors.password)}
           </Input>
           <Input
             size={60}
@@ -83,51 +117,23 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
             id="password confirmation"
             placeholder="Confirm password"
             name="password confirmation"
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-            value={formik.values.passwordConfirmation}>
-            {formik.touched.passwordConfirmation && formik.errors.passwordConfirmation ? (
-              <span className="contact-form-error-msg">{formik.errors.passwordConfirmation}</span>
-            ) : (
-              "Confirm Password:"
+            {...formik.getFieldProps("passwordConfirmation")}>
+            <div>Confirm password:</div>
+            {displayErrorMsg(
+              formik.touched.passwordConfirmation,
+              formik.errors.passwordConfirmation
             )}
           </Input>
-          <Button type="submit" id="dark-background" content="Create account" />
+          <Button
+            type="submit"
+            content="Create account"
+            id={isValidated ? "dark-background" : "disabled"}
+          />
         </form>
       </Modal>
       <Toaster position="top-center" />
     </>
   );
-}
-
-function validate(values) {
-  const errors = {};
-
-  if (!values.userName) {
-    errors.userName = "Required";
-  } else if (values.userName.trim().length === 0) {
-    errors.userName = "At least 1 character";
-  }
-
-  if (!values.email) {
-    errors.email = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
-  }
-
-  if (!values.password) {
-    errors.password = "Required";
-  } else if (values.password.length < 5) {
-    errors.password = "Your password ...";
-  }
-
-  if (!values.passwordConfirmation) {
-    errors.password = "Required";
-  } else if (values.passwordConfirmation) {
-    errors.password = "Doesn't match";
-  }
-
-  return errors;
 }
 
 function notifyUser() {
