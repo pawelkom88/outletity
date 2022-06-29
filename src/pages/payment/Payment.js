@@ -5,7 +5,12 @@ import {displayErrorMsg} from "utilities/helpers";
 import {months, years, deliveryOptions} from "utilities/helpers";
 import "./Payment.scss";
 
-export default function Payment() {
+export default function Payment({discountedTotal}) {
+  function handlePayment() {
+    localStorage.clear();
+  }
+  // onclick empty basket ( firebase delete all )and local storage
+
   const formik = useFormik({
     initialValues: {
       card: "",
@@ -93,11 +98,12 @@ export default function Payment() {
           options={deliveryOptions}
           {...formik.getFieldProps("delivery")}
         />
-        <h3>Amount due : £200</h3>
+        <h3>Amount due : £{discountedTotal}</h3>
         <Button
           path={formik.errors.isValidated && "/Success"}
           content="Pay"
           id={formik.errors.isValidated ? "dark-background" : "disabled"}
+          onClick={handlePayment}
         />
       </form>
     </section>

@@ -1,4 +1,4 @@
-import {useState, useRef} from "react";
+import {useEffect, useState, useRef} from "react";
 import Details from "components/footer/footer-mobile/Details";
 import Delivery from "components/other/delivery/Delivery";
 import React from "react";
@@ -7,16 +7,28 @@ import {visa, mastercard, paypal} from "utilities/images";
 import {voucherCode} from "utilities/helpers";
 import "./Checkout.scss";
 
-export default function Checkout({total}) {
+export default function Checkout({total, setDiscountedTotal, discountedTotal}) {
   const [isMatch, setIsMatch] = useState(false);
+
   const discountRef = useRef();
 
+  // set ref to user input
   function handleSubmit(e) {
     e.preventDefault();
     setIsMatch(discountRef.current.value);
   }
 
-  // send updated amount to firebase
+  useEffect(() => {
+    // update state to new value after entering voucher code (if it matches)
+    if (total && isMatch === voucherCode) {
+      setDiscountedTotal(total * 0.9);
+      // storing discountedTotal in local storage
+      localStorage.setItem("newTotal", JSON.stringify(discountedTotal));
+      // update state to total before applying voucher only if local storage is empty
+    } else if (!("newTotal" in localStorage)) {
+      setDiscountedTotal(total);
+    }
+  }, [total, isMatch, setDiscountedTotal, discountedTotal]);
 
   return (
     <div className="discount-container">
@@ -28,7 +40,7 @@ export default function Checkout({total}) {
       </form>
       <div className="total">
         <span>Total:</span>
-        <span>£{isMatch === voucherCode ? total * 0.9 : total}</span>
+        <span>£{discountedTotal}</span>
       </div>
       <Button path="/Payment" content="Secure Checkout" id="dark-background" />
       <div className="delivery-info">(excluding delivery)</div>

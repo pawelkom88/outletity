@@ -9,6 +9,7 @@ import GoUp from "components/UI/goUp/GoUp";
 import SocialMedia from "components/UI/social-media/SocialMedia";
 import Routes from "routes/Routes";
 import "./index.scss";
+import {ShoppingCartProvider} from "context/CartContext";
 
 export default function Outletity() {
   return (
@@ -16,13 +17,15 @@ export default function Outletity() {
       <PromoBar>
         <Sale />
       </PromoBar>
-      <Header />  
-      <PromoBar>
-        <Voucher />
-      </PromoBar>
-      <Main>
-        <Routes />
-      </Main>
+      <ShoppingCartProvider>
+        <Header />
+        <PromoBar>
+          <Voucher />
+        </PromoBar>
+        <Main>
+          <Routes />
+        </Main>
+      </ShoppingCartProvider>
       <PromoBar>
         <Newsletter />
       </PromoBar>
