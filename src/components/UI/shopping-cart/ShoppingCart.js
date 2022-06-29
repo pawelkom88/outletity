@@ -3,21 +3,21 @@ import CloseBtn from "../close-button/CloseBtn";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
-export default function ShoppingCart({handleShoppingCart}) {
+export default function ShoppingCart({handleShoppingCart, products, total}) {
   return (
     <div className="shopping-cart">
       <div className="shopping-cart-items-total">
-        <span>5 Items</span>
+        <span>{products.length === 0 ? "empty" : `${products.length} items`} </span>
         <CloseBtn onClick={handleShoppingCart} />
       </div>
       <ul className="shopping-cart-items">
-        <ShoppingCartItem />
-        <ShoppingCartItem />
+        {products &&
+          products.map(product => <ShoppingCartItem key={product.id} product={product} />)}
       </ul>
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>
-          <span>£214.65</span>
+          <span>£ {total}</span>
         </div>
         <Button
           onClick={handleShoppingCart}
