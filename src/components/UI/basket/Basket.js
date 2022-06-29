@@ -1,21 +1,16 @@
-import useCollection from "hooks/useCollection";
 import useMatchMedia from "hooks/useMatchMedia";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {cart} from "utilities/images";
 import ShoppingCart from "components/UI/shopping-cart/ShoppingCart";
-import {calcTotal} from "utilities/helpers";
+import {CartContext} from "context/CartContext";
+
 import "./Basket.scss";
 
 export default function Basket({isShown, closeMobileMenu}) {
-  const {products} = useCollection("products");
+  const {products, total} = CartContext();
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
-
-  let total;
-  if (products) {
-    total = calcTotal(products);
-  }
 
   function handleShoppingCart() {
     if (showCart) {
@@ -42,7 +37,7 @@ export default function Basket({isShown, closeMobileMenu}) {
           aria-label="show cart"
           className="basket-container no-styles">
           <img className="basket" src={cart} alt="Cart icon" />
-          <span data-count="0" className="basket-quantity"></span>
+          <span data-count={products && products.length} className="basket-quantity"></span>
         </button>
       )}
 
