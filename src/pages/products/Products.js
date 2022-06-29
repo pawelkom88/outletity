@@ -12,12 +12,12 @@ export default function Products({data, error, loading}) {
   const {category} = useParams();
 
   useEffect(() => {
-    function sortById(products) {
+    function sortByCategory(products) {
       return products.filter(productList => productList.category === category);
     }
 
     if (data && category) {
-      setFilteredProducts(sortById(data));
+      setFilteredProducts(sortByCategory(data));
     } else {
       setFilteredProducts(data);
     }
@@ -41,7 +41,7 @@ export default function Products({data, error, loading}) {
       {filteredProducts && (
         <>
           <h2 className="heading">
-            {/* {category ? filteredProducts[0].category.toUpperCase() : "ALL PRODUCTS"} */}
+            {category ? filteredProducts[0].category.toUpperCase() : "ALL PRODUCTS"}
           </h2>
           <div className="category-sortable-panel">
             <div className="panel-options">
