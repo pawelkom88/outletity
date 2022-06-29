@@ -10,11 +10,6 @@ export function displayErrorMsg(touched, errors) {
   return touched && errors && <span className="contact-form-error-msg">{errors}</span>;
 }
 
-export function calcTotal(products) {
-  const total = products.map(product => product.discountedPrice).reduce((acc, curr) => acc + curr);
-  return total;
-}
-
 export const voucherCode = "HX10TZ6";
 
 export const months = [

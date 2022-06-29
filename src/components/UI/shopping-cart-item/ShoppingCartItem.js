@@ -1,7 +1,14 @@
+import {db} from "../../../firebase/config";
+import {doc, deleteDoc} from "firebase/firestore";
 import "./ShoppingCartItem.scss";
 import {add, remove} from "utilities/images";
 
 export default function ShoppingCartItem({product}) {
+  async function handleRemove(id) {
+    const docRef = doc(db, "products", id);
+
+    await deleteDoc(docRef);
+  }
 
   return (
     <li className="shopping-cart-item-li">
@@ -21,7 +28,9 @@ export default function ShoppingCartItem({product}) {
         </div>
       </div>
       <div className="shopping-cart-item-options">
-        <button className="remove-item no-styles">Remove</button>
+        <button className="remove-item no-styles" onClick={() => handleRemove(product.id)}>
+          Remove
+        </button>
         <div className="item-number">
           <button className="remove no-styles">
             <img width="16px" src={add} alt="add" />

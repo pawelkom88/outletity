@@ -6,7 +6,7 @@ export default function BasketSummary({products, total, setDiscountedTotal, disc
   let basketQuantity;
 
   if (products && products.length === 0) {
-    basketQuantity = "Basket is empty";
+    basketQuantity = "is empty";
   } else if (products && products.length === 1) {
     basketQuantity = `${products.length} item`;
   } else if (products) {
