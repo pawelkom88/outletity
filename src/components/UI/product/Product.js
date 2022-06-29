@@ -1,11 +1,26 @@
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
 import "./Product.scss";
-import {calcDiscount} from 'utilities/helpers'
+import {calcDiscount} from "utilities/helpers";
+import {useState} from "react";
 
 export default function Product({product}) {
-
+  const [selectedSize, setSelectedSize] = useState(null);
   const {discount, productPrice, discountedPrice} = calcDiscount(product);
+
+  function addToCart() {
+    const addedProduct = {
+      title: product.title,
+      image: product.image,
+      size: selectedSize,
+      productPrice,
+      discountedPrice,
+    };
+
+    console.log(addedProduct);
+
+    // send to firebase
+  }
 
   return (
     <div className="product-container">
@@ -25,8 +40,8 @@ export default function Product({product}) {
           </div>
           <span className="discount">SAVE {discount} %</span>
         </div>
-        <SizeGuide product={product} />
-        <Button content="Add to basket" id="dark-background" />
+        <SizeGuide product={product} setSelectedSize={setSelectedSize} />
+        <Button content="Add to basket" id="dark-background" onClick={addToCart} />
       </article>
     </div>
   );
