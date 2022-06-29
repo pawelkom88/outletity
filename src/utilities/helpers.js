@@ -10,6 +10,8 @@ export function displayErrorMsg(touched, errors) {
   return touched && errors && <span className="contact-form-error-msg">{errors}</span>;
 }
 
+export const voucherCode = "HX10TZ6";
+
 export const months = [
   "January",
   "February",
