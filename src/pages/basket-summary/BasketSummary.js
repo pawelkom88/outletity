@@ -1,25 +1,30 @@
-import useCollection from "hooks/useCollection";
 import Checkout from "components/UI/checkout/Checkout";
 import ShoppingCartItem from "components/UI/shopping-cart-item/ShoppingCartItem";
-import {calcTotal} from "utilities/helpers";
 import "./BasketSummary.scss";
 
-export default function BasketSummary() {
-  const {products} = useCollection("products");
+export default function BasketSummary({products, total, setDiscountedTotal, discountedTotal}) {
+  let basketQuantity;
 
-  let total;
-  if (products) {
-    total = calcTotal(products);
+  if (products && products.length === 0) {
+    basketQuantity = "Basket is empty";
+  } else if (products && products.length === 1) {
+    basketQuantity = `${products.length} item`;
+  } else if (products) {
+    basketQuantity = `${products.length} items`;
   }
 
   return (
     <section className="basket-summary-container">
       <div className="basket-products">
-        <h2>Basket : 5 items</h2>
+        <h2>Basket : {basketQuantity}</h2>
         {products &&
           products.map(product => <ShoppingCartItem key={product.id} product={product} />)}
       </div>
-      <Checkout total={total} />
+      <Checkout
+        total={total}
+        setDiscountedTotal={setDiscountedTotal}
+        discountedTotal={discountedTotal}
+      />
     </section>
   );
 }

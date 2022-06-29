@@ -1,7 +1,10 @@
+import {useState} from "react";
 import Input from "../input/Input";
 import "./SearchBar.scss";
 
 export default function SearchBar() {
+  const [userInput, setUserInput] = useState();
+
   return (
     <Input
       labelFor="Search bar"
@@ -12,6 +15,8 @@ export default function SearchBar() {
       type="search"
       placeholder="Search product"
       ariaLabel="Search"
+      value={userInput}
+      onChange={e => setUserInput(e.target.value)}
     />
   );
 }
