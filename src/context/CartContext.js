@@ -1,6 +1,5 @@
 import useCollection from "hooks/useCollection";
 import {createContext, useContext} from "react";
-import {calcTotal} from "utilities/helpers";
 
 const ShoppingCartContext = createContext({});
 
@@ -10,13 +9,14 @@ export function CartContext() {
 
 export function ShoppingCartProvider({children}) {
   const {products} = useCollection("products");
+
   let total;
   if (products) {
-    total = calcTotal(products);
+    total = products.reduce((acc, curr) => acc + curr.discountedPrice, 0);
   }
 
   return (
-    <ShoppingCartContext.Provider value={{products, total, calcTotal}}>
+    <ShoppingCartContext.Provider value={{products, total}}>
       {children}
     </ShoppingCartContext.Provider>
   );

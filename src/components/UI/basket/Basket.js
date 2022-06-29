@@ -12,6 +12,14 @@ export default function Basket({isShown, closeMobileMenu}) {
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
 
+  let basketQuantity;
+
+  if (products && products.length === 0) {
+    basketQuantity = 0;
+  } else if (products) {
+    basketQuantity = products.length;
+  }
+
   function handleShoppingCart() {
     if (showCart) {
       setShowCart(false);
@@ -37,7 +45,7 @@ export default function Basket({isShown, closeMobileMenu}) {
           aria-label="show cart"
           className="basket-container no-styles">
           <img className="basket" src={cart} alt="Cart icon" />
-          <span data-count={products && products.length} className="basket-quantity"></span>
+          <span data-count={basketQuantity} className="basket-quantity"></span>
         </button>
       )}
 

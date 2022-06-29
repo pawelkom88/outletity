@@ -1,14 +1,16 @@
+import {useState} from "react";
+import {db} from "../../../firebase/config";
+import {collection, addDoc} from "firebase/firestore";
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
-import "./Product.scss";
 import {calcDiscount} from "utilities/helpers";
-import {useState} from "react";
+import "./Product.scss";
 
 export default function Product({product}) {
   const [selectedSize, setSelectedSize] = useState(null);
   const {discount, productPrice, discountedPrice} = calcDiscount(product);
 
-  function addToCart() {
+  async function addToCart() {
     const addedProduct = {
       title: product.title,
       image: product.image,
@@ -17,9 +19,9 @@ export default function Product({product}) {
       discountedPrice,
     };
 
-    console.log(addedProduct);
+    const ref = collection(db, "products");
 
-    // send to firebase
+    await addDoc(ref, addedProduct);
   }
 
   return (
