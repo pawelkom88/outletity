@@ -40,7 +40,11 @@ export default function Product({product}) {
           </div>
           <span className="discount">SAVE {discount} %</span>
         </div>
-        <SizeGuide product={product} setSelectedSize={setSelectedSize} />
+        <SizeGuide
+          product={product}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+        />
         <Button content="Add to basket" id="dark-background" onClick={addToCart} />
       </article>
     </div>

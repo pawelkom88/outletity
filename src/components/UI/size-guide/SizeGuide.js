@@ -1,6 +1,6 @@
 import "./SizeGuide.scss";
 
-export default function SizeGuide({product, setSelectedSize}) {
+export default function SizeGuide({product, selectedSize, setSelectedSize}) {
   const productType = ["T-Shirts", "T Shirt", "Jacket", "Sleeve", "Slim Fit"];
   const sizes = [8, 10, 12, 14, 16];
 
@@ -11,7 +11,10 @@ export default function SizeGuide({product, setSelectedSize}) {
           <p className="select-size">Select size:</p>
           <div className="size-guide">
             {sizes.map((size, index) => (
-              <span key={size - index} className="size" onClick={() => setSelectedSize(size)}>
+              <span
+                key={size - index}
+                className={selectedSize === size ? "size sizeActive" : "size"}
+                onClick={() => setSelectedSize(size)}>
                 {size}
               </span>
             ))}
