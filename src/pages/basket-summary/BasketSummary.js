@@ -3,6 +3,8 @@ import ShoppingCartItem from "components/UI/shopping-cart-item/ShoppingCartItem"
 import "./BasketSummary.scss";
 
 export default function BasketSummary() {
+  const total = 200;
+
   return (
     <section className="basket-summary-container">
       <div className="basket-products">
@@ -13,8 +15,7 @@ export default function BasketSummary() {
         <ShoppingCartItem />
         <ShoppingCartItem />
       </div>
-      <Checkout />
-
+      <Checkout total={total} />
     </section>
   );
 }
