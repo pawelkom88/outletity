@@ -50,4 +50,8 @@
 
 .amount {
   @include mixins.flex(space-between, center);
+
+  & span {
+    font-weight: bold;
+  }
 }
