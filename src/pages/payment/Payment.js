@@ -1,4 +1,5 @@
 import {useFormik} from "formik";
+import {CartContext} from "context/CartContext";
 import {db} from "../../firebase/config";
 import {doc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
@@ -9,6 +10,8 @@ import useCollection from "hooks/useCollection";
 import "./Payment.scss";
 
 export default function Payment() {
+  const {total} = CartContext();
+
   const {products: discountedTotal} = useCollection("voucher");
   const {products} = useCollection("products");
 
@@ -28,6 +31,17 @@ export default function Payment() {
     });
   }
 
+  let newTotal;
+
+  // if voucher was used display new total
+  if (discountedTotal && discountedTotal.length) {
+    newTotal = discountedTotal[0].newTotal.toFixed(2);
+    // otherwise display total before discount
+  } else {
+    newTotal = total;
+  }
+
+  // handle form
   const formik = useFormik({
     initialValues: {
       card: "",
@@ -115,7 +129,7 @@ export default function Payment() {
           options={deliveryOptions}
           {...formik.getFieldProps("delivery")}
         />
-        <h3>Amount due : £{discountedTotal && discountedTotal[0].newTotal.toFixed(2)}</h3>
+        <h3>Amount due : £{newTotal}</h3>
         <Button
           path={formik.errors.isValidated && "/Success"}
           content="Pay"
