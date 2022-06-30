@@ -12,9 +12,8 @@ export function ShoppingCartProvider({children}) {
 
   let total;
   if (products) {
-    total = products.reduce((acc, curr) => acc + curr.discountedPrice, 0);
+    total = products.reduce((acc, curr) => acc + +curr.discountedPrice, 0);
   }
-
   return (
     <ShoppingCartContext.Provider value={{products, total}}>
       {children}
