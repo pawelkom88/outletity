@@ -4,10 +4,11 @@ import {collection, addDoc} from "firebase/firestore";
 import SizeGuide from "components/UI/size-guide/SizeGuide";
 import Button from "components/UI/button/Button";
 import {calcDiscount} from "utilities/helpers";
+import toast, {Toaster} from "react-hot-toast";
 import "./Product.scss";
 
 export default function Product({product}) {
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(false);
   const {discount, productPrice, discountedPrice} = calcDiscount(product);
 
   async function addToCart() {
@@ -47,8 +48,17 @@ export default function Product({product}) {
           selectedSize={selectedSize}
           setSelectedSize={setSelectedSize}
         />
-        <Button content="Add to basket" id="dark-background" onClick={addToCart} />
+        <Button
+          content="Add to basket"
+          id="dark-background"
+          onClick={selectedSize ? addToCart : notifyUser}
+        />
       </article>
+      <Toaster position="top-center" />
     </div>
   );
+}
+
+function notifyUser() {
+  toast.error("Select size");
 }
