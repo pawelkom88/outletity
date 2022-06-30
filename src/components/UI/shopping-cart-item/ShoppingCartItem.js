@@ -19,7 +19,7 @@ export default function ShoppingCartItem({product}) {
         <div className="shopping-cart-item-summary">
           <div className="item-details">
             <span className="item-name">{product.title}</span>
-            <span className=".item-size">{product.size}</span>
+            <span className=".item-size">size: {product.size}</span>
           </div>
           <div className="item-price">
             <span className="price">£{product.productPrice}</span>
