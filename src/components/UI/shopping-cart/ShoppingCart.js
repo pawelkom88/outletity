@@ -17,7 +17,7 @@ export default function ShoppingCart({handleShoppingCart, products, total}) {
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>
-          <span>£ {!total.length ? 0 : total}</span>
+          <span>£ {total >= 0 ? total : 0}</span>
         </div>
         <Button
           onClick={handleShoppingCart}
