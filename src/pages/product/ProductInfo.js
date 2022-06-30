@@ -1,27 +1,22 @@
+import useFetch from "hooks/useFetch";
 import {useParams} from "react-router-dom";
 import Product from "components/UI/product/Product";
 import Loader from "components/UI/loader/Loader";
 import ErrorModal from "components/UI/modals/error-modal/ErrorModal";
 import ProductCarousel from "components/UI/product-carousel/ProductCarousel";
 
-export default function ProductInfo({data, error, loading}) {
+export default function ProductInfo() {
   const {id} = useParams();
-
-  let filteredProduct;
+  const {data: product, error, loading} = useFetch(`https://fakestoreapi.com/products/${id}`);
+  const {data} = useFetch(`https://fakestoreapi.com/products`);
 
   // type coercion
-  if (data && id) {
-    filteredProduct = data.filter(product => product.id == id);
-  }
 
   return (
     <section>
       {error && <ErrorModal error={error} />}
       {loading && <Loader />}
-      {filteredProduct &&
-        filteredProduct.map(product => {
-          return <Product key={product.id} product={product} />;
-        })}
+      {product && <Product key={product.id} product={product} />}
       {data && <ProductCarousel data={data} />}
     </section>
   );
