@@ -1,15 +1,32 @@
 import {useFormik} from "formik";
+import {db} from "../../firebase/config";
+import {doc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import Select from "components/UI/select/Select";
 import {displayErrorMsg} from "utilities/helpers";
 import {months, years, deliveryOptions} from "utilities/helpers";
+import useCollection from "hooks/useCollection";
 import "./Payment.scss";
 
-export default function Payment({discountedTotal}) {
-  function handlePayment() {
-    localStorage.clear();
+export default function Payment() {
+  const {products: discountedTotal} = useCollection("voucher");
+  const {products} = useCollection("products");
+
+  // delete new total from collection
+  async function handleNewTotalReset(id) {
+    const voucherRef = doc(db, "voucher", id);
+
+    await deleteDoc(voucherRef);
   }
-  // onclick empty basket ( firebase delete all )and local storage
+
+  // delete all products from collection
+  async function emptyCart() {
+    await products.forEach(product => {
+      const productsRef = doc(db, "products", product.id);
+
+      deleteDoc(productsRef);
+    });
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -98,12 +115,15 @@ export default function Payment({discountedTotal}) {
           options={deliveryOptions}
           {...formik.getFieldProps("delivery")}
         />
-        <h3>Amount due : £{discountedTotal}</h3>
+        <h3>Amount due : £{discountedTotal && discountedTotal[0].newTotal.toFixed(2)}</h3>
         <Button
           path={formik.errors.isValidated && "/Success"}
           content="Pay"
           id={formik.errors.isValidated ? "dark-background" : "disabled"}
-          onClick={handlePayment}
+          onClick={() => {
+            handleNewTotalReset(discountedTotal[0].id);
+            emptyCart();
+          }}
         />
       </form>
     </section>
