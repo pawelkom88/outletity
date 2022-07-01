@@ -13,7 +13,7 @@ export default function ProductCard({product}) {
           <span className="product-card-discount">SAVE {discount}%</span>
         </div>
         <div className="product-card-desc">
-          <h6>{product.title}</h6>
+          <h6>{product.title.substring(0, 50)} ...</h6>
           <span>£{productPrice}</span>
           <p className="price">£{discountedPrice}</p>
         </div>
