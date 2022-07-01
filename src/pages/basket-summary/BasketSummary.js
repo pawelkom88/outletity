@@ -1,17 +1,10 @@
+import {CartContext} from "context/CartContext";
 import Checkout from "components/UI/checkout/Checkout";
 import ShoppingCartItem from "components/UI/shopping-cart-item/ShoppingCartItem";
 import "./BasketSummary.scss";
 
-export default function BasketSummary({products, total, setDiscountedTotal, discountedTotal}) {
-  let basketQuantity;
-
-  if (products && products.length === 0) {
-    basketQuantity = "is empty";
-  } else if (products && products.length === 1) {
-    basketQuantity = `${products.length} item`;
-  } else if (products) {
-    basketQuantity = `${products.length} items`;
-  }
+export default function BasketSummary() {
+  const {products, total, basketQuantity} = CartContext();
 
   return (
     <section className="basket-summary-container">
@@ -20,11 +13,7 @@ export default function BasketSummary({products, total, setDiscountedTotal, disc
         {products &&
           products.map(product => <ShoppingCartItem key={product.id} product={product} />)}
       </div>
-      <Checkout
-        total={total}
-        setDiscountedTotal={setDiscountedTotal}
-        discountedTotal={discountedTotal}
-      />
+      <Checkout total={total} />
     </section>
   );
 }

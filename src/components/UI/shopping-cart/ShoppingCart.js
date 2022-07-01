@@ -3,11 +3,11 @@ import CloseBtn from "../close-button/CloseBtn";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
-export default function ShoppingCart({handleShoppingCart, products, total}) {
+export default function ShoppingCart({handleShoppingCart, products, total, basketQuantity}) {
   return (
     <div className="shopping-cart">
       <div className="shopping-cart-items-total">
-        <span>{products && products.length === 0 ? "empty" : `${products.length} items`} </span>
+        <span>{basketQuantity} </span>
         <CloseBtn onClick={handleShoppingCart} />
       </div>
       <ul className="shopping-cart-items">
