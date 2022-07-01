@@ -1,46 +1,56 @@
-import {useEffect, useState, useRef} from "react";
+import {useState} from "react";
+import {db} from "../../../firebase/config";
+import {collection, addDoc} from "firebase/firestore";
 import Details from "components/footer/footer-mobile/Details";
 import Delivery from "components/other/delivery/Delivery";
-import React from "react";
 import Button from "../button/Button";
 import {visa, mastercard, paypal} from "utilities/images";
 import {voucherCode} from "utilities/helpers";
+import useCollection from "hooks/useCollection";
+import toast, {Toaster} from "react-hot-toast";
 import "./Checkout.scss";
 
-export default function Checkout({total, setDiscountedTotal, discountedTotal}) {
-  const [isMatch, setIsMatch] = useState(false);
+export default function Checkout({total}) {
+  const {products: discountedTotal} = useCollection("voucher");
+  const [isMatch, setIsMatch] = useState("");
+  const ref = collection(db, "voucher");
 
-  const discountRef = useRef();
-
-  // set ref to user input
-  function handleSubmit(e) {
+  // id user input matches voucher code, calculate new total send it to firebase
+  async function handleVoucherCode(e) {
     e.preventDefault();
-    setIsMatch(discountRef.current.value);
+    if (isMatch === voucherCode) {
+      await addDoc(ref, {newTotal: total * 0.9});
+      voucherSuccess();
+    } else {
+      voucherError();
+    }
   }
 
-  useEffect(() => {
-    // update state to new value after entering voucher code (if it matches)
-    if (total && isMatch === voucherCode) {
-      setDiscountedTotal(total * 0.9);
-      // storing discountedTotal in local storage
-      localStorage.setItem("newTotal", JSON.stringify(discountedTotal));
-      // update state to total before applying voucher only if local storage is empty
-    } else if (!("newTotal" in localStorage)) {
-      setDiscountedTotal(total);
-    }
-  }, [total, isMatch, setDiscountedTotal, discountedTotal]);
+  let newTotal;
+  // if there is new total in firebase set it to its value
+  if (discountedTotal && discountedTotal.length) {
+    newTotal = discountedTotal[0].newTotal.toFixed(2);
+    // use total before discount otherwise
+  } else {
+    newTotal = total;
+  }
 
   return (
     <div className="discount-container">
       <h2>Discount Code</h2>
       <p>Have a discount code?</p>
-      <form className="apply-discount" onSubmit={handleSubmit}>
-        <input ref={discountRef} type="text" placeholder="Enter a discount code here" />
-        <button disabled={isMatch === voucherCode}>Apply</button>
+      <form className="apply-discount" onSubmit={handleVoucherCode}>
+        <input
+          onChange={e => setIsMatch(e.target.value)}
+          value={isMatch}
+          type="text"
+          placeholder="Enter a discount code here"
+        />
+        <button disabled={!isMatch}>Apply</button>
       </form>
       <div className="total">
         <span>Total:</span>
-        <span>£{discountedTotal}</span>
+        <span>£{newTotal}</span>
       </div>
       <Button path="/Payment" content="Secure Checkout" id="dark-background" />
       <div className="delivery-info">(excluding delivery)</div>
@@ -52,6 +62,15 @@ export default function Checkout({total, setDiscountedTotal, discountedTotal}) {
         <img src={visa} alt="Visa" />
         <img src={paypal} alt="PayPal" />
       </div>
+      <Toaster position="top-center" />
     </div>
   );
+}
+
+function voucherError() {
+  toast.error("Code is not valid");
+}
+
+function voucherSuccess() {
+  toast.success("Code has been applied");
 }
