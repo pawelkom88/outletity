@@ -1,11 +1,10 @@
+import Form from "components/UI/form/Form";
 import {useFormik} from "formik";
 import {CartContext} from "context/CartContext";
 import {db} from "../../firebase/config";
 import {doc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
-import Select from "components/UI/select/Select";
 import {displayErrorMsg} from "utilities/helpers";
-import {months, years, deliveryOptions} from "utilities/helpers";
 import useCollection from "hooks/useCollection";
 import "./Payment.scss";
 
@@ -18,7 +17,6 @@ export default function Payment() {
   // delete new total from collection
   async function handleNewTotalReset(id) {
     const voucherRef = doc(db, "voucher", id);
-
     await deleteDoc(voucherRef);
   }
 
@@ -62,73 +60,7 @@ export default function Payment() {
         {displayErrorMsg(formik.touched.month, formik.errors.month)}
         {displayErrorMsg(formik.touched.year, formik.errors.year)}
       </div>
-
-      <form className="payment-form">
-        <label htmlFor="card-num">
-          <div>Card Number</div>
-          {displayErrorMsg(formik.touched.card, formik.errors.card)}
-        </label>
-        <input
-          className="full-width"
-          id="card-num"
-          type="text"
-          placeholder="XXXX-XXXX-XXXX-XXXX"
-          {...formik.getFieldProps("card")}
-        />
-        <label htmlFor="name-on-a-card">
-          <div>Name on Card</div>
-          {displayErrorMsg(formik.touched.name, formik.errors.name)}
-        </label>
-        <input
-          className="full-width"
-          id="name-on-a-card"
-          type="text"
-          placeholder="John Smith"
-          {...formik.getFieldProps("name")}
-        />
-        <label htmlFor="month">"Expiration Date"</label>
-        <div className="exp-date">
-          <div>
-            <Select
-              className="select"
-              name="month"
-              id="month-select"
-              defaultValue="Month"
-              options={months}
-              {...formik.getFieldProps("month")}
-            />
-            <Select
-              className="select"
-              name="year"
-              id="year-select"
-              defaultValue="Year"
-              options={years}
-              {...formik.getFieldProps("year")}
-            />
-          </div>
-          <div>
-            <label htmlFor="ccv">CVV</label>
-            <input
-              id="ccv"
-              type="text"
-              size="3"
-              maxLength="3"
-              placeholder="123"
-              {...formik.getFieldProps("ccv")}
-            />
-          </div>
-        </div>
-        <label htmlFor="delivery-details">
-          <div>Delivery options</div>
-          {displayErrorMsg(formik.touched.delivery, formik.errors.delivery)}
-        </label>
-        <Select
-          className="select"
-          name="delivery-details"
-          id="delivery-details"
-          options={deliveryOptions}
-          {...formik.getFieldProps("delivery")}
-        />
+      <Form formik={formik}>
         <h3>Amount due : £{newTotal}</h3>
         <Button
           path={formik.errors.isValidated && "/Success"}
@@ -139,7 +71,7 @@ export default function Payment() {
             emptyCart();
           }}
         />
-      </form>
+      </Form>
     </section>
   );
 }
