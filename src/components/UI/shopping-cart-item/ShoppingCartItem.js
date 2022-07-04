@@ -1,17 +1,24 @@
 import {db} from "../../../firebase/config";
 import {doc, deleteDoc} from "firebase/firestore";
 import {add, remove} from "utilities/images";
+import toast, {Toaster} from "react-hot-toast";
+
 import "./ShoppingCartItem.scss";
 
 export default function ShoppingCartItem({product}) {
-  function addItem() {}
+  function addItem(id) {
+    console.log("add");
+  }
 
-  function removeItem() {}
+  function removeItem(id) {
+    console.log("remove");
+  }
 
   async function handleRemove(id) {
-    const docRef = doc(db, "products", id);
+    const docRef = doc(db, "PRODUCTS", id);
 
     await deleteDoc(docRef);
+    notifyUser();
   }
 
   return (
@@ -23,11 +30,12 @@ export default function ShoppingCartItem({product}) {
         <div className="shopping-cart-item-summary">
           <div className="item-details">
             <span className="item-name">{product.title}</span>
-            <span className=".item-size">{product.size ? `size: ${product.size}` : ""}</span>
+            <span className="item-quantity">quantity: {product.quantity}</span>
+            <span className="item-size">{product.size ? `size: ${product.size}` : ""}</span>
           </div>
           <div className="item-price">
             <span className="price">£{product.productPrice}</span>
-            <span className="discounted-price">£{product.discountedPrice}</span>
+            <span className="discounted-price">£{product.discountedPrice.toFixed(2)}</span>
           </div>
         </div>
       </div>
@@ -45,6 +53,11 @@ export default function ShoppingCartItem({product}) {
           </button>
         </div>
       </div>
+      <Toaster position="top-center" />
     </li>
   );
+}
+
+function notifyUser() {
+  toast.success(" Product has been removed from basket");
 }

@@ -1,6 +1,5 @@
 import useMatchMedia from "hooks/useMatchMedia";
 import useCarousel from "hooks/useCarousel";
-import Button from "components/UI/button/Button";
 import {carouselImages} from "utilities/images";
 
 import "./Carousel.scss";
@@ -18,7 +17,6 @@ export default function Carousel() {
       <div className="slide">
         <div className="overlay"></div>
         <img src={matches ? currentImage.srcMobile : currentImage.src} alt="Carousel images" />
-        <Button path="/Products" id="dark-background" content={"Shop now"} />
       </div>
     </div>
   );
