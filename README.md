@@ -13,7 +13,7 @@ accessibility. Project is still under development.
 
 ## Demo
 
-Here is a working [live demo ](https://outletity.netlify.app/)
+Here is a working [live demo ](https://outletity-store.netlify.app/)
 
 ## How I worked on this project
 
