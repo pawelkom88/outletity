@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://outletity.netlify.app/static/media/logo.98cc0efcf2d1a647672e.webp" alt="Outletity logo" width="350" height="120"/>
+<img src="https://outletity-store.netlify.app/static/media/logo.98cc0efcf2d1a647672e.webp" alt="Outletity logo" width="350" height="120"/>
 </p>
 
 ## About The Project
