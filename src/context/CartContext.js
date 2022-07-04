@@ -8,14 +8,31 @@ export function CartContext() {
 }
 
 export function ShoppingCartProvider({children}) {
-  const {products} = useCollection("products");
+  const {products} = useCollection("PRODUCTS");
+
+  function addItem(id) {
+    
+  }
+
+  function removeItem(id) {}
 
   let total;
   if (products) {
     total = products.reduce((acc, curr) => acc + +curr.discountedPrice, 0);
   }
+
+  let basketQuantity;
+
+  if (products && products.length === 0) {
+    basketQuantity = "basket is empty";
+  } else if (products && products.length === 1) {
+    basketQuantity = `${products.length} item`;
+  } else if (products) {
+    basketQuantity = `${products.length} items`;
+  }
+
   return (
-    <ShoppingCartContext.Provider value={{products, total}}>
+    <ShoppingCartContext.Provider value={{products, total,basketQuantity}}>
       {children}
     </ShoppingCartContext.Provider>
   );

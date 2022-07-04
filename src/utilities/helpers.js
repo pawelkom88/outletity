@@ -1,7 +1,7 @@
 export function calcDiscount(product) {
   const discount = ((product.rating.rate * 8) / 2).toFixed();
-  const productPrice = Math.round(product.price).toFixed(2);
-  const discountedPrice = (productPrice - (productPrice * discount) / 100).toFixed(2);
+  const productPrice = Math.ceil(product.price).toFixed(2);
+  const discountedPrice = Math.trunc(productPrice - (productPrice * discount) / 100);
 
   return {discount, productPrice, discountedPrice};
 }

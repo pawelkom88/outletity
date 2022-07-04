@@ -17,7 +17,7 @@ export default function ShoppingCart({handleShoppingCart, products, total, baske
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>
-          <span>£ {total >= 0 ? total : 0}</span>
+          <span>£ {total >= 0 ? total.toFixed(2) : 0}</span>
         </div>
         <Button
           onClick={handleShoppingCart}
