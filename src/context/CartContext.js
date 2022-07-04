@@ -10,12 +10,6 @@ export function CartContext() {
 export function ShoppingCartProvider({children}) {
   const {products} = useCollection("PRODUCTS");
 
-  function addItem(id) {
-    
-  }
-
-  function removeItem(id) {}
-
   let total;
   if (products) {
     total = products.reduce((acc, curr) => acc + +curr.discountedPrice, 0);
@@ -32,7 +26,7 @@ export function ShoppingCartProvider({children}) {
   }
 
   return (
-    <ShoppingCartContext.Provider value={{products, total,basketQuantity}}>
+    <ShoppingCartContext.Provider value={{products, total, basketQuantity}}>
       {children}
     </ShoppingCartContext.Provider>
   );

@@ -1,4 +1,4 @@
-import {calcDiscount} from 'utilities/helpers'
+import {calcDiscount} from "utilities/helpers";
 import {Link} from "react-router-dom";
 import "./ProductCard.scss";
 
@@ -6,7 +6,7 @@ export default function ProductCard({product}) {
   const {discount, productPrice, discountedPrice} = calcDiscount(product);
 
   return (
-    <Link to={`/ProductInfo/${product.id}`}>
+    <Link to={`/ProductInfo/${product.id}`} state={{product}}>
       <div className="product-card">
         <div className="product-card-img">
           <img src={product.image} alt="Card cover" />

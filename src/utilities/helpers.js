@@ -1,5 +1,28 @@
+import {db} from "../firebase/config";
+
+import {doc, updateDoc, getDoc} from "firebase/firestore";
+
+export async function handleQuantityChange(product) {
+  const {discount, productPrice} = calcDiscount(product);
+
+  const docRef = doc(db, "PRODUCTS", product.title);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const updatedQuantity = docSnap.data().quantity + 1; // must be changeable
+    const updatedPrice = Number(docSnap.data().productPrice) + Number(productPrice);
+    const updatedDiscountedPrice = updatedPrice * Number((100 - discount) / 100);
+
+    await updateDoc(docRef, {
+      quantity: updatedQuantity,
+      productPrice: updatedPrice,
+      discountedPrice: updatedDiscountedPrice,
+    });
+  }
+}
+
 export function calcDiscount(product) {
-  const discount = ((product.rating.rate * 8) / 2).toFixed();
+  const discount = ((Math.random() * 8) / 2).toFixed();
   const productPrice = Math.ceil(product.price).toFixed(2);
   const discountedPrice = Math.trunc(productPrice - (productPrice * discount) / 100);
 

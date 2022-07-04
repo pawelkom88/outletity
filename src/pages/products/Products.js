@@ -60,7 +60,7 @@ export default function Products() {
           </div>
           <div className="category-products">
             {filteredProducts.map(product => {
-              return <ProductCard key={product.id} product={product} category={category} />;
+              return <ProductCard key={product.id} product={product} />;
             })}
           </div>
         </>
