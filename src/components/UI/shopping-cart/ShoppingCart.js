@@ -1,28 +1,11 @@
-import {useEffect} from "react";
-import {doc, setDoc} from "firebase/firestore";
-import {db} from "../../../firebase/config";
+import useVoucher from "hooks/useVoucher";
 import Button from "../button/Button";
 import CloseBtn from "../close-button/CloseBtn";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
-import useCollection from "hooks/useCollection";
 import "./ShoppingCart.scss";
 
 export default function ShoppingCart({handleShoppingCart, products, total, basketQuantity}) {
-  // const {products: discountedTotal} = useCollection("voucher");
-  // const [obj] = discountedTotal || [];
-
-  // useEffect(() => {
-  //   async function handleTotal() {
-  //     if (obj.applied) {
-  //       await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
-  //       return;
-  //     } else {
-  //       await setDoc(doc(db, "voucher", "code"), {newTotal: total});
-  //     }
-  //   }
-
-  //   handleTotal();
-  // }, [total]);
+  const {newTotal} = useVoucher(total);
 
   return (
     <div className="shopping-cart">
@@ -37,7 +20,7 @@ export default function ShoppingCart({handleShoppingCart, products, total, baske
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>
-          <span>£ {total >= 0 ? total : 0}</span>
+          <span>£ {newTotal ? newTotal : total}</span>
         </div>
         <Button
           onClick={handleShoppingCart}

@@ -13,7 +13,7 @@ export default function BasketSummary() {
         {products &&
           products.map(product => <ShoppingCartItem key={product.id} product={product} />)}
       </div>
-      <Checkout total={total} />
+      <Checkout products={products} total={total} />
     </section>
   );
 }
