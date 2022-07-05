@@ -1,23 +1,43 @@
 import {db} from "../../../firebase/config";
-import {doc, deleteDoc, getDoc, onSnapshot} from "firebase/firestore";
+import {doc, deleteDoc, getDoc, updateDoc} from "firebase/firestore";
 import {add, remove} from "utilities/images";
 import toast, {Toaster} from "react-hot-toast";
-import {handleQuantityChange} from "utilities/helpers";
-
+import {calcDiscount} from "utilities/helpers";
 import "./ShoppingCartItem.scss";
 
 export default function ShoppingCartItem({product}) {
-  // function addItem() {
-  //   const docRef = doc(db, "PRODUCTS", product.title);
+  const {discount} = calcDiscount(product);
 
-  //   onSnapshot(docRef, doc => {
-  //     console.log(doc.data());
-  //   });
-  // }
-  function increaseQuantity() {
-    // quantity + 1
-    // callback ??
-    handleQuantityChange(product);
+  async function setQuantity(id, action) {
+    const docRef = doc(db, "PRODUCTS", id);
+    const docSnap = await getDoc(docRef);
+
+    let newPrice;
+    let newDiscountedPrice;
+    let updatedQuantity;
+    const defaultPrice = docSnap.data().productPrice / docSnap.data().quantity;
+    const productPrice = docSnap.data().productPrice;
+
+    if (typeof action === "string" && action === "increase") {
+      newPrice = productPrice + defaultPrice;
+      newDiscountedPrice = newPrice * ((100 - discount) / 100);
+      updatedQuantity = docSnap.data().quantity + 1;
+    } else {
+      newPrice = productPrice - defaultPrice;
+      newDiscountedPrice = newPrice * ((100 - discount) / 100);
+      updatedQuantity = docSnap.data().quantity - 1;
+
+      if (updatedQuantity === 0) {
+        handleRemove(id);
+        return;
+      }
+    }
+
+    await updateDoc(docRef, {
+      quantity: updatedQuantity,
+      productPrice: newPrice,
+      discountedPrice: newDiscountedPrice,
+    });
   }
 
   async function handleRemove(id) {
@@ -48,14 +68,11 @@ export default function ShoppingCartItem({product}) {
           Remove
         </button>
         <div className="item-number">
-          <button className="remove no-styles" onClick={() => handleQuantityChange(product)}>
+          <button className="remove no-styles" onClick={() => setQuantity(product.id, "increase")}>
             <img width="16px" src={add} alt="add" />
           </button>
           <input type="text" value="1" />
-          <button
-            className="add no-styles"
-            onClick={() => handleQuantityChange(product, handleRemove)}>
-            {/* <button className="add no-styles" onClick={() => descreaseQuantity(product.id)}> */}
+          <button className="add no-styles" onClick={() => setQuantity(product.id)}>
             <img width="16px" src={remove} alt="remove" />
           </button>
         </div>

@@ -8,9 +8,10 @@ import {voucherCode} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import useVoucher from "hooks/useVoucher";
 import "./Checkout.scss";
+import Button from "../button/Button";
 
 export default function Checkout({total, products}) {
-  const {isMatch, setIsMatch, newTotal} = useVoucher(total);
+  const {isMatch, setIsMatch, newTotal, discountedTotal} = useVoucher(total);
 
   // id user input matches voucher code, calculate new total and  send it to firebase
   async function handleVoucherCode(e) {
@@ -41,9 +42,17 @@ export default function Checkout({total, products}) {
         <span>Total:</span>
         <span>£{newTotal ? newTotal.toFixed(2) : total}</span>
       </div>
-      <Link to="/Payment" state={{total, products}} className="btn" id="dark-background">
-        Secure Checkout
-      </Link>
+      {total || newTotal ? (
+        <Link
+          to="/Payment"
+          state={{total, products, discountedTotal}}
+          className="btn"
+          id="dark-background">
+          Secure Checkout
+        </Link>
+      ) : (
+        <Button content="Secure Checkout" id="dark-background" onClick={emptyBasket}/>
+      )}
       <div className="delivery-info">(excluding delivery)</div>
       <Details title="Delivery Information">
         <Delivery />
@@ -60,6 +69,10 @@ export default function Checkout({total, products}) {
 
 function voucherError() {
   toast.error("Code is not valid");
+}
+
+function emptyBasket() {
+  toast.error("Basket is empty");
 }
 
 function voucherSuccess() {

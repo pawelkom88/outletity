@@ -4,16 +4,12 @@ import {db} from "../../firebase/config";
 import {doc, setDoc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import {displayErrorMsg} from "utilities/helpers";
-import useCollection from "hooks/useCollection";
 import {useLocation} from "react-router-dom";
 import "./Payment.scss";
 
 export default function Payment() {
   const location = useLocation();
-  // const {products} = location.state || {};
-  const {total = {}} = location.state || {};
-  const {products} = useCollection("PRODUCTS");
-  const {products: discountedTotal} = useCollection("voucher");
+  const {products, total = {}, discountedTotal} = location.state || {};
   const [obj] = discountedTotal || [];
   const {newTotal} = obj || {};
 
@@ -25,7 +21,7 @@ export default function Payment() {
   // delete all products from collection
   async function emptyCart() {
     await products.forEach(product => {
-      deleteDoc(doc(db, "products", product.id));
+      deleteDoc(doc(db, "PRODUCTS", product.id));
     });
   }
 
