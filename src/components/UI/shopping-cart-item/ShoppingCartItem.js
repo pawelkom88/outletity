@@ -1,5 +1,5 @@
 import {db} from "../../../firebase/config";
-import {doc, deleteDoc} from "firebase/firestore";
+import {doc, deleteDoc, getDoc, onSnapshot} from "firebase/firestore";
 import {add, remove} from "utilities/images";
 import toast, {Toaster} from "react-hot-toast";
 import {handleQuantityChange} from "utilities/helpers";
@@ -7,22 +7,17 @@ import {handleQuantityChange} from "utilities/helpers";
 import "./ShoppingCartItem.scss";
 
 export default function ShoppingCartItem({product}) {
+  // function addItem() {
+  //   const docRef = doc(db, "PRODUCTS", product.title);
+
+  //   onSnapshot(docRef, doc => {
+  //     console.log(doc.data());
+  //   });
+  // }
   function increaseQuantity() {
     // quantity + 1
     // callback ??
     handleQuantityChange(product);
-  }
-
-  function descreaseQuantity() {
-    // quantity - 1
-    // callback ??
-    handleQuantityChange(product);
-
-    // if quantity is less than 1 remove item form a basket
-    
-    // if (docSnap.data().quantity === 1) {
-    //   handleRemove(product.id);
-    // }
   }
 
   async function handleRemove(id) {
@@ -41,11 +36,10 @@ export default function ShoppingCartItem({product}) {
           <div className="item-details">
             <span className="item-name">{product.title}</span>
             <span className="item-quantity">quantity: {product.quantity}</span>
-            <span className="item-size">{product.size ? `size: ${product.size}` : ""}</span>
           </div>
           <div className="item-price">
             <span className="price">£{product.productPrice}</span>
-            <span className="discounted-price">£{product.discountedPrice.toFixed(2)}</span>
+            <span className="discounted-price">£{product.discountedPrice}</span>
           </div>
         </div>
       </div>
@@ -54,11 +48,14 @@ export default function ShoppingCartItem({product}) {
           Remove
         </button>
         <div className="item-number">
-          <button className="remove no-styles" onClick={() => increaseQuantity(product.id)}>
+          <button className="remove no-styles" onClick={() => handleQuantityChange(product)}>
             <img width="16px" src={add} alt="add" />
           </button>
           <input type="text" value="1" />
-          <button className="add no-styles" onClick={() => descreaseQuantity(product.id)}>
+          <button
+            className="add no-styles"
+            onClick={() => handleQuantityChange(product, handleRemove)}>
+            {/* <button className="add no-styles" onClick={() => descreaseQuantity(product.id)}> */}
             <img width="16px" src={remove} alt="remove" />
           </button>
         </div>
