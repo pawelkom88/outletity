@@ -1,42 +1,28 @@
 import Form from "components/UI/form/Form";
 import {useFormik} from "formik";
-import {CartContext} from "context/CartContext";
 import {db} from "../../firebase/config";
-import {doc, deleteDoc} from "firebase/firestore";
+import {doc, setDoc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import {displayErrorMsg} from "utilities/helpers";
 import useCollection from "hooks/useCollection";
 import "./Payment.scss";
 
 export default function Payment() {
-  const {total} = CartContext();
-
+  const {products} = useCollection("PRODUCTS");
   const {products: discountedTotal} = useCollection("voucher");
-  const {products} = useCollection("products");
+  const [obj] = discountedTotal || [];
+  const {newTotal} = obj || {};
 
-  // delete new total from collection
-  async function handleNewTotalReset(id) {
-    const voucherRef = doc(db, "voucher", id);
-    await deleteDoc(voucherRef);
+  // set new total to 0
+  async function handleNewTotalReset() {
+    await setDoc(doc(db, "voucher", "code"), {total: 0});
   }
 
   // delete all products from collection
   async function emptyCart() {
     await products.forEach(product => {
-      const productsRef = doc(db, "products", product.id);
-
-      deleteDoc(productsRef);
+      deleteDoc(doc(db, "products", product.id));
     });
-  }
-
-  let newTotal;
-
-  // if voucher was used display new total
-  if (discountedTotal && discountedTotal.length) {
-    newTotal = discountedTotal[0].newTotal.toFixed(2);
-    // otherwise display total before discount
-  } else {
-    newTotal = total;
   }
 
   // handle form
@@ -67,7 +53,7 @@ export default function Payment() {
           content="Pay"
           id={formik.errors.isValidated ? "dark-background" : "disabled"}
           onClick={() => {
-            handleNewTotalReset(discountedTotal[0].id);
+            handleNewTotalReset(obj.id);
             emptyCart();
           }}
         />

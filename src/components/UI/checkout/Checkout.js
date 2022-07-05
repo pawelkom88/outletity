@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {db} from "../../../firebase/config";
-import {collection, addDoc} from "firebase/firestore";
+import {doc, setDoc} from "firebase/firestore";
 import Details from "components/footer/footer-mobile/Details";
 import Delivery from "components/other/delivery/Delivery";
 import Button from "../button/Button";
@@ -9,30 +9,38 @@ import {voucherCode} from "utilities/helpers";
 import useCollection from "hooks/useCollection";
 import toast, {Toaster} from "react-hot-toast";
 import "./Checkout.scss";
+import {useEffect} from "react";
 
 export default function Checkout({total}) {
+  // const [isApplied, setIsApplied] = useState(false);
   const {products: discountedTotal} = useCollection("voucher");
-  const [isMatch, setIsMatch] = useState("");
-  const ref = collection(db, "voucher");
+  const [obj] = discountedTotal || [];
+  const {newTotal} = obj || {};
 
-  // id user input matches voucher code, calculate new total send it to firebase
+  const [isMatch, setIsMatch] = useState("");
+  // if total changes, update it in firebase
+  useEffect(() => {
+    async function handleTotal() {
+      if (obj.applied) {
+        await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
+        return;
+      } else {
+        await setDoc(doc(db, "voucher", "code"), {newTotal: total});
+      }
+    }
+    handleTotal();
+  }, [total]);
+
+  // id user input matches voucher code, calculate new total and  send it to firebase
   async function handleVoucherCode(e) {
     e.preventDefault();
     if (isMatch === voucherCode) {
-      await addDoc(ref, {newTotal: total * 0.9});
+      await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
       voucherSuccess();
     } else {
+      await setDoc(doc(db, "voucher", "code"), {newTotal: total, applied: false});
       voucherError();
     }
-  }
-
-  let newTotal;
-  // if there is new total in firebase set it to its value
-  if (discountedTotal && discountedTotal.length) {
-    newTotal = discountedTotal[0].newTotal.toFixed(2);
-    // use total before discount otherwise
-  } else {
-    newTotal = total;
   }
 
   return (
@@ -50,7 +58,7 @@ export default function Checkout({total}) {
       </form>
       <div className="total">
         <span>Total:</span>
-        <span>£{newTotal}</span>
+        <span>£{newTotal ? newTotal.toFixed(2) : total}</span>
       </div>
       <Button path="/Payment" content="Secure Checkout" id="dark-background" />
       <div className="delivery-info">(excluding delivery)</div>
