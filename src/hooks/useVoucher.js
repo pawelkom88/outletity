@@ -12,7 +12,7 @@ export default function useVoucher(total) {
   // if total changes, update it in firebase
   useEffect(() => {
     async function handleTotal() {
-      if (obj.applied) {
+      if (obj?.applied) {
         await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
         return;
       } else {
@@ -22,5 +22,5 @@ export default function useVoucher(total) {
     handleTotal();
   }, [total]);
 
-  return {isMatch, setIsMatch, newTotal};
+  return {isMatch, setIsMatch, newTotal, discountedTotal};
 }
