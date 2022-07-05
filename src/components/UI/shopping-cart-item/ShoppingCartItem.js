@@ -11,32 +11,33 @@ export default function ShoppingCartItem({product}) {
   async function setQuantity(id, action) {
     const docRef = doc(db, "PRODUCTS", id);
     const docSnap = await getDoc(docRef);
+    const product = docSnap.data();
 
-    let newPrice;
-    let newDiscountedPrice;
-    let updatedQuantity;
-    const defaultPrice = docSnap.data().productPrice / docSnap.data().quantity;
-    const productPrice = docSnap.data().productPrice;
+    let productPrice;
+    let discountedPrice;
+    let quantity;
+    const defaultPrice = product.productPrice / product.quantity;
+    const currentPrice = product.productPrice;
 
     if (typeof action === "string" && action === "increase") {
-      newPrice = productPrice + defaultPrice;
-      newDiscountedPrice = newPrice * ((100 - discount) / 100);
-      updatedQuantity = docSnap.data().quantity + 1;
+      productPrice = currentPrice + defaultPrice;
+      discountedPrice = productPrice * ((100 - discount) / 100);
+      quantity = product.quantity + 1;
     } else {
-      newPrice = productPrice - defaultPrice;
-      newDiscountedPrice = newPrice * ((100 - discount) / 100);
-      updatedQuantity = docSnap.data().quantity - 1;
+      productPrice = currentPrice - defaultPrice;
+      discountedPrice = productPrice * ((100 - discount) / 100);
+      quantity = product.quantity - 1;
 
-      if (updatedQuantity === 0) {
+      if (quantity === 0) {
         handleRemove(id);
         return;
       }
     }
 
     await updateDoc(docRef, {
-      quantity: updatedQuantity,
-      productPrice: newPrice,
-      discountedPrice: newDiscountedPrice,
+      quantity,
+      productPrice,
+      discountedPrice,
     });
   }
 
