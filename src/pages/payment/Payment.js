@@ -5,9 +5,13 @@ import {doc, setDoc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import {displayErrorMsg} from "utilities/helpers";
 import useCollection from "hooks/useCollection";
+import {useLocation} from "react-router-dom";
 import "./Payment.scss";
 
 export default function Payment() {
+  const location = useLocation();
+  // const {products} = location.state || {};
+  const {total = {}} = location.state || {};
   const {products} = useCollection("PRODUCTS");
   const {products: discountedTotal} = useCollection("voucher");
   const [obj] = discountedTotal || [];
@@ -47,7 +51,7 @@ export default function Payment() {
         {displayErrorMsg(formik.touched.year, formik.errors.year)}
       </div>
       <Form formik={formik}>
-        <h3>Amount due : £{newTotal}</h3>
+        <h3>Amount due : £{newTotal ? newTotal : total}</h3>
         <Button
           path={formik.errors.isValidated && "/Success"}
           content="Pay"

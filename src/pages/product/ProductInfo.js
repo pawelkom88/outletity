@@ -6,6 +6,7 @@ import ProductCarousel from "components/UI/product-carousel/ProductCarousel";
 export default function ProductInfo() {
   const location = useLocation();
   const {product} = location.state || {};
+
   const {data} = useFetch(`https://fakestoreapi.com/products`);
 
   return (

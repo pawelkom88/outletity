@@ -1,35 +1,16 @@
-import {useState} from "react";
 import {db} from "../../../firebase/config";
 import {doc, setDoc} from "firebase/firestore";
 import Details from "components/footer/footer-mobile/Details";
 import Delivery from "components/other/delivery/Delivery";
-import Button from "../button/Button";
+import {Link} from "react-router-dom";
 import {visa, mastercard, paypal} from "utilities/images";
 import {voucherCode} from "utilities/helpers";
-import useCollection from "hooks/useCollection";
 import toast, {Toaster} from "react-hot-toast";
+import useVoucher from "hooks/useVoucher";
 import "./Checkout.scss";
-import {useEffect} from "react";
 
-export default function Checkout({total}) {
-  // const [isApplied, setIsApplied] = useState(false);
-  const {products: discountedTotal} = useCollection("voucher");
-  const [obj] = discountedTotal || [];
-  const {newTotal} = obj || {};
-
-  const [isMatch, setIsMatch] = useState("");
-  // if total changes, update it in firebase
-  useEffect(() => {
-    async function handleTotal() {
-      if (obj.applied) {
-        await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
-        return;
-      } else {
-        await setDoc(doc(db, "voucher", "code"), {newTotal: total});
-      }
-    }
-    handleTotal();
-  }, [total]);
+export default function Checkout({total, products}) {
+  const {isMatch, setIsMatch, newTotal} = useVoucher(total);
 
   // id user input matches voucher code, calculate new total and  send it to firebase
   async function handleVoucherCode(e) {
@@ -60,7 +41,9 @@ export default function Checkout({total}) {
         <span>Total:</span>
         <span>£{newTotal ? newTotal.toFixed(2) : total}</span>
       </div>
-      <Button path="/Payment" content="Secure Checkout" id="dark-background" />
+      <Link to="/Payment" state={{total, products}} className="btn" id="dark-background">
+        Secure Checkout
+      </Link>
       <div className="delivery-info">(excluding delivery)</div>
       <Details title="Delivery Information">
         <Delivery />
