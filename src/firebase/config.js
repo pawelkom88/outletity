@@ -23,7 +23,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig, {ignoreUndefinedProperties: true});
 const db = getFirestore();
 
 export {db};

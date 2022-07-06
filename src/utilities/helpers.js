@@ -35,4 +35,19 @@ export const years = [
   new Date().getFullYear() + 4,
 ];
 
-export const deliveryOptions = ["Standard : £3.95", "Next day : £6.95", "Collection : Free"];
+export const deliveryOptions = [
+  {value: false, desc: "options"},
+  {
+    value: 3.95,
+    desc: "Standard : £3.95",
+  },
+  {
+    value: 6.95,
+    desc: "Next day : £6.95",
+  },
+
+  {
+    value: 0,
+    desc: "Collection : Free",
+  },
+];
