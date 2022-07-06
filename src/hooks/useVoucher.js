@@ -7,20 +7,18 @@ export default function useVoucher(total) {
   const {products: discountedTotal} = useCollection("voucher");
   const [obj] = discountedTotal || [];
   const {newTotal} = obj || {};
-
   const [isMatch, setIsMatch] = useState("");
-  // if total changes, update it in firebase
+
   useEffect(() => {
     async function handleTotal() {
+      // if vouched code has been applied , store it in firebase
       if (obj?.applied) {
         await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
         return;
-      } else {
-        await setDoc(doc(db, "voucher", "code"), {newTotal: total});
       }
     }
     handleTotal();
-  }, [total]);
+  }, [total, obj]);
 
   return {isMatch, setIsMatch, newTotal, discountedTotal};
 }
