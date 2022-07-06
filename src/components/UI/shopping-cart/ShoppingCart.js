@@ -1,11 +1,11 @@
-import useVoucher from "hooks/useVoucher";
+import {CartContext} from "context/CartContext";
 import Button from "../button/Button";
 import CloseBtn from "../close-button/CloseBtn";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
-export default function ShoppingCart({handleShoppingCart, products, total, basketQuantity}) {
-  const {newTotal} = useVoucher(total);
+export default function ShoppingCart({handleShoppingCart, basketQuantity}) {
+  const {products, total} = CartContext();
 
   return (
     <div className="shopping-cart">
@@ -20,7 +20,7 @@ export default function ShoppingCart({handleShoppingCart, products, total, baske
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>
-          <span>£ {newTotal ? newTotal : total}</span>
+          <span>£ {total}</span>
         </div>
         <Button
           onClick={handleShoppingCart}

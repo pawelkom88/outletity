@@ -1,21 +1,45 @@
-import Form from "components/UI/form/Form";
+import {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {useFormik} from "formik";
 import {db} from "../../firebase/config";
 import {doc, setDoc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
+import Form from "components/UI/form/Form";
 import {displayErrorMsg} from "utilities/helpers";
-import {useLocation} from "react-router-dom";
+import {CartContext} from "context/CartContext";
 import "./Payment.scss";
 
 export default function Payment() {
-  const location = useLocation();
-  const {products, total = {}, discountedTotal} = location.state || {};
-  const [obj] = discountedTotal || [];
-  const {newTotal} = obj || {};
+  const navigate = useNavigate();
+  const [isProcessed, setIsProcessed] = useState(false);
+  const {products, total, newTotal} = CartContext();
+
+  // handle form
+  const formik = useFormik({
+    initialValues: {
+      card: "",
+      name: "",
+      ccv: "",
+      month: "Month",
+      year: "Year",
+    },
+    validate,
+  });
+
+  // fake transaction proccess
+  useEffect(() => {
+    if (isProcessed) {
+      const timer = setTimeout(() => {
+        navigate("/Success");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isProcessed, navigate]);
 
   // set new total to 0
-  async function handleNewTotalReset() {
-    await setDoc(doc(db, "voucher", "code"), {total: 0});
+  async function resetTotal(obj) {
+    await setDoc(doc(db, "voucher", "code"), obj);
   }
 
   // delete all products from collection
@@ -24,19 +48,6 @@ export default function Payment() {
       deleteDoc(doc(db, "PRODUCTS", product.id));
     });
   }
-
-  // handle form
-  const formik = useFormik({
-    initialValues: {
-      card: "",
-      name: "",
-      ccv: "",
-      delivery: "options",
-      month: "Month",
-      year: "Year",
-    },
-    validate,
-  });
 
   return (
     <section className="payment-container">
@@ -48,15 +59,17 @@ export default function Payment() {
       </div>
       <Form formik={formik}>
         <h3>Amount due : £{newTotal ? newTotal : total}</h3>
-        <Button
-          path={formik.errors.isValidated && "/Success"}
-          content="Pay"
-          id={formik.errors.isValidated ? "dark-background" : "disabled"}
-          onClick={() => {
-            handleNewTotalReset(obj.id);
-            emptyCart();
-          }}
-        />
+        {formik.errors.isValidated && (
+          <Button
+            content={isProcessed ? "Proccessing" : "Pay"}
+            id={formik.errors.isValidated ? "dark-background" : "disabled"}
+            onClick={() => {
+              setIsProcessed(true);
+              resetTotal({total: 0});
+              emptyCart();
+            }}
+          />
+        )}
       </Form>
     </section>
   );
@@ -87,10 +100,6 @@ function validate(values) {
     //add proper validation
     case values.ccv.length !== 3: {
       errors.ccv = "Invalid. CVV field requires 3 numbers";
-      break;
-    }
-    case values.delivery === "options": {
-      errors.delivery = "Choose delivery method";
       break;
     }
     case values.month === "Month": {
