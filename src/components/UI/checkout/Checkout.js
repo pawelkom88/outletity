@@ -7,20 +7,21 @@ import {visa, mastercard, paypal} from "utilities/images";
 import {voucherCode} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import useVoucher from "hooks/useVoucher";
-import "./Checkout.scss";
 import Button from "../button/Button";
+import "./Checkout.scss";
 
 export default function Checkout({total, products}) {
   const {isMatch, setIsMatch, newTotal, discountedTotal} = useVoucher(total);
 
-  // id user input matches voucher code, calculate new total and  send it to firebase
   async function handleVoucherCode(e) {
     e.preventDefault();
-    if (isMatch === voucherCode) {
+    // if user input matches voucher code, calculate new total and  send it to firebase
+    if (isMatch === voucherCode && total > 0) {
       await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
       voucherSuccess();
+    } else if (total <= 0) {
+      emptyBasket();
     } else {
-      await setDoc(doc(db, "voucher", "code"), {newTotal: total, applied: false});
       voucherError();
     }
   }
@@ -51,7 +52,7 @@ export default function Checkout({total, products}) {
           Secure Checkout
         </Link>
       ) : (
-        <Button content="Secure Checkout" id="dark-background" onClick={emptyBasket}/>
+        <Button content="Secure Checkout" id="dark-background" onClick={emptyBasket} />
       )}
       <div className="delivery-info">(excluding delivery)</div>
       <Details title="Delivery Information">
