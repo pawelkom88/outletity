@@ -1,3 +1,4 @@
+import {useState} from "react";
 import {db} from "../../../firebase/config";
 import {doc, deleteDoc, getDoc, updateDoc} from "firebase/firestore";
 import {add, remove} from "utilities/images";
@@ -6,6 +7,7 @@ import {calcDiscount} from "utilities/helpers";
 import "./ShoppingCartItem.scss";
 
 export default function ShoppingCartItem({product}) {
+  const [userQuantity, setUserQuantity] = useState(1);
   const {discount} = calcDiscount(product);
 
   async function setQuantity(id, action) {
@@ -16,19 +18,20 @@ export default function ShoppingCartItem({product}) {
     let productPrice;
     let discountedPrice;
     let quantity;
+    const difference = (100 - discount) / 100;
     const defaultPrice = product.productPrice / product.quantity;
     const currentPrice = product.productPrice;
 
     if (typeof action === "string" && action === "increase") {
-      productPrice = currentPrice + defaultPrice;
-      discountedPrice = productPrice * ((100 - discount) / 100);
-      quantity = product.quantity + 1;
+      productPrice = currentPrice + defaultPrice; // calc new price
+      discountedPrice = productPrice * difference;
+      quantity = product.quantity + Number(userQuantity);
     } else {
-      productPrice = currentPrice - defaultPrice;
-      discountedPrice = productPrice * ((100 - discount) / 100);
-      quantity = product.quantity - 1;
+      productPrice = currentPrice - defaultPrice; // calc new price
+      discountedPrice = productPrice * difference;
+      quantity = product.quantity - Number(userQuantity);
 
-      if (quantity === 0) {
+      if (quantity < 1) {
         handleRemove(id);
         return;
       }
@@ -59,8 +62,8 @@ export default function ShoppingCartItem({product}) {
             <span className="item-quantity">quantity: {product.quantity}</span>
           </div>
           <div className="item-price">
-            <span className="price">£{product.productPrice}</span>
-            <span className="discounted-price">£{product.discountedPrice}</span>
+            <span className="price">£{Math.round(product.productPrice)}</span>
+            <span className="discounted-price">£{Math.round(product.discountedPrice)}</span>
           </div>
         </div>
       </div>
@@ -72,7 +75,13 @@ export default function ShoppingCartItem({product}) {
           <button className="remove no-styles" onClick={() => setQuantity(product.id, "increase")}>
             <img width="16px" src={add} alt="add" />
           </button>
-          <input type="text" value="1" />
+          <input
+            onChange={e => setUserQuantity(e.target.value)}
+            type="text"
+            mim="1"
+            max="99"
+            value={userQuantity}
+          />
           <button className="add no-styles" onClick={() => setQuantity(product.id)}>
             <img width="16px" src={remove} alt="remove" />
           </button>
