@@ -51,8 +51,6 @@ export default function Products() {
                 id="dark-background"
                 onClick={() => setFilteredProducts(sortByPrice(filteredProducts, "desc"))}
               />
-              <Button content="discount" id="dark-background" />
-              {/* <Button content="all products" id="dark-background" onClick={}/> */}
             </div>
             <span className="product-quantity">
               {filteredProducts.length} {filteredProducts.length > 1 ? "products" : "product"}
@@ -82,11 +80,3 @@ function sortByPrice(products, order) {
   }
   return productsCopy.sort((productA, productB) => productA.price - productB.price);
 }
-
-// function sortByDiscount(products){
-
-//   const productsCopy = [...products];
-
-//   return productsCopy.sort((productA, productB) => productA.title.localeCompare(productB.title));
-
-// }
