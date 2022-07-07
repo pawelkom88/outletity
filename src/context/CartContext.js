@@ -1,6 +1,6 @@
 import {createContext, useContext} from "react";
 import useCollection from "hooks/useCollection";
-import useVoucher from "hooks/useVoucher";
+import {handleNewTotalChange} from "utilities/helpers";
 
 const ShoppingCartContext = createContext({});
 
@@ -10,13 +10,11 @@ export function CartContext() {
 
 export function ShoppingCartProvider({children}) {
   const {products} = useCollection("PRODUCTS");
-
   let total;
   if (products) {
     total = products.reduce((acc, curr) => acc + +curr.discountedPrice, 0);
+    handleNewTotalChange({total});
   }
-
-  const {isMatch, setIsMatch, newTotal} = useVoucher(total);
 
   let basketQuantity;
 
@@ -29,8 +27,7 @@ export function ShoppingCartProvider({children}) {
   }
 
   return (
-    <ShoppingCartContext.Provider
-      value={{products, total, basketQuantity, isMatch, setIsMatch, newTotal}}>
+    <ShoppingCartContext.Provider value={{products, total, basketQuantity}}>
       {children}
     </ShoppingCartContext.Provider>
   );
