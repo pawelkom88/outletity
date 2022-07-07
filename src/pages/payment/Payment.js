@@ -1,18 +1,18 @@
 import {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import {useFormik} from "formik";
 import {db} from "../../firebase/config";
-import {doc, setDoc, deleteDoc} from "firebase/firestore";
+import {doc, deleteDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import Form from "components/UI/form/Form";
-import {displayErrorMsg} from "utilities/helpers";
-import {CartContext} from "context/CartContext";
+import {displayErrorMsg, handleNewTotalChange} from "utilities/helpers";
 import "./Payment.scss";
 
 export default function Payment() {
+  const location = useLocation();
+  const {total, products} = location.state || [];
   const navigate = useNavigate();
   const [isProcessed, setIsProcessed] = useState(false);
-  const {products, total, newTotal} = CartContext();
 
   // handle form
   const formik = useFormik({
@@ -37,16 +37,17 @@ export default function Payment() {
     }
   }, [isProcessed, navigate]);
 
-  // set new total to 0
-  async function resetTotal(obj) {
-    await setDoc(doc(db, "voucher", "code"), obj);
-  }
-
   // delete all products from collection
   async function emptyCart() {
     await products.forEach(product => {
       deleteDoc(doc(db, "PRODUCTS", product.id));
     });
+  }
+
+  // Empty basket and set total to 0
+  function reset(obj) {
+    handleNewTotalChange(obj);
+    emptyCart();
   }
 
   return (
@@ -58,18 +59,28 @@ export default function Payment() {
         {displayErrorMsg(formik.touched.year, formik.errors.year)}
       </div>
       <Form formik={formik}>
-        <h3>Amount due : £{newTotal ? newTotal : total}</h3>
-        {formik.errors.isValidated && (
-          <Button
-            content={isProcessed ? "Proccessing" : "Pay"}
-            id={formik.errors.isValidated ? "dark-background" : "disabled"}
-            onClick={() => {
-              setIsProcessed(true);
-              resetTotal({total: 0});
-              emptyCart();
-            }}
-          />
-        )}
+        <h3>Amount due : £{total ? total.toFixed(2) : ""}</h3>
+        <Button
+          content={isProcessed ? "Proccessing" : "Pay"}
+          id={formik.errors.isValidated ? "dark-background" : "disabled"}
+          onClick={
+            formik.errors.isValidated
+              ? () => {
+                  setIsProcessed(true);
+                  reset({total: 0});
+                }
+              : undefined
+          }
+        />
+        <br />
+        <Button
+          content="Cancel"
+          id="dark-background"
+          onClick={() => {
+            navigate("/");
+            reset({total: 0});
+          }}
+        />
       </Form>
     </section>
   );

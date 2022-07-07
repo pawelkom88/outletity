@@ -1,7 +1,7 @@
 import {db} from "../../../firebase/config";
 import {setDoc, doc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
-import {calcDiscount} from "utilities/helpers";
+import {calcDiscount, notifyUser} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import {v4 as uuidv4} from "uuid";
 import "./Product.scss";
@@ -15,18 +15,18 @@ export default function Product({product}) {
       quantity: 1,
       title: product.title,
       image: product.image,
-      productPrice: productPrice,
-      discountedPrice: discountedPrice,
-      discount: discount,
+      productPrice,
+      discountedPrice,
+      discount,
     };
     const docRef = doc(db, "PRODUCTS", product.title);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      warning();
+      notifyUser(toast.error, "Product has already been added");
     } else {
       await setDoc(doc(db, "PRODUCTS", product.title), addedProduct);
-      addedToBasket();
+      notifyUser(toast.success, "Product has been added to basket");
     }
   }
 
@@ -53,11 +53,4 @@ export default function Product({product}) {
       <Toaster position="top-center" />
     </div>
   );
-}
-
-function addedToBasket() {
-  toast.success(" Product has been added to basket");
-}
-function warning() {
-  toast.error(" Product has already been added");
 }
