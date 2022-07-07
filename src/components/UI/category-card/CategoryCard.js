@@ -1,4 +1,4 @@
-import Button from "components/UI/button/Button";
+import Linkk from "../Link/Link";
 import "./CategoryCard.scss";
 
 export default function CategoryCard({src, desc = "", content = "", path}) {
@@ -8,7 +8,7 @@ export default function CategoryCard({src, desc = "", content = "", path}) {
         <span>{desc}</span>
       </div>
       <img className="card-img" src={src} alt="Category cover" />
-      <Button path={path} className={"card-btn"} content={content} />
+      <Linkk path={path} className={"card-btn"} content={content} />
     </div>
   );
 }
