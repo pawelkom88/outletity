@@ -1,12 +1,9 @@
-import {CartContext} from "context/CartContext";
-import Button from "../button/Button";
 import CloseBtn from "../close-button/CloseBtn";
+import Linkk from "../Link/Link";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
-export default function ShoppingCart({handleShoppingCart, basketQuantity}) {
-  const {products, total} = CartContext();
-
+export default function ShoppingCart({products, total, handleShoppingCart, basketQuantity}) {
   return (
     <div className="shopping-cart">
       <div className="shopping-cart-items-total">
@@ -20,9 +17,9 @@ export default function ShoppingCart({handleShoppingCart, basketQuantity}) {
       <div className="shopping-cart-total">
         <div className="amount">
           <span>Total:</span>
-          <span>£ {total}</span>
+          <span>£ {total ? total.toFixed(2) : ""}</span>
         </div>
-        <Button
+        <Linkk
           onClick={handleShoppingCart}
           path="/BasketSummary"
           content="Go to basket"

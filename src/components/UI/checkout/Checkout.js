@@ -3,32 +3,29 @@ import {db} from "../../../firebase/config";
 import {doc, setDoc} from "firebase/firestore";
 import {Link} from "react-router-dom";
 import {visa, mastercard, paypal} from "utilities/images";
-import {voucherCode} from "utilities/helpers";
+import {voucherCode, notifyUser} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import Button from "../button/Button";
-import {deliveryOptions} from "utilities/helpers";
-import {CartContext} from "context/CartContext";
+import {deliveryOptions, discount} from "utilities/helpers";
+import {handleNewTotalChange} from "utilities/helpers";
 import "./Checkout.scss";
 
-export default function Checkout() {
+export default function Checkout({products, total}) {
+  const [isMatch, setIsMatch] = useState("");
   const [deliveryCharge, setDeliveryCharge] = useState(false);
-  const {products, total, isMatch, setIsMatch, newTotal} = CartContext();
-  // set new total to 0
-  async function handleNewTotalChange(obj) {
-    await setDoc(doc(db, "voucher", "code"), obj);
-  }
 
   async function handleVoucherCode(e) {
     e.preventDefault();
     // if user input matches voucher code, calculate new total and  send it to firebase
     if (isMatch === voucherCode && total > 0) {
-      await setDoc(doc(db, "voucher", "code"), {newTotal: total * 0.9, applied: true});
+      await setDoc(doc(db, "voucher", "code"), {total: total * ((100 - discount) / 100)});
       notifyUser(toast.success, "Code has been applied");
     } else if (total <= 0) {
       notifyUser(toast.error, "Basket is empty");
     } else {
       notifyUser(toast.error, "Code is not valid");
     }
+    setIsMatch("");
   }
 
   return (
@@ -46,13 +43,13 @@ export default function Checkout() {
       </form>
       <div className="total">
         <span>Total:</span>
-        <span>£{newTotal ? newTotal : total}</span>
+        <span>£{total ? total.toFixed(2) : ""}</span>
       </div>
-      {(total || newTotal) && deliveryCharge ? (
+      {total && deliveryCharge ? (
         <Link
           onClick={() =>
             handleNewTotalChange({
-              newTotal: (newTotal ? newTotal : total) + Number(deliveryCharge),
+              total: total + Number(deliveryCharge),
             })
           }
           to="/Payment"
@@ -66,7 +63,7 @@ export default function Checkout() {
           content="Secure Checkout"
           id="dark-background"
           onClick={
-            (total || newTotal) && !deliveryCharge
+            total && !deliveryCharge
               ? () => notifyUser(toast.error, "Choose delivery method")
               : () => notifyUser(toast.error, "Basket is empty")
           }
@@ -84,8 +81,7 @@ export default function Checkout() {
         id="delivery-details"
         onChange={e => {
           setDeliveryCharge(e.target.value);
-        }}
-        >
+        }}>
         {deliveryOptions.map((option, i) => (
           <option key={i} value={option.value}>
             {option.desc}
@@ -100,8 +96,4 @@ export default function Checkout() {
       <Toaster position="top-center" />
     </div>
   );
-}
-
-function notifyUser(func, msg) {
-  func(msg);
 }
