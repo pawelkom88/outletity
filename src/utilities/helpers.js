@@ -1,5 +1,14 @@
+import {db} from "../firebase/config";
+import {doc, setDoc} from "firebase/firestore";
+
+export const voucherCode = "HX10TZ6";
+export const discount = 10;
+
+export async function handleNewTotalChange(obj) {
+  await setDoc(doc(db, "voucher", "code"), obj);
+}
+
 export function calcDiscount(product) {
-  const discount = 10;
   const productPrice = Math.round(product.price);
   const discountedPrice = Math.round(productPrice - (productPrice * discount) / 100);
 
@@ -10,7 +19,10 @@ export function displayErrorMsg(touched, errors) {
   return touched && errors && <span className="contact-form-error-msg">{errors}</span>;
 }
 
-export const voucherCode = "HX10TZ6";
+export function notifyUser(func, msg) {
+  func(msg);
+}
+
 
 export const months = [
   "January",
