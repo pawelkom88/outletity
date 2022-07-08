@@ -47,21 +47,30 @@ export const years = [
   new Date().getFullYear() + 4,
 ];
 
+export const deliveryOptionTypes = {
+  standard: "standard",
+  nextDay: "nextDay",
+  collection: "collection",
+};
+
 export const deliveryOptions = [
   {
     id: uuidv4(),
     value: 3.95,
     desc: "Standard : £3.95",
+    name: deliveryOptionTypes.standard,
   },
   {
     id: uuidv4(),
     value: 6.95,
     desc: "Next day : £6.95",
+    name: deliveryOptionTypes.nextDay,
   },
 
   {
     id: uuidv4(),
     value: 0,
     desc: "Collection : Free",
+    name: deliveryOptionTypes.collection,
   },
 ];
