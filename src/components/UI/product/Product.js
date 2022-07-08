@@ -18,6 +18,8 @@ export default function Product({product}) {
       productPrice,
       discountedPrice,
       discount,
+      basePrice: productPrice,
+      voucherApplied: false,
     };
     const docRef = doc(db, "PRODUCTS", product.title);
     const docSnap = await getDoc(docRef);
