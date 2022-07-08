@@ -1,21 +1,36 @@
 import {useState, useEffect} from "react";
+import {CartContext} from "context/CartContext";
 import {useNavigate, useLocation} from "react-router-dom";
 import {useFormik} from "formik";
 import {db} from "../../firebase/config";
-import {doc, deleteDoc} from "firebase/firestore";
+import {doc, deleteDoc, setDoc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import Form from "components/UI/form/Form";
-import {displayErrorMsg, handleNewTotalChange} from "utilities/helpers";
+import {
+  displayErrorMsg,
+  handleNewTotalChange,
+  deliveryOptionTypes,
+  deliveryOptions,
+} from "utilities/helpers";
 import "./Payment.scss";
 
 export default function Payment() {
   const location = useLocation();
-  const {total, products} = location.state || [];
+  const {products} = location.state || [];
+  const {total} = CartContext();
   const navigate = useNavigate();
   const [isProcessed, setIsProcessed] = useState(false);
-  const [deliveryCharge, setDeliveryCharge] = useState(3.95);
+  const [newTotal, setNewTotal] = useState();
 
-  console.log(deliveryCharge);
+  let deliveryPrice;
+
+  deliveryOptions.find(({name, value}) => {
+    if (name === deliveryOptionTypes.standard) {
+      deliveryPrice = value;
+    }
+  });
+
+  const [deliveryCharge, setDeliveryCharge] = useState(deliveryPrice);
 
   // handle form
   const formik = useFormik({
@@ -29,11 +44,33 @@ export default function Payment() {
     validate,
   });
 
+  // calc new total including delivery charge and send it to firebase
   useEffect(() => {
+    // make more reusable !!!!!!!!!!!!!!!!! in helpers
+    async function handleNewTotalChange() {
+      await setDoc(doc(db, "voucher", "newTotal"), {total: total + Number(deliveryCharge)});
+    }
     if (deliveryCharge) {
-      handleNewTotalChange({total: total + deliveryCharge});
+      handleNewTotalChange();
     }
   }, [deliveryCharge, total]);
+
+  // get new total with delivery charge included and update state
+  useEffect(() => {
+    async function getNewTotal() {
+      const docRef = doc(db, "voucher", "newTotal");
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        throw new Error("document does not exists");
+      }
+      const {total} = docSnap.data();
+
+      setNewTotal(total);
+    }
+
+    getNewTotal();
+  }, [deliveryCharge]);
 
   // fake transaction proccess
   useEffect(() => {
@@ -53,12 +90,6 @@ export default function Payment() {
     });
   }
 
-  // Empty basket and set total to 0
-  function reset(obj) {
-    handleNewTotalChange(obj);
-    emptyCart();
-  }
-
   return (
     <section className="payment-container">
       <h1>Checkout form</h1>
@@ -68,7 +99,11 @@ export default function Payment() {
         {displayErrorMsg(formik.touched.year, formik.errors.year)}
       </div>
       <Form setDeliveryCharge={setDeliveryCharge} formik={formik}>
-        <h3>Amount due : £{total ? total.toFixed(2) : ""}</h3>
+        <h3>Amount due : £{total === 0 ? 0 : newTotal}</h3>
+        <div className="amount-breakdown">
+          <span>Delivery : £{deliveryCharge}</span>
+          <span>Total: £{total && total.toFixed(2)}</span>
+        </div>
         <Button
           content={isProcessed ? "Proccessing" : "Pay"}
           id={formik.errors.isValidated ? "dark-background" : "disabled"}
@@ -76,7 +111,8 @@ export default function Payment() {
             formik.errors.isValidated
               ? () => {
                   setIsProcessed(true);
-                  reset({total: 0});
+                  handleNewTotalChange({total: 0});
+                  emptyCart();
                 }
               : undefined
           }
@@ -87,7 +123,6 @@ export default function Payment() {
           id="dark-background"
           onClick={() => {
             navigate("/");
-            reset({total: 0});
           }}
         />
       </Form>
