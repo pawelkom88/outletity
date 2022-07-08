@@ -13,6 +13,9 @@ export default function Payment() {
   const {total, products} = location.state || [];
   const navigate = useNavigate();
   const [isProcessed, setIsProcessed] = useState(false);
+  const [deliveryCharge, setDeliveryCharge] = useState(3.95);
+
+  console.log(deliveryCharge);
 
   // handle form
   const formik = useFormik({
@@ -25,6 +28,12 @@ export default function Payment() {
     },
     validate,
   });
+
+  useEffect(() => {
+    if (deliveryCharge) {
+      handleNewTotalChange({total: total + deliveryCharge});
+    }
+  }, [deliveryCharge, total]);
 
   // fake transaction proccess
   useEffect(() => {
@@ -58,7 +67,7 @@ export default function Payment() {
         {displayErrorMsg(formik.touched.month, formik.errors.month)}
         {displayErrorMsg(formik.touched.year, formik.errors.year)}
       </div>
-      <Form formik={formik}>
+      <Form setDeliveryCharge={setDeliveryCharge} formik={formik}>
         <h3>Amount due : £{total ? total.toFixed(2) : ""}</h3>
         <Button
           content={isProcessed ? "Proccessing" : "Pay"}
