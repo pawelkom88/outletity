@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from "uuid";
 import {db} from "../firebase/config";
 import {doc, setDoc} from "firebase/firestore";
 
@@ -23,7 +24,6 @@ export function notifyUser(func, msg) {
   func(msg);
 }
 
-
 export const months = [
   "January",
   "February",
@@ -48,17 +48,19 @@ export const years = [
 ];
 
 export const deliveryOptions = [
-  {value: false, desc: "options"},
   {
+    id: uuidv4(),
     value: 3.95,
     desc: "Standard : £3.95",
   },
   {
+    id: uuidv4(),
     value: 6.95,
     desc: "Next day : £6.95",
   },
 
   {
+    id: uuidv4(),
     value: 0,
     desc: "Collection : Free",
   },

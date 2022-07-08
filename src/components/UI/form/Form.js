@@ -1,9 +1,9 @@
 import {displayErrorMsg} from "utilities/helpers";
 import Select from "components/UI/select/Select";
-import {months, years} from "utilities/helpers";
+import {months, years, deliveryOptions} from "utilities/helpers";
 import "./Form.scss";
 
-export default function Form({formik, children}) {
+export default function Form({formik, children, setDeliveryCharge}) {
   return (
     <form className="payment-form">
       <label htmlFor="card-num">
@@ -60,6 +60,24 @@ export default function Form({formik, children}) {
           />
         </div>
       </div>
+      <label htmlFor="delivery-details">
+        <div>Delivery options</div>
+      </label>
+      <select
+        className="select"
+        name="delivery-details"
+        id="delivery-details"
+        onChange={e => {
+          setDeliveryCharge(e.target.value);
+        }}>
+        {deliveryOptions.map(option => {
+          return (
+            <option key={option.id} value={option.value}>
+              {option.desc}
+            </option>
+          );
+        })}
+      </select>
       {children}
     </form>
   );
