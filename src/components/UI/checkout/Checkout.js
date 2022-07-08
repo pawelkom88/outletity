@@ -11,21 +11,29 @@ import "./Checkout.scss";
 export default function Checkout({products, total}) {
   const [isMatch, setIsMatch] = useState("");
 
+  let isApplied;
+  if (products && total) {
+    isApplied = products[0].voucherApplied;
+  }
+
   async function handleVoucherCode(e) {
     e.preventDefault();
     // if user input matches voucher code, calculate new total and  send it to firebase
-    if (isMatch === voucherCode && total > 0) {
+    if (isMatch === voucherCode && total > 0 && !isApplied) {
       await products.forEach(product => {
         const docRef = doc(db, "PRODUCTS", product.title);
         updateDoc(docRef, {
           productPrice: product.productPrice * 0.9,
           discountedPrice: product.discountedPrice * 0.9,
+          voucherApplied: true,
         });
       });
 
       notifyUser(toast.success, "Code has been applied");
     } else if (total <= 0) {
       notifyUser(toast.error, "Basket is empty");
+    } else if (isApplied) {
+      notifyUser(toast.error, "Code has already been used");
     } else {
       notifyUser(toast.error, "Code is not valid");
     }
@@ -50,7 +58,7 @@ export default function Checkout({products, total}) {
         <span>£{total ? total.toFixed(2) : ""}</span>
       </div>
       {total ? (
-        <Link to="/Payment" state={{total, products}} className="btn" id="dark-background">
+        <Link to="/Payment" state={{products}} className="btn" id="dark-background">
           Secure Checkout
         </Link>
       ) : (
