@@ -12,22 +12,18 @@ export default function ShoppingCartItem({product}) {
   let discountedPrice;
   let quantity;
 
-  const difference = (100 - discount) / 100;
-  const defaultPrice = product.productPrice / product.quantity;
-  const currentPrice = product.productPrice;
-
   async function setQuantity(id, action) {
     const docRef = doc(db, "PRODUCTS", id);
     const docSnap = await getDoc(docRef);
     const product = docSnap.data();
 
     if (typeof action === "string" && action === "increase") {
-      productPrice = currentPrice + defaultPrice;
-      discountedPrice = productPrice * difference;
+      productPrice = product.productPrice + product.basePrice;
+      discountedPrice = (productPrice * (100 - discount)) / 100;
       quantity = product.quantity + 1;
     } else {
-      productPrice = currentPrice - defaultPrice;
-      discountedPrice = productPrice * difference;
+      productPrice = product.productPrice - product.basePrice;
+      discountedPrice = (productPrice * (100 - discount)) / 100;
       quantity = product.quantity - 1;
 
       if (quantity < 1) {
