@@ -1,3 +1,5 @@
+import useAuth from "hooks/useAuth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 import Modal from "../modal/Modal";
 import {Link} from "react-router-dom";
 import Input from "components/UI/input/Input";
@@ -9,13 +11,19 @@ import {displayErrorMsg} from "utilities/helpers";
 import "./LoginModal.scss";
 
 export default function LoginModal({isShown, toggle, handleTransition}) {
+  const {handleUser, error} = useAuth(signInWithEmailAndPassword);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleUser(formik.values.email, formik.values.password, "Welcome back USER");
+  }
+
   const formik = useFormik({
     initialValues: {
       password: "",
       email: "",
     },
     validate,
-    onSubmit: notifyUser,
   });
 
   return (
@@ -28,7 +36,14 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
           </button>
         </div>
         <hr className="login-divider" />
-        <form className="login-form" onSubmit={formik.handleSubmit}>
+
+        {error && (
+          <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
+            <p className="fetch-msg">{`User with email address ${formik.values.email} not found`}</p>
+          </Modal>
+        )}
+
+        <form className="login-form" onSubmit={e => handleSubmit(e)}>
           <Input
             size={60}
             type="email"
@@ -87,8 +102,4 @@ function validate(values) {
   }
 
   return errors;
-}
-
-function notifyUser() {
-  toast.success("Welcome back USER NAME", {duration: 4000});
 }
