@@ -33,6 +33,7 @@ import up from "assets/svg/up.svg";
 import creditcard from "assets/svg/creditcard.svg";
 import chevronup from "assets/svg/chevronup.svg";
 import chevrondown from "assets/svg/chevrondown.svg";
+import sadness from "assets/svg/sadness.svg";
 
 export const carouselImages = [
   {id: uuidv4(), srcMobile: shopping1webp, src: shopping1},
@@ -110,4 +111,5 @@ export {
   mastercard,
   paypal,
   success,
+  sadness,
 };

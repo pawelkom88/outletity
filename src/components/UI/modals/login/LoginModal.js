@@ -4,9 +4,10 @@ import Modal from "../modal/Modal";
 import {Link} from "react-router-dom";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
+import {sadness} from "utilities/images";
 
 import "./LoginModal.scss";
 
@@ -38,8 +39,9 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
         <hr className="login-divider" />
 
         {error && (
-          <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
-            <p className="fetch-msg">{`User with email address ${formik.values.email} not found`}</p>
+          <Modal isShown={isShown} toggle={toggle}>
+            <img style={{width: "100px"}} src={sadness} alt="" />
+            <h3>{`User with email address ${formik.values.email} not found. Try again or create new account. `}</h3>
           </Modal>
         )}
 

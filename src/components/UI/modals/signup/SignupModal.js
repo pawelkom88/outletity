@@ -5,6 +5,7 @@ import Button from "components/UI/button/Button";
 import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
+import {sadness} from "utilities/images";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export default function SignupModal({isShown, toggle, handleTransition}) {
@@ -42,7 +43,8 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
         <hr className="login-divider" />
         {error && (
           <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
-            <p className="fetch-msg">'Zesralo sie</p>
+            <img style={{width: "100px"}} src={sadness} alt="" />
+            <h3>Something went wrong. Try again</h3>
           </Modal>
         )}
         <form
