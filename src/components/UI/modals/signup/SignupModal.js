@@ -1,11 +1,25 @@
+import useAuth from "hooks/useAuth";
 import Modal from "../modal/Modal";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 export default function SignupModal({isShown, toggle, handleTransition}) {
+  const {handleUser, error} = useAuth(createUserWithEmailAndPassword);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleUser(
+      formik.values.email,
+      formik.values.password,
+      "Account has been created successfully"
+    );
+    toggle();
+  }
+
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -14,7 +28,6 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
       passwordConfirmation: "",
     },
     validate,
-    onSubmit: notifyUser,
   });
 
   return (
@@ -27,7 +40,14 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
           </button>
         </div>
         <hr className="login-divider" />
-        <form className="login-form" onSubmit={formik.handleSubmit}>
+        {error && (
+          <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
+            <p className="fetch-msg">'Zesralo sie</p>
+          </Modal>
+        )}
+        <form
+          className="login-form"
+          onSubmit={formik.errors.isValidated ? e => handleSubmit(e) : undefined}>
           <Input
             size={60}
             type="text"
@@ -57,7 +77,7 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
             id="password"
             placeholder="Enter password"
             name="password"
-            autocomplete="off"
+            // autocomplete="off"
             {...formik.getFieldProps("password")}>
             <div>Password:</div>
             {displayErrorMsg(formik.touched.password, formik.errors.password)}
@@ -65,11 +85,14 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
           <Input
             size={60}
             type="password"
-            labelFor="password confirmation"
-            id="password confirmation"
+            labelFor="passwordConfirmation"
+            id="passwordConfirmation"
             placeholder="Confirm password"
-            name="password confirmation"
-            {...formik.getFieldProps("passwordConfirmation")}>
+            name="passwordConfirmation"
+            {...formik.getFieldProps("passwordConfirmation")}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.passwordConfirmation}>
             <div>Confirm password:</div>
             {displayErrorMsg(
               formik.touched.passwordConfirmation,
@@ -77,7 +100,7 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
             )}
           </Input>
           <Button
-            type="submit"
+            type={formik.errors.isValidated ? "submit" : "button"}
             content="Create account"
             id={formik.errors.isValidated ? "dark-background" : "disabled"}
           />
@@ -89,52 +112,34 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
 }
 
 function validate(values) {
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
   const errors = {};
 
-  switch (true) {
-    case !values.userName: {
-      errors.userName = "Required";
-      break;
-    }
-    case values.userName.trim().length === 0: {
-      errors.userName = "At least 1 character";
-      break;
-    }
+  if (values.userName.length < 3) {
+    errors.userName = "Required at least 3 characters";
+  }
+  if (values.userName.trim().length === 0) {
+    errors.userName = "At least 1 character";
+  }
 
-    case !values.email: {
-      errors.email = "Required";
-      break;
-    }
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
 
-    case !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email): {
-      errors.email = "Invalid email address";
-      break;
-    }
-    //add proper validation
-    case !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/i.test(values.password): {
-      errors.password =
-        "8 to 24 characters Must include uppercase and lowercase letters, a number and a special character. Allowed special characters";
-      break;
-    }
-    case values.passwordConfirmation !== values.password: {
-      errors.passwordConfirmation = "Password doesn not match";
-      break;
-    }
+  if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/i.test(values.password)) {
+    errors.password =
+      "8 to 24 characters, must include uppercase and lowercase letters, a number and a special character. Allowed special characters !@#$%";
+  }
 
-    default:
+  if (values.passwordConfirmation != values.password) {
+    errors.passwordConfirmation = "Password does not match";
   }
 
   // Validate entire form if there are no errors
-  if (Object.keys(errors).length === 0) {
+  if (Object.keys(errors).length == 0) {
     errors.isValidated = true;
   } else {
     errors.isValidated = false;
   }
 
   return errors;
-}
-
-function notifyUser() {
-  toast.success("The account has been created successfully", {duration: 4000});
 }
