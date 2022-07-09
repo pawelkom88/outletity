@@ -5,7 +5,7 @@ import ProductCard from "components/UI/product-card/ProductCard";
 import Button from "components/UI/button/Button";
 import Loader from "components/UI/loader/Loader";
 import {sort} from "utilities/images";
-import ErrorModal from "components/UI/modals/error-modal/ErrorModal";
+import Modal from "components/UI/modals/modal/Modal";
 import "./Products.scss";
 
 export default function Products() {
@@ -27,7 +27,7 @@ export default function Products() {
 
   return (
     <section>
-      {error && <ErrorModal error={error} />}
+      {error && <Modal heading="Something went wrong..." error={error} />}
       {loading && <Loader />}
       {filteredProducts && (
         <>
