@@ -7,15 +7,17 @@ import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
 import {sadness} from "utilities/images";
 import {createUserWithEmailAndPassword} from "firebase/auth";
+import {actionObj} from "store/actions";
 
 export default function SignupModal({isShown, toggle, handleTransition}) {
-  const {handleUser, error} = useAuth(createUserWithEmailAndPassword);
+  const {handleUser, error} = useAuth(createUserWithEmailAndPassword, actionObj.login);
 
   function handleSubmit(e) {
     e.preventDefault();
     handleUser(
       formik.values.email,
       formik.values.password,
+      formik.values.userName,
       "Account has been created successfully"
     );
     toggle();
