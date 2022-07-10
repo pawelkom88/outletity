@@ -8,15 +8,20 @@ import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
 import {sadness} from "utilities/images";
+// import LogoutModal from "../logout/LogoutModal";
+import {actionObj} from "store/actions";
 
 import "./LoginModal.scss";
 
 export default function LoginModal({isShown, toggle, handleTransition}) {
-  const {handleUser, error} = useAuth(signInWithEmailAndPassword);
+  const {handleUser, error} = useAuth(signInWithEmailAndPassword, actionObj.login);
+
+  //reducer
 
   function handleSubmit(e) {
     e.preventDefault();
     handleUser(formik.values.email, formik.values.password, "Welcome back USER");
+    // toggle();
   }
 
   const formik = useFormik({
@@ -29,56 +34,62 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
 
   return (
     <>
-      <Modal isShown={isShown} toggle={toggle} heading={"Log in to your account"}>
-        <div className="create-account">
-          <span>Need an account? </span>
-          <button onClick={handleTransition} className="no-styles underline">
-            Create on
-          </button>
-        </div>
-        <hr className="login-divider" />
+      {/* {isLoggedOut ? ( */}
+      <>
+        <Modal isShown={isShown} toggle={toggle} heading={"Log in to your account"}>
+          <div className="create-account">
+            <span>Need an account? </span>
+            <button onClick={handleTransition} className="no-styles underline">
+              Create on
+            </button>
+          </div>
+          <hr className="login-divider" />
 
-        {error && (
-          <Modal isShown={isShown} toggle={toggle}>
-            <img style={{width: "100px"}} src={sadness} alt="" />
-            <h3>{`User with email address ${formik.values.email} not found. Try again or create new account. `}</h3>
-          </Modal>
-        )}
+          {error && (
+            <Modal isShown={isShown} toggle={toggle}>
+              <img style={{width: "100px"}} src={sadness} alt="" />
+              <h3>{`User with email address ${formik.values.email} not found. Try again or create new account. `}</h3>
+            </Modal>
+          )}
 
-        <form className="login-form" onSubmit={e => handleSubmit(e)}>
-          <Input
-            size={60}
-            type="email"
-            labelFor="email"
-            id="email"
-            placeholder="Enter email"
-            name="email"
-            {...formik.getFieldProps("email")}>
-            <div>E-mail:</div>
-            {displayErrorMsg(formik.touched.email, formik.errors.email)}
-          </Input>
-          <Input
-            size={60}
-            type="password"
-            labelFor="password"
-            id="password"
-            placeholder="Enter password"
-            name="password"
-            {...formik.getFieldProps("password")}>
-            <div>Password:</div>
-            {displayErrorMsg(formik.touched.password, formik.errors.password)}
-          </Input>
-          <Button
-            type="submit"
-            content="Login"
-            id={formik.errors.isValidated ? "dark-background" : "disabled"}
-          />
-        </form>
-        <Link onClick={toggle} className="underline" to="/">
-          Forgot your password ?
-        </Link>
-      </Modal>
-      <Toaster position="top-center" />
+          <form className="login-form" onSubmit={e => handleSubmit(e)}>
+            <Input
+              size={60}
+              type="email"
+              labelFor="email"
+              id="email"
+              placeholder="Enter email"
+              name="email"
+              {...formik.getFieldProps("email")}>
+              <div>E-mail:</div>
+              {displayErrorMsg(formik.touched.email, formik.errors.email)}
+            </Input>
+            <Input
+              size={60}
+              type="password"
+              labelFor="password"
+              id="password"
+              placeholder="Enter password"
+              name="password"
+              {...formik.getFieldProps("password")}>
+              <div>Password:</div>
+              {displayErrorMsg(formik.touched.password, formik.errors.password)}
+            </Input>
+            <Button
+              type="submit"
+              content="Login"
+              id={formik.errors.isValidated ? "dark-background" : "disabled"}
+            />
+          </form>
+          <Link onClick={toggle} className="underline" to="/">
+            Forgot your password ?
+          </Link>
+        </Modal>
+        <Toaster position="top-center" />
+      </>
+      {/* ) : ( */}
+      {/* <LogoutModal isShown={isShown} toggle={toggle} /> */}
+      {/* )} */}
     </>
   );
 }
