@@ -8,6 +8,7 @@ import {displayErrorMsg} from "utilities/helpers";
 import {sadness} from "utilities/images";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {actionObj} from "store/actions";
+import "./SignupModal.scss";
 
 export default function SignupModal({isShown, toggle, handleTransition}) {
   const {handleUser, error} = useAuth(createUserWithEmailAndPassword, actionObj.login);
@@ -17,7 +18,6 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
     handleUser(
       formik.values.email,
       formik.values.password,
-      formik.values.userName,
       "Account has been created successfully"
     );
     toggle();
@@ -43,26 +43,9 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
           </button>
         </div>
         <hr className="login-divider" />
-        {error && (
-          <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
-            <img style={{width: "100px"}} src={sadness} alt="" />
-            <h3>Something went wrong. Try again</h3>
-          </Modal>
-        )}
         <form
           className="login-form"
           onSubmit={formik.errors.isValidated ? e => handleSubmit(e) : undefined}>
-          <Input
-            size={60}
-            type="text"
-            labelFor="userName"
-            id="userName"
-            placeholder="User name"
-            name="userName"
-            {...formik.getFieldProps("userName")}>
-            <div>User name:</div>
-            {displayErrorMsg(formik.touched.userName, formik.errors.userName)}
-          </Input>
           <Input
             size={60}
             type="email"
@@ -110,6 +93,12 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
           />
         </form>
       </Modal>
+      {error && (
+        <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
+          <img style={{width: "100px"}} src={sadness} alt="Sad face" />
+          <h3>Something went wrong. Try again</h3>
+        </Modal>
+      )}
       <Toaster position="top-center" />
     </>
   );
@@ -117,13 +106,6 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
 
 function validate(values) {
   const errors = {};
-
-  if (values.userName.length < 3) {
-    errors.userName = "Required at least 3 characters";
-  }
-  if (values.userName.trim().length === 0) {
-    errors.userName = "At least 1 character";
-  }
 
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Invalid email address";

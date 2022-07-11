@@ -1,0 +1,19 @@
+@use "/src/styles/mixins";
+
+.btn-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  p {
+    margin-right: 3rem;
+  }
+
+  & img {
+    cursor: pointer;
+  }
+
+  & input {
+    display: none;
+  }
+}
