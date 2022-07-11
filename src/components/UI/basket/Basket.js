@@ -8,17 +8,11 @@ import {CartContext} from "context/CartContext";
 import "./Basket.scss";
 
 export default function Basket({isShown, closeMobileMenu}) {
-  const {products, total, basketQuantity} = CartContext();
+  const {products, total, numberOfItems} = CartContext();
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
 
-  let numberOfItems;
 
-  if (products && products.length === 0) {
-    numberOfItems = 0;
-  } else if (products) {
-    numberOfItems = products.length;
-  }
 
   function handleShoppingCart() {
     if (showCart) {
@@ -54,7 +48,7 @@ export default function Basket({isShown, closeMobileMenu}) {
           handleShoppingCart={handleShoppingCart}
           products={products}
           total={total}
-          basketQuantity={basketQuantity}
+          numberOfItems={numberOfItems}
         />
       )}
     </>
