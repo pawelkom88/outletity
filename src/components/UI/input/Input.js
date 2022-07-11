@@ -18,7 +18,7 @@ export default function Input({
     <>
       <label htmlFor={labelFor}>{children}</label>
       <input
-        style={{width: `${size}%`}}
+        // style={{width: `${size}%`}}
         value={value}
         name={inputName}
         id={id}
