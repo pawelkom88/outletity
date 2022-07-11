@@ -14,10 +14,8 @@ export default function AuthContextProvider({children}) {
       dispatch({type: actionObj.authIsReady, payload: user});
     });
 
-    unsubscribe();
+    return () => unsubscribe();
   }, []);
-
-  console.log("Auth context state:", state);
 
   return <AuthContext.Provider value={{...state, dispatch}}>{children}</AuthContext.Provider>;
 }
