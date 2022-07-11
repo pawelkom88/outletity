@@ -8,19 +8,23 @@ import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
 import {sadness} from "utilities/images";
-// import LogoutModal from "../logout/LogoutModal";
 import {actionObj} from "store/actions";
-
+import UserSettings from "../logout/UserSettings";
 import "./LoginModal.scss";
 
-export default function LoginModal({isShown, toggle, handleTransition}) {
+export default function LoginModal({
+  user,
+  avatar,
+  isShown,
+  toggle,
+  handleTransition,
+  setIsUploaded,
+}) {
   const {handleUser, error} = useAuth(signInWithEmailAndPassword, actionObj.login);
-
-  //reducer
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleUser(formik.values.email, formik.values.password, "Welcome back USER");
+    handleUser(formik.values.email, formik.values.password, "Login successfull");
     // toggle();
   }
 
@@ -34,8 +38,15 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
 
   return (
     <>
-      {/* {isLoggedOut ? ( */}
-      <>
+      {user ? (
+        <UserSettings
+          setIsUploaded={setIsUploaded}
+          avatar={avatar}
+          user={user}
+          isShown={isShown}
+          toggle={toggle}
+        />
+      ) : (
         <Modal isShown={isShown} toggle={toggle} heading={"Log in to your account"}>
           <div className="create-account">
             <span>Need an account? </span>
@@ -44,7 +55,6 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
             </button>
           </div>
           <hr className="login-divider" />
-
           {error && (
             <Modal isShown={isShown} toggle={toggle}>
               <img style={{width: "100px"}} src={sadness} alt="" />
@@ -54,7 +64,6 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
 
           <form className="login-form" onSubmit={e => handleSubmit(e)}>
             <Input
-              size={60}
               type="email"
               labelFor="email"
               id="email"
@@ -65,7 +74,6 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
               {displayErrorMsg(formik.touched.email, formik.errors.email)}
             </Input>
             <Input
-              size={60}
               type="password"
               labelFor="password"
               id="password"
@@ -85,11 +93,9 @@ export default function LoginModal({isShown, toggle, handleTransition}) {
             Forgot your password ?
           </Link>
         </Modal>
-        <Toaster position="top-center" />
-      </>
-      {/* ) : ( */}
-      {/* <LogoutModal isShown={isShown} toggle={toggle} /> */}
-      {/* )} */}
+      )}
+
+      <Toaster position="top-center" />
     </>
   );
 }
