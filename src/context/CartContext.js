@@ -8,26 +8,18 @@ export function CartContext() {
   return useContext(ShoppingCartContext);
 }
 
+// try to avoid contex and pass props
 export function ShoppingCartProvider({children}) {
   const {products} = useCollection("PRODUCTS");
-  let total;
-  if (products) {
-    total = products.reduce((acc, curr) => acc + +curr.discountedPrice, 0);
-    handleNewTotalChange({total});
-  }
 
-  let basketQuantity;
+  let total = products && products.reduce((acc, {discountedPrice}) => acc + +discountedPrice, 0);
 
-  if (products && products.length === 0) {
-    basketQuantity = "basket is empty";
-  } else if (products && products.length === 1) {
-    basketQuantity = `${products.length} item`;
-  } else if (products) {
-    basketQuantity = `${products.length} items`;
-  }
+  handleNewTotalChange({total});
+
+  let numberOfItems = products && products.reduce((acc, {quantity}) => acc + quantity, 0);
 
   return (
-    <ShoppingCartContext.Provider value={{products, total, basketQuantity}}>
+    <ShoppingCartContext.Provider value={{products, total, numberOfItems}}>
       {children}
     </ShoppingCartContext.Provider>
   );
