@@ -3,11 +3,15 @@ import Linkk from "../Link/Link";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
-export default function ShoppingCart({products, total, handleShoppingCart, basketQuantity}) {
+export default function ShoppingCart({products, total, handleShoppingCart, numberOfItems}) {
   return (
     <div className="shopping-cart">
       <div className="shopping-cart-items-total">
-        <span>{basketQuantity} </span>
+        <span>
+          {numberOfItems === 0
+            ? "Basket is empty"
+            : `${numberOfItems} ${numberOfItems === 1 ? "item" : "items"}`}
+        </span>
         <CloseBtn onClick={handleShoppingCart} />
       </div>
       <ul className="shopping-cart-items">
