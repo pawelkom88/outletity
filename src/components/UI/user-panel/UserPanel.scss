@@ -8,11 +8,8 @@
   cursor: pointer;
 
   & .user-avatar {
+    width: 30px;
+    border-radius: 50%;
     margin-top: 5px;
-    width: 100%;
-  }
-
-  @media (max-width: breakpoints.$mobile) {
-    width: 25px;
   }
 }

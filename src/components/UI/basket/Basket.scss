@@ -12,16 +12,11 @@
   stroke: colors.$brand-primary;
   fill: colors.$brand-primary;
   cursor: pointer;
-
-  @media (max-width: breakpoints.$mobile) {
-    width: 21px;
-  }
 }
 
 .basket-quantity::before {
   position: absolute;
   top: 0;
-  right: 2rem;
   width: 2.4rem;
   height: 2.4rem;
   @include mixins.flex(center, center);
