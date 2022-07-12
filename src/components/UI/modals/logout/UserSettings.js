@@ -9,7 +9,7 @@ import Button from "components/UI/button/Button";
 import {upload, sadness} from "utilities/images";
 import "./UserSettings.scss";
 
-export default function UserSettings({avatar, setAvatar, user, isShown, toggle, setIsUploaded}) {
+export default function UserSettings({avatar, setAvatar, user, toggle, setIsUploaded}) {
   const [photo, setPhoto] = useState(null);
   const [uploadError, setUploadError] = useState(null);
   const {logUserOut, error} = useLogout();
@@ -40,7 +40,7 @@ export default function UserSettings({avatar, setAvatar, user, isShown, toggle, 
 
   return (
     <>
-      <Modal size="2" isShown={isShown} toggle={toggle} heading={`Welcome back ${user?.email}`}>
+      <Modal size="2" toggle={toggle} heading={`Welcome back ${user?.email}`}>
         {avatar ? (
           <img className="avatar" src={avatar} alt="user profile avatar" />
         ) : (
@@ -61,13 +61,13 @@ export default function UserSettings({avatar, setAvatar, user, isShown, toggle, 
         <Button content="Log out" className="btn" id="dark-background" onClick={handleLogout} />
       </Modal>
       {error && (
-        <Modal isShown={isShown} toggle={toggle}>
+        <Modal toggle={toggle}>
           <img className="sadFace" src={sadness} alt="sad face" />
           <h3>{"Something went wrong"}</h3>
         </Modal>
       )}
       {uploadError && (
-        <Modal isShown={isShown} toggle={toggle}>
+        <Modal toggle={toggle}>
           <img className="sadFace" src={sadness} alt="sad face" />
           <h3>{"Something went wrong"}</h3>
         </Modal>

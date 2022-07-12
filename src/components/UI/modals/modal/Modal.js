@@ -22,7 +22,6 @@ export default function Modal({heading, children, toggle, size = "3"}) {
           <h2 style={{fontSize: `clamp(${size - 1}rem, calc( 12px + 2.475vw ), ${size}rem)`}}>
             {heading}
           </h2>
-
           {children}
         </div>
       </FocusLock>

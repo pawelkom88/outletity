@@ -16,7 +16,7 @@ export default function LoginModal({
   user,
   setAvatar,
   avatar,
-  isShown,
+
   toggle,
   handleTransition,
   setIsUploaded,
@@ -45,11 +45,10 @@ export default function LoginModal({
           avatar={avatar}
           setAvatar={setAvatar}
           user={user}
-          isShown={isShown}
           toggle={toggle}
         />
       ) : (
-        <Modal isShown={isShown} toggle={toggle} heading={"Log in to your account"}>
+        <Modal toggle={toggle} heading={"Log in to your account"}>
           <div className="create-account">
             <span>Need an account? </span>
             <button onClick={handleTransition} className="no-styles underline">
@@ -58,7 +57,7 @@ export default function LoginModal({
           </div>
           <hr className="login-divider" />
           {error && (
-            <Modal isShown={isShown} toggle={toggle}>
+            <Modal toggle={toggle}>
               <img style={{width: "100px"}} src={sadness} alt="" />
               <h3>{`User with email address ${formik.values.email} not found. Try again or create new account. `}</h3>
             </Modal>

@@ -28,7 +28,7 @@ export default function UserPanel({isShown, toggle}) {
       try {
         setAvatar(userAvatar);
       } catch (error) {
-        if (error.code === "storage/object-not-found") {
+        if (error.name === "storage/object-not-found") {
           return;
         }
       }
@@ -55,7 +55,6 @@ export default function UserPanel({isShown, toggle}) {
           avatar={avatar}
           setAvatar={setAvatar}
           user={user}
-          isShown={isShown}
           toggle={toggle}
           handleTransition={handleTransitionBetweenModals}
         />
@@ -66,7 +65,6 @@ export default function UserPanel({isShown, toggle}) {
 
       {isShown && isSignedIn && (
         <SignupModal
-          isShown={isShown}
           toggle={toggle}
           handleTransition={handleTransitionBetweenModals}
         />
