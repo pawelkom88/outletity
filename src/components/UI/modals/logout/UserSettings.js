@@ -28,7 +28,14 @@ export default function UserSettings({avatar, setAvatar, user, isShown, toggle, 
       notifyUser(toast.success, "Image loaded successfully");
     } catch (error) {
       setUploadError(error.message);
+      notifyUser(toast.error, "There was an error while uploading your file");
     }
+  }
+
+  function handleLogout() {
+    logUserOut();
+    notifyUser(toast.success, "See you later");
+    setAvatar(null);
   }
 
   return (
@@ -51,16 +58,7 @@ export default function UserSettings({avatar, setAvatar, user, isShown, toggle, 
             <button onClick={handlePhotoUpload}>Upload photo</button>
           </div>
         )}
-        <Button
-          content="Log out"
-          className="btn"
-          id="dark-background"
-          onClick={() => {
-            logUserOut();
-            notifyUser(toast.success, "See you later");
-            setAvatar(null);
-          }}
-        />
+        <Button content="Log out" className="btn" id="dark-background" onClick={handleLogout} />
       </Modal>
       {error && (
         <Modal isShown={isShown} toggle={toggle}>
