@@ -1,13 +1,15 @@
+import useAuthContext from "hooks/useAuthContext";
+import {CartContext} from "context/CartContext";
 import useMatchMedia from "hooks/useMatchMedia";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {cart} from "utilities/images";
 import ShoppingCart from "components/UI/shopping-cart/ShoppingCart";
-import {CartContext} from "context/CartContext";
 
 import "./Basket.scss";
 
 export default function Basket({isShown, closeMobileMenu}) {
+  const {user} = useAuthContext();
   const {products, total, numberOfItems} = CartContext();
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
@@ -29,7 +31,7 @@ export default function Basket({isShown, closeMobileMenu}) {
           aria-label="show cart"
           className="basket-container">
           <img className="basket" src={cart} alt="Cart icon" />
-          <span data-count={numberOfItems} className="basket-quantity"></span>
+          {user && <span data-count={numberOfItems} className="basket-quantity"></span>}
         </Link>
       ) : (
         <button
@@ -37,11 +39,11 @@ export default function Basket({isShown, closeMobileMenu}) {
           aria-label="show cart"
           className="basket-container no-styles">
           <img className="basket" src={cart} alt="Cart icon" />
-          <span data-count={numberOfItems} className="basket-quantity"></span>
+          {user && <span data-count={numberOfItems} className="basket-quantity"></span>}
         </button>
       )}
 
-      {showCart && !isShown && (
+      {showCart && !isShown && user && (
         <ShoppingCart
           handleShoppingCart={handleShoppingCart}
           products={products}
