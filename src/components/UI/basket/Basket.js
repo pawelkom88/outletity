@@ -12,8 +12,6 @@ export default function Basket({isShown, closeMobileMenu}) {
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
 
-
-
   function handleShoppingCart() {
     if (showCart) {
       setShowCart(false);
