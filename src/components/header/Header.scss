@@ -38,7 +38,7 @@
   margin: 0 0.7rem;
   z-index: 11;
 
-  @media (max-width: breakpoints.$mobile) {
-    margin: 0 0.4rem;
+  @media (max-width: breakpoints.$tablet) {
+    margin: 0 1rem;
   }
 }
