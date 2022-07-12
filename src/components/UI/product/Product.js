@@ -1,3 +1,4 @@
+import useAuthContext from "hooks/useAuthContext";
 import {db} from "../../../firebase/config";
 import {setDoc, doc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
@@ -7,6 +8,7 @@ import {v4 as uuidv4} from "uuid";
 import "./Product.scss";
 
 export default function Product({product}) {
+  const {user} = useAuthContext();
   const {discount, productPrice, discountedPrice} = calcDiscount(product);
 
   async function addToCart(product) {
@@ -50,7 +52,15 @@ export default function Product({product}) {
           </div>
           <span className="discount">SAVE {discount} %</span>
         </div>
-        <Button content="Add to basket" id="dark-background" onClick={() => addToCart(product)} />
+        <Button
+          content="Add to basket"
+          id="dark-background"
+          onClick={
+            user
+              ? () => addToCart(product)
+              : () => notifyUser(toast.error, "Login to continue shopping")
+          }
+        />
       </article>
       <Toaster position="top-center" />
     </div>
