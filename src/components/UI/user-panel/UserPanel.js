@@ -28,7 +28,6 @@ export default function UserPanel({isShown, toggle}) {
       try {
         setAvatar(userAvatar);
       } catch (error) {
-        console.log(error.code);
         if (error.code === "storage/object-not-found") {
           return;
         }
