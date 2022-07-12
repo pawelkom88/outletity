@@ -10,6 +10,7 @@ import ProductInfo from "../pages/product/ProductInfo";
 import Payment from "../pages/payment/Payment";
 import BasketSummary from "../pages/basket-summary/BasketSummary";
 import Page404 from "../pages/Page404";
+import Search from "../pages/search/Search";
 import Success from "pages/success/Success";
 
 export default function RouterRoutes() {
@@ -28,11 +29,18 @@ export default function RouterRoutes() {
       <Route path="/Products/:category" element={<Products />} />
       <Route path="/ProductInfo/:id" element={<ProductInfo />} />
       <Route path="*" element={<Page404 />} />
-
+      <Route
+        path="/Search"
+        element={
+          <ProtectedRoute user={user}>
+            <Search />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/BasketSummary"
         element={
-          <ProtectedRoute user={user} redirectPath={"/"}>
+          <ProtectedRoute user={user}>
             <BasketSummary />
           </ProtectedRoute>
         }
@@ -40,7 +48,7 @@ export default function RouterRoutes() {
       <Route
         path="/Payment"
         element={
-          <ProtectedRoute user={user} redirectPath={"/"}>
+          <ProtectedRoute user={user}>
             <Payment />
           </ProtectedRoute>
         }

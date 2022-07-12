@@ -10,7 +10,7 @@ export default function Newsletter() {
 
   return (
     <>
-      {isShown && <NewsletterModal isShown={isShown} toggle={toggle} />}
+      {isShown && <NewsletterModal toggle={toggle} />}
       <div className="newsletter">
         <p className="newsletter-title">STAY UP TO DATE | SIGN UP FOR OUR NEWSLETTER</p>
         <Button onClick={toggle} content={"Sign up"} className="newsletter-btn" />

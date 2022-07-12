@@ -1,0 +1,20 @@
+@use "/src/styles/mixins";
+
+.search-result {
+  margin: 5rem auto;
+  @include mixins.flex(center, center);
+}
+
+.search-results__heading h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.not-found {
+  margin: 20rem 0;
+}
+
+.search-results__heading h3,
+.not-found {
+  font-size: clamp(2rem, 2vw, 4rem);
+}

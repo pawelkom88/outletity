@@ -10,7 +10,7 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 import {actionObj} from "store/actions";
 import "./SignupModal.scss";
 
-export default function SignupModal({isShown, toggle, handleTransition}) {
+export default function SignupModal({toggle, handleTransition}) {
   const {handleUser, error} = useAuth(createUserWithEmailAndPassword, actionObj.login);
 
   function handleSubmit(e) {
@@ -35,7 +35,7 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
 
   return (
     <>
-      <Modal isShown={isShown} toggle={toggle} heading={"Creating a new account"}>
+      <Modal toggle={toggle} heading={"Creating a new account"}>
         <div className="create-account">
           <span>Have an account? </span>
           <button onClick={handleTransition} className="no-styles underline">
@@ -94,7 +94,7 @@ export default function SignupModal({isShown, toggle, handleTransition}) {
         </form>
       </Modal>
       {error && (
-        <Modal heading="Ups :(" isShown={isShown} toggle={toggle}>
+        <Modal heading="Ups :(" toggle={toggle}>
           <img style={{width: "100px"}} src={sadness} alt="Sad face" />
           <h3>Something went wrong. Try again</h3>
         </Modal>
