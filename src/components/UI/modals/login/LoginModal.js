@@ -14,6 +14,7 @@ import "./LoginModal.scss";
 
 export default function LoginModal({
   user,
+  setAvatar,
   avatar,
   isShown,
   toggle,
@@ -25,7 +26,7 @@ export default function LoginModal({
   function handleSubmit(e) {
     e.preventDefault();
     handleUser(formik.values.email, formik.values.password, "Login successfull");
-    // toggle();
+    toggle();
   }
 
   const formik = useFormik({
@@ -42,6 +43,7 @@ export default function LoginModal({
         <UserSettings
           setIsUploaded={setIsUploaded}
           avatar={avatar}
+          setAvatar={setAvatar}
           user={user}
           isShown={isShown}
           toggle={toggle}
@@ -94,7 +96,6 @@ export default function LoginModal({
           </Link>
         </Modal>
       )}
-
       <Toaster position="top-center" />
     </>
   );
@@ -109,8 +110,6 @@ function validate(values) {
 
   if (!values.email) {
     errors.email = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
   }
 
   // Validate entire form if there are no errors
