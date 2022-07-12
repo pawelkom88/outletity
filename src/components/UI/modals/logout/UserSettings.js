@@ -3,13 +3,13 @@ import {ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../../../firebase/config";
 import useLogout from "hooks/useLogout";
 import Modal from "../modal/Modal";
-import {upload, sadness} from "utilities/images";
 import toast from "react-hot-toast";
 import {notifyUser} from "utilities/helpers";
 import Button from "components/UI/button/Button";
+import {upload, sadness} from "utilities/images";
 import "./UserSettings.scss";
 
-export default function UserSettings({avatar, user, isShown, toggle, setIsUploaded}) {
+export default function UserSettings({avatar, setAvatar, user, isShown, toggle, setIsUploaded}) {
   const [photo, setPhoto] = useState(null);
   const [uploadError, setUploadError] = useState(null);
   const {logUserOut, error} = useLogout();
@@ -58,6 +58,7 @@ export default function UserSettings({avatar, user, isShown, toggle, setIsUpload
           onClick={() => {
             logUserOut();
             notifyUser(toast.success, "See you later");
+            setAvatar(null);
           }}
         />
       </Modal>
