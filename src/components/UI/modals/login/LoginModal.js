@@ -15,6 +15,7 @@ import "./LoginModal.scss";
 export default function LoginModal({
   user,
   avatar,
+  setAvatar,
   isShown,
   toggle,
   handleTransition,
@@ -42,6 +43,7 @@ export default function LoginModal({
         <UserSettings
           setIsUploaded={setIsUploaded}
           avatar={avatar}
+          setAvatar={setAvatar}
           user={user}
           isShown={isShown}
           toggle={toggle}

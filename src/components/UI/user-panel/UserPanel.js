@@ -54,6 +54,7 @@ export default function UserPanel({isShown, toggle}) {
         <LoginModal
           setIsUploaded={setIsUploaded}
           avatar={avatar}
+          setAvatar={setAvatar}
           user={user}
           isShown={isShown}
           toggle={toggle}
