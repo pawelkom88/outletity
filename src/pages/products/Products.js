@@ -1,85 +1,50 @@
 import {useState, useEffect} from "react";
 import useModal from "hooks/useModal";
 import useFetch from "hooks/useFetch";
-import {useParams} from "react-router-dom";
 import ProductCard from "components/UI/product-card/ProductCard";
-import Button from "components/UI/button/Button";
 import Loader from "components/UI/loader/Loader";
 import Modal from "components/UI/modals/modal/Modal";
-import {sort} from "utilities/images";
+import SortBy from "components/UI/sort-options/SortBy";
+import SortByCategory from "components/UI/sort-by-category/SortByCategory";
 import "./Products.scss";
 
 export default function Products() {
-  const {category} = useParams();
-  const {
-    data: products,
-    error,
-    loading,
-  } = useFetch(`https://fakestoreapi.com/products/category/${category}`);
-
   const {toggle} = useModal();
+  const {data: products, error, loading} = useFetch("https://fakestoreapi.com/products/");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [title, setTitle] = useState("All");
 
-  const [filteredProducts, setFilteredProducts] = useState(null);
-
-  // set filtered products when data is fetched
   useEffect(() => {
     if (products) {
       setFilteredProducts(products);
     }
   }, [products]);
 
+  const numberOfItems =
+    products && (products.length > 1 ? `${products.length} products` : `${products.length} product`);
+
   return (
     <section>
       {error && <Modal toggle={toggle} heading="Something went wrong..." error={error} />}
       {loading && <Loader />}
-      {filteredProducts && (
-        <>
-          <h2 className="heading">{products && products[0].category.toUpperCase()}</h2>
-          <div className="category-sortable-panel">
-            <div className="panel-options">
-              <span>Sort by</span>
-              <img src={sort} alt="Sort icon" />
-              <Button
-                content="title"
-                id="dark-background"
-                onClick={() => setFilteredProducts(sortByTitle(filteredProducts))}
-              />
-              <Button
-                content="price (cheapest)"
-                id="dark-background"
-                onClick={() => setFilteredProducts(sortByPrice(filteredProducts))}
-              />
-              <Button
-                content="price (most expensive)"
-                id="dark-background"
-                onClick={() => setFilteredProducts(sortByPrice(filteredProducts, "desc"))}
-              />
-            </div>
-            <span className="product-quantity">
-              {filteredProducts.length} {filteredProducts.length > 1 ? "products" : "product"}
-            </span>
-          </div>
-          <div className="category-products">
-            {filteredProducts.map(product => {
-              return <ProductCard key={product.id} product={product} />;
-            })}
-          </div>
-        </>
-      )}
+      <h2 className="heading">{title.toUpperCase()}</h2>
+      <div className="category-sortable-panel">
+        <div className="panel-options">
+          <SortByCategory
+            setTitle={setTitle}
+            products={products}
+            setFilteredProducts={setFilteredProducts}
+          />
+        </div>
+        <span className="product-quantity">{numberOfItems}</span>
+        <SortBy products={products} setFilteredProducts={setFilteredProducts} />
+      </div>
+      <div className="category-products">
+        {filteredProducts &&
+          filteredProducts.map(product => {
+            return <ProductCard key={product.id} product={product} />;
+          })}
+      </div>
     </section>
   );
-}
-
-function sortByTitle(products) {
-  const productsCopy = [...products];
-  return productsCopy.sort((productA, productB) => productA.title.localeCompare(productB.title));
-}
-
-function sortByPrice(products, order) {
-  const productsCopy = [...products];
-
-  if (order === "desc") {
-    return productsCopy.sort((productA, productB) => productB.price - productA.price);
-  }
-  return productsCopy.sort((productA, productB) => productA.price - productB.price);
 }
