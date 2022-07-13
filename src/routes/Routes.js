@@ -27,8 +27,9 @@ export default function RouterRoutes() {
       <Route path="/Delivery-Collections" element={<DeliveryCollection />} />
       <Route path="/Returns-Refunds" element={<ReturnsRefunds />} />
       <Route path="/Products/:category" element={<Products />} />
+      <Route path="/Products" element={<Products />} />
+      <Route path="/Products/:category" element={<Products />} />
       <Route path="/ProductInfo/:id" element={<ProductInfo />} />
-      <Route path="*" element={<Page404 />} />
       <Route
         path="/Search"
         element={
@@ -61,6 +62,7 @@ export default function RouterRoutes() {
           </ProtectedRoute>
         }
       />
+      <Route path="*" element={<Page404 />} />
     </Routes>
   );
 }

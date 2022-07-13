@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import {useParams} from "react-router-dom";
 import useModal from "hooks/useModal";
 import useFetch from "hooks/useFetch";
 import ProductCard from "components/UI/product-card/ProductCard";
@@ -13,6 +14,7 @@ export default function Products() {
   const {data: products, error, loading} = useFetch("https://fakestoreapi.com/products/");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [title, setTitle] = useState("All");
+  const {category} = useParams();
 
   useEffect(() => {
     if (products) {
@@ -20,8 +22,18 @@ export default function Products() {
     }
   }, [products]);
 
+  useEffect(() => {
+    if (products && category) {
+      setFilteredProducts([...products].filter(product => product.category == category));
+      setTitle(category);
+    }
+  }, [products, category]);
+
   const numberOfItems =
-    products && (products.length > 1 ? `${products.length} products` : `${products.length} product`);
+    filteredProducts &&
+    (filteredProducts.length > 1
+      ? `${filteredProducts.length} products`
+      : `${filteredProducts.length} product`);
 
   return (
     <section>
