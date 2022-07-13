@@ -1,5 +1,5 @@
 import CloseBtn from "../close-button/CloseBtn";
-import Linkk from "../Link/Link";
+import Linkk from "../link/Linkk";
 import ShoppingCartItem from "../shopping-cart-item/ShoppingCartItem";
 import "./ShoppingCart.scss";
 
