@@ -1,4 +1,4 @@
-import Linkk from "../Link/Link";
+import Linkk from "../link/Linkk";
 import "./CategoryCard.scss";
 
 export default function CategoryCard({src, desc = "", content = "", path}) {

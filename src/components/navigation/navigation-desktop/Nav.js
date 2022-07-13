@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {categories} from "utilities/images";
+import {categories} from "utilities/helpers";
 import "./Nav.scss";
 
 export default function Nav({menuIsOpen, closeMobileMenu}) {
@@ -9,7 +9,9 @@ export default function Nav({menuIsOpen, closeMobileMenu}) {
         {categories.map(link => {
           return (
             <li key={link.id} className="nav-bar__item">
-              <Link to={`/Products${link.path}`} onClick={menuIsOpen ? closeMobileMenu : undefined}>
+              <Link
+                to={`/Products${link.path}`}
+                onClick={menuIsOpen ? closeMobileMenu : undefined}>
                 {link.desc}
               </Link>
             </li>
