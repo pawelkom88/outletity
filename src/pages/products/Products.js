@@ -24,7 +24,7 @@ export default function Products() {
 
   useEffect(() => {
     if (products && category) {
-      setFilteredProducts([...products].filter(product => product.category == category));
+      setFilteredProducts(products.filter(product => product.category == category));
       setTitle(category);
     }
   }, [products, category]);
