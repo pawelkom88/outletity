@@ -35,7 +35,6 @@ export default function Payment() {
   // handle form
   const formik = useFormik({
     initialValues: {
-      card: "",
       name: "",
       ccv: "",
       month: "Month",
@@ -44,9 +43,7 @@ export default function Payment() {
     validate,
   });
 
-  // calc new total including delivery charge and send it to firebase
   useEffect(() => {
-    // make more reusable !!!!!!!!!!!!!!!!! in helpers
     async function handleNewTotalChange() {
       await setDoc(doc(db, "voucher", "newTotal"), {total: total + Number(deliveryCharge)});
     }
@@ -134,15 +131,6 @@ function validate(values) {
   const errors = {};
 
   switch (true) {
-    case !values.card: {
-      errors.card = "Required";
-      break;
-    }
-    case values.card.length !== 19: {
-      errors.card = "Invalid card number. Length must be 19 characters including dashes";
-      break;
-    }
-
     case !values.name: {
       errors.name = "Required";
       break;
@@ -152,7 +140,6 @@ function validate(values) {
       errors.ccv = "Required";
       break;
     }
-    //add proper validation
     case values.ccv.length !== 3: {
       errors.ccv = "Invalid. CVV field requires 3 numbers";
       break;
