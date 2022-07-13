@@ -42,41 +42,6 @@ export const carouselImages = [
   {id: uuidv4(), srcMobile: shopping3webp, src: shopping3},
 ];
 
-export const categories = [
-  {
-    id: uuidv4(),
-    srcMobile: mens,
-    src: mensPng,
-    title: "Men's",
-    desc: "Men's clothing",
-    path: "/men's clothing",
-  },
-  {
-    id: uuidv4(),
-    srcMobile: womens,
-    src: womensPng,
-    title: "Women's",
-    desc: "Women's clothing",
-    path: "/women's clothing",
-  },
-  {
-    id: uuidv4(),
-    srcMobile: jewelery,
-    src: jeweleryPng,
-    title: "Jewelery",
-    desc: "Jewelery",
-    path: "/jewelery",
-  },
-  {
-    id: uuidv4(),
-    srcMobile: electronics,
-    src: electronicsPng,
-    title: "Electronics",
-    desc: "Electronics",
-    path: "/electronics",
-  },
-];
-
 export {
   logo,
   cart,
