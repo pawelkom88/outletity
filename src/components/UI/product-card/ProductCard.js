@@ -1,9 +1,10 @@
 import {calcDiscount} from "utilities/helpers";
 import {Link} from "react-router-dom";
+import {discount} from "utilities/helpers";
 import "./ProductCard.scss";
 
 export default function ProductCard({product}) {
-  const {discount, productPrice, discountedPrice} = calcDiscount(product);
+  const {productPrice, discountedPrice} = calcDiscount(product);
 
   return (
     <Link to={`/ProductInfo/${product.id}`} state={{product}}>

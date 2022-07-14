@@ -2,11 +2,11 @@ import {db} from "../../../firebase/config";
 import {doc, deleteDoc, getDoc, updateDoc} from "firebase/firestore";
 import {add, remove} from "utilities/images";
 import toast, {Toaster} from "react-hot-toast";
-import {calcDiscount, notifyUser} from "utilities/helpers";
+import {notifyUser} from "utilities/helpers";
+import {discount} from "utilities/helpers";
 import "./ShoppingCartItem.scss";
 
 export default function ShoppingCartItem({product}) {
-  const {discount} = calcDiscount(product);
 
   let productPrice;
   let discountedPrice;
