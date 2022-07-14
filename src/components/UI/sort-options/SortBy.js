@@ -6,7 +6,7 @@ export default function SortBy({products, setFilteredProducts}) {
     <div className="panel-options">
       <Button
         content="title"
-        id="dark-background"
+        id="light-background"
         onClick={() => {
           setFilteredProducts(sortByTitle(products));
         }}
@@ -14,13 +14,13 @@ export default function SortBy({products, setFilteredProducts}) {
       <Button
         size={1}
         content="price (cheapest)"
-        id="dark-background"
+        id="light-background"
         onClick={() => setFilteredProducts(sortByPrice(products))}
       />
       <Button
         size={1}
         content="price (most expensive)"
-        id="dark-background"
+        id="light-background"
         onClick={() => setFilteredProducts(sortByPrice(products, "desc"))}
       />
     </div>
