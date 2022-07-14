@@ -1,5 +1,6 @@
 @use "/src/styles/colors";
 @use "/src/styles/mixins";
+@use "/src/styles/breakpoints";
 
 .create-account,
 label,
@@ -19,9 +20,14 @@ label,
 }
 
 .login-form {
-  width: 100%;
+  width: 60%;
   @include mixins.flex(center, center);
   flex-direction: column;
+  padding: 0 2rem;
+
+  @media (max-width: breakpoints.$tablet) {
+    width: 100%;
+  }
 
   & input {
     margin-bottom: 1rem;
@@ -29,7 +35,6 @@ label,
 
   & label {
     align-self: flex-start;
-    margin: 1rem 20%;
   }
 
   & button {

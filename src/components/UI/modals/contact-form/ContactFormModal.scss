@@ -3,9 +3,9 @@
 @use "/src/styles/breakpoints";
 
 .contact-form-modal {
-  padding: 0 7rem;
+  padding: 0 10rem;
 
-  @media (max-width: breakpoints.$mobile) {
+  @media (max-width: breakpoints.$tablet) {
     margin: 1rem 0;
     padding: 0 0.5rem;
   }
