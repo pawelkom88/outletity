@@ -1,0 +1,14 @@
+@use "/src/styles/colors";
+
+.subscribe-modal {
+  text-align: center;
+
+  & div,
+  button {
+    margin: 1rem 0;
+  }
+}
+
+.success {
+  color: colors.$brand-primary;
+}

@@ -1,16 +1,10 @@
 @use "/src/styles/mixins";
 
 .newsletter-modal-form {
-  width: 100%;
   @include mixins.flex(center, center);
   flex-direction: column;
-
-  & input {
-    margin: 5rem 0;
-  }
 }
 
 .newsletter-error-message {
-  @include mixins.error-message(68%);
   @include mixins.fadeIn;
 }

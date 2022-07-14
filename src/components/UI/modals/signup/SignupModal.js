@@ -47,7 +47,6 @@ export default function SignupModal({toggle, handleTransition}) {
           className="login-form"
           onSubmit={formik.errors.isValidated ? e => handleSubmit(e) : undefined}>
           <Input
-            size={60}
             type="email"
             labelFor="email"
             id="email"
@@ -58,7 +57,6 @@ export default function SignupModal({toggle, handleTransition}) {
             {displayErrorMsg(formik.touched.email, formik.errors.email)}
           </Input>
           <Input
-            size={60}
             type="password"
             labelFor="password"
             id="password"
@@ -70,7 +68,6 @@ export default function SignupModal({toggle, handleTransition}) {
             {displayErrorMsg(formik.touched.password, formik.errors.password)}
           </Input>
           <Input
-            size={60}
             type="password"
             labelFor="passwordConfirmation"
             id="passwordConfirmation"
