@@ -2,7 +2,7 @@
 @use "/src/styles/colors";
 
 .product-card {
-  width: clamp(300px, 60vw, 400px);
+  width: clamp(300px, 80vw, 400px);
   height: 600px;
   cursor: pointer;
   @include mixins.box-shadow;

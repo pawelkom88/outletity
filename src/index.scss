@@ -101,6 +101,12 @@ a {
   }
 }
 
+#light-background {
+  background-color: colors.$white;
+  color: colors.$black;
+  @include mixins.border(1px, colors.$black);
+}
+
 #disabled {
   background-color: colors.$light-grey;
   border: none;
