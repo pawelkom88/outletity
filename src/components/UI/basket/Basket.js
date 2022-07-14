@@ -31,7 +31,7 @@ export default function Basket({isShown, closeMobileMenu}) {
           aria-label="show cart"
           className="basket-container">
           <img className="basket" src={cart} alt="Cart icon" />
-          <span data-count={numberOfItems} className="basket-quantity"></span>
+          {user && <span data-count={numberOfItems} className="basket-quantity"></span>}
         </Link>
       ) : (
         <button
@@ -39,7 +39,7 @@ export default function Basket({isShown, closeMobileMenu}) {
           aria-label="show cart"
           className="basket-container no-styles">
           <img className="basket" src={cart} alt="Cart icon" />
-          <span data-count={numberOfItems} className="basket-quantity"></span>
+          {user && <span data-count={numberOfItems} className="basket-quantity"></span>}
         </button>
       )}
 
