@@ -37,15 +37,12 @@ export default function ContactFormModal({toggle}) {
           </ul>
           <form className="contact-form" onSubmit={formik.handleSubmit}>
             <Input
-              size="100"
               labelFor="name"
               id="name"
               name="name"
               type="text"
               placeholder="Enter name"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.name}>
+              {...formik.getFieldProps("name")}>
               {formik.touched.name && formik.errors.name ? (
                 <span className="contact-form-error-msg">{formik.errors.name}</span>
               ) : (
@@ -53,15 +50,12 @@ export default function ContactFormModal({toggle}) {
               )}
             </Input>
             <Input
-              size="100"
               labelFor="email"
               id="email"
               name="email"
               type="email"
               placeholder="Enter e-mail"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.email}>
+              {...formik.getFieldProps("email")}>
               {formik.touched.email && formik.errors.email ? (
                 <span className="contact-form-error-msg">{formik.errors.email}</span>
               ) : (
@@ -104,14 +98,4 @@ function validate(values) {
 
 function notifyUser() {
   toast.success("One of our advisor will be in touch shortly !");
-  // // future use
-  // toast.promise(
-  //   Promise,
-  //    {
-  //      loading: 'Saving...',
-  //      success: <b>Thank you for subscribing !</b>,
-  //      error: <b>Something went wrong...Try again</b>,
-  //    }
-  //  );
-  // setTimeout(toggle, 3000);
 }
