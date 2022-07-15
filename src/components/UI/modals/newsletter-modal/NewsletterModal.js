@@ -1,3 +1,4 @@
+import {useState} from "react";
 import Modal from "../modal/Modal";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import SubscribeForm from "components/UI/subscribe-form/SubscribeForm";
@@ -12,7 +13,6 @@ export default function NewsletterModal({toggle}) {
         </p>
         <MailchimpSubscribe
           url={process.env.REACT_APP_MAILCHIMP_URL}
-          // add reCaptcha
           render={({subscribe, status, message}) => (
             <SubscribeForm
               status={status}
