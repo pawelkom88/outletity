@@ -35,6 +35,8 @@ import chevronup from "assets/svg/chevronup.svg";
 import chevrondown from "assets/svg/chevrondown.svg";
 import sadness from "assets/svg/sadness.svg";
 import upload from "assets/svg/upload.svg";
+import star from "assets/svg/star.svg";
+import emptyStar from "assets/svg/emptyStar.svg";
 
 export const carouselImages = [
   {id: uuidv4(), srcMobile: shopping1webp, src: shopping1},
@@ -79,4 +81,6 @@ export {
   success,
   sadness,
   upload,
+  star,
+  emptyStar
 };
