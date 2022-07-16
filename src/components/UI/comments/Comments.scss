@@ -1,0 +1,37 @@
+@use "styles/colors";
+@use "/src/styles/mixins";
+
+.comments-container {
+  @include mixins.flex(space-between, center);
+  flex-direction: column;
+  min-height: 250px;
+}
+
+.comments-bubble {
+  position: relative;
+  max-width: 600px;
+  min-height: 100px;
+  border: colors.$black solid 1px;
+  border-left: colors.$brand-primary solid 1rem;
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+  @include mixins.box-shadow;
+}
+
+.comment-heading {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.user-details {
+  @include mixins.flex(flex-start, center);
+  padding: 0 1rem;
+  & * {
+    margin-right: 2rem;
+  }
+}
+
+.comment-content {
+  padding: 2rem 1rem;
+}
