@@ -1,0 +1,17 @@
+@use "/src/styles/mixins";
+
+.rating-star {
+  width: 35px;
+  margin: 2rem 0;
+  cursor: pointer;
+}
+
+.comment-label {
+  width: 80%;
+  @include mixins.flex(center, center);
+  flex-direction: column;
+
+  & textarea {
+    padding: 2rem;
+  }
+}
