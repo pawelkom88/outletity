@@ -1,11 +1,25 @@
+import {useState} from "react";
 import Modal from "../modal/Modal";
-import {star, emptyStar as empty} from "utilities/images";
 import Button from "components/UI/button/Button";
+import {db} from "../../../../firebase/config";
+import {setDoc, doc, serverTimestamp} from "firebase/firestore";
+import {star, emptyStar as empty} from "utilities/images";
+import {v4 as uuidv4} from "uuid";
 import "./CommentModal.scss";
 
-export default function CommentModal({toggle, setNumberOfStars, numberOfStars, setReview}) {
-  function handleFirebase() {
-    console.log("hej");
+export default function CommentModal({toggle, review, setReview, title}) {
+  const [numberOfStars, setNumberOfStars] = useState(0);
+
+  async function addComment(title) {
+    const commentObj = {
+      rating: numberOfStars,
+      content: review,
+      timestamp: serverTimestamp(),
+    };
+
+    // await addDoc(collection(db, "COMMENTS"), commentObj);
+
+    await setDoc(doc(db, "COMMENTS", `${title + uuidv4()}`), commentObj);
   }
 
   return (
@@ -34,8 +48,14 @@ export default function CommentModal({toggle, setNumberOfStars, numberOfStars, s
           placeholder="Enter message"
           onChange={e => setReview(e.target.value)}
         />
-        <Button content="Add" id="dark-background" onClick={handleFirebase} />
-        {/* on click toggle ? */}
+        <Button
+          content="Add"
+          id="dark-background"
+          onClick={() => {
+            addComment(title);
+            toggle();
+          }}
+        />
       </label>
     </Modal>
   );

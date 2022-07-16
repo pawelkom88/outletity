@@ -1,9 +1,14 @@
 @use "/src/styles/mixins";
+@use "/src/styles/breakpoints";
 
 .rating-star {
-  width: 35px;
-  margin: 2rem 0;
+  width: 20px;
+  margin: 0 0.5rem 0 0;
   cursor: pointer;
+
+  @media (max-width: breakpoints.$mobile) {
+    width: 15px;
+  }
 }
 
 .comment-label {
@@ -14,4 +19,8 @@
   & textarea {
     padding: 2rem;
   }
+}
+
+.rating-stars img {
+  margin: 2rem 0.5rem;
 }
