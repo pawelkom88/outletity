@@ -1,0 +1,18 @@
+.comment-avatar {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.user-email,
+.timestamp {
+  font-weight: bold;
+}
+
+.rating {
+  display: flex;
+}
+
+.comment-content {
+  font-size: clamp(1.5vmin, 1.2rem, 3vmin);
+  font-style: italic;
+}

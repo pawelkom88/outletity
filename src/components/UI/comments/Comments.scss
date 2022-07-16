@@ -1,33 +1,46 @@
 @use "styles/colors";
 @use "/src/styles/mixins";
+@use "/src/styles/breakpoints";
 
 .comments-container {
   @include mixins.flex(space-between, center);
   flex-direction: column;
   min-height: 250px;
+
+  @media (max-width: breakpoints.$tablet) {
+    min-height: 300px;
+  }
 }
 
 .comments-bubble {
   position: relative;
-  max-width: 600px;
+  max-width: 750px;
   min-height: 100px;
   border: colors.$black solid 1px;
   border-left: colors.$brand-primary solid 1rem;
   padding: 1rem;
-  margin: 0 auto;
+  margin: 2rem 0;
   border-radius: 1rem;
+  text-align: center;
   @include mixins.box-shadow;
+
+  @media (max-width: breakpoints.$mobile) {
+    width: 100%;
+  }
 }
 
 .comment-heading {
   text-align: center;
-  margin: 1rem 0;
 }
 
 .user-details {
-  @include mixins.flex(flex-start, center);
+  @include mixins.flex(center, center);
+  flex-wrap: wrap;
   padding: 0 1rem;
-  & * {
+
+  & .comment-avatar,
+  .timestamp,
+  .user-email {
     margin-right: 2rem;
   }
 }
