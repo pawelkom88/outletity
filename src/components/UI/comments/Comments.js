@@ -12,10 +12,11 @@ export default function Comments({title}) {
   const {isShown, toggle} = useModal();
   const [review, setReview] = useState("");
   const {data: comments} = useCollection("COMMENTS");
+  const commentExists = comments && comments.some(({id}) => id.includes(title.substring(0, 30)));
 
   return (
     <div className="comments-container">
-      {<h2 className="comment-heading">Customers comments: {comments && comments.length}</h2>}
+      <h2 className="comment-heading">Customers comments:</h2>
       {comments &&
         comments.map(comment => {
           if (comment.id.includes(title.substring(0, 30))) {
@@ -31,6 +32,7 @@ export default function Comments({title}) {
           }
           return null;
         })}
+      {!commentExists && <h3 className="first-comment">Be first who comment this product !</h3>}
       {user && <Button onClick={toggle} content="Add comment" id="dark-background" />}
       {isShown && (
         <CommentModal title={title} review={review} setReview={setReview} toggle={toggle} />
