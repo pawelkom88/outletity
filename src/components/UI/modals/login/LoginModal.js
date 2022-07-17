@@ -16,7 +16,6 @@ export default function LoginModal({
   user,
   setAvatar,
   avatar,
-
   toggle,
   handleTransition,
   setIsUploaded,

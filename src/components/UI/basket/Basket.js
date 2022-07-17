@@ -1,11 +1,10 @@
-import useAuthContext from "hooks/useAuthContext";
-import {CartContext} from "context/CartContext";
-import useMatchMedia from "hooks/useMatchMedia";
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {cart} from "utilities/images";
+import {CartContext} from "context/CartContext";
+import useAuthContext from "hooks/useAuthContext";
+import useMatchMedia from "hooks/useMatchMedia";
 import ShoppingCart from "components/UI/shopping-cart/ShoppingCart";
-
+import {cart} from "utilities/images";
 import "./Basket.scss";
 
 export default function Basket({isShown, closeMobileMenu}) {

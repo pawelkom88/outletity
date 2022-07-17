@@ -6,7 +6,6 @@ import "./SubscribeForm.scss";
 
 export default function SubscribeForm({status, message, onValidated}) {
   const [email, setEmail] = useState("");
-  const [varified, setVerified] = useState(false);
   const captchaRef = useRef(null);
 
   function handleSubmit(e) {
@@ -14,11 +13,11 @@ export default function SubscribeForm({status, message, onValidated}) {
     onValidated({EMAIL: email});
     captchaRef.current.reset();
   }
-
+  
   function onChange(value) {
     console.log("Captcha value:", value);
   }
-  
+
   return (
     <>
       <div className={message && status === "error" ? "contact-form-error-msg" : "success"}>
@@ -37,13 +36,8 @@ export default function SubscribeForm({status, message, onValidated}) {
           onChange={e => setEmail(e.target.value)}
           value={email}
         />
-        <ReCAPTCHA ref={captchaRef} sitekey={process.env.REACT_APP_API_KEY} onChange={onChange} />
-        <Button
-          id="dark-background"
-          content="Subscribe"
-          onClick={handleSubmit}
-          disabled={!varified}
-        />
+        <ReCAPTCHA ref={captchaRef} sitekey={process.env.REACT_APP_CAPTCHA} onChange={onChange} />
+        <Button id="dark-background" content="Subscribe" onClick={handleSubmit} />
       </div>
     </>
   );
