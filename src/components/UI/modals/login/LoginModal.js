@@ -7,7 +7,6 @@ import Button from "components/UI/button/Button";
 import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
-import {sadness} from "utilities/images";
 import {actionObj} from "store/actions";
 import UserSettings from "../logout/UserSettings";
 import "./LoginModal.scss";
@@ -20,7 +19,7 @@ export default function LoginModal({
   handleTransition,
   setIsUploaded,
 }) {
-  const {handleUser, error} = useAuth(signInWithEmailAndPassword, actionObj.login);
+  const {handleUser} = useAuth(signInWithEmailAndPassword, actionObj.login);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -55,13 +54,6 @@ export default function LoginModal({
             </button>
           </div>
           <hr className="login-divider" />
-          {error && (
-            <Modal toggle={toggle}>
-              <img style={{width: "100px"}} src={sadness} alt="" />
-              <h3>{`User with email address ${formik.values.email} not found. Try again or create new account. `}</h3>
-            </Modal>
-          )}
-
           <form className="login-form" onSubmit={e => handleSubmit(e)}>
             <Input
               type="email"

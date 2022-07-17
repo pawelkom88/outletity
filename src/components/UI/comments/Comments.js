@@ -15,7 +15,7 @@ export default function Comments({title}) {
 
   return (
     <div className="comments-container">
-      <h2 className="comment-heading">Customers comments: {comments && comments.length}</h2>
+      {<h2 className="comment-heading">Customers comments: {comments && comments.length}</h2>}
       {comments &&
         comments.map(comment => {
           if (comment.id.includes(title.substring(0, 30))) {

@@ -1,9 +1,10 @@
 import {useState, useEffect} from "react";
+import {notifyUser} from "utilities/helpers";
+import toast from "react-hot-toast";
 
 export default function useFetch(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     let didCancel = false;
@@ -17,16 +18,16 @@ export default function useFetch(url) {
 
           if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
-            setError(message);
+            notifyUser(toast.error, message);
+
             setLoading(false);
           }
           const data = await response.json();
           setData(data);
           setLoading(false);
-          setError(false);
         }
-      } catch (error) {
-        setError(error.message);
+      } catch {
+        notifyUser(toast.error, "Cannot fetch data");
         setLoading(false);
       }
     }
@@ -35,5 +36,5 @@ export default function useFetch(url) {
     return () => (didCancel = true);
   }, [url]);
 
-  return {data, loading, error};
+  return {data, loading};
 }
