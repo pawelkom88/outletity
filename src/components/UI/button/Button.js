@@ -1,6 +1,18 @@
-export default function Button({id = "", type = "button", onClick, content = "", className = ""}) {
+export default function Button({
+  id = "",
+  type = "button",
+  onClick,
+  content = "",
+  className = "",
+  isDisabled = false,
+}) {
   return (
-    <button id={id} type={type} onClick={onClick} className={`btn ${className}`}>
+    <button
+      id={id}
+      type={type}
+      onClick={onClick}
+      className={`btn ${className}`}
+      disabled={isDisabled}>
       {content}
     </button>
   );
