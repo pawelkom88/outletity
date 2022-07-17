@@ -1,3 +1,5 @@
+@use "/src/styles/colors";
+
 .comment-avatar {
   width: 30px;
   border-radius: 50%;
@@ -13,6 +15,7 @@
 }
 
 .comment-content {
-  font-size: clamp(1.5vmin, 1.2rem, 3vmin);
+  font-size: clamp(3vmin, 2rem, 5vmin);
   font-style: italic;
+  color: colors.$brand-primary;
 }
