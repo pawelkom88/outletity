@@ -4,7 +4,7 @@
 
 .product-container {
   display: flex;
-  margin: 10rem auto;
+  margin: 5rem auto;
   gap: 2%;
   @include mixins.box-shadow;
 

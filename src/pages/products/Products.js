@@ -13,7 +13,7 @@ export default function Products() {
   const {toggle} = useModal();
   const {data: products, error, loading} = useFetch("https://fakestoreapi.com/products/");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [title, setTitle] = useState("All");
+  const [title, setTitle] = useState("");
   const {category} = useParams();
 
   useEffect(() => {
@@ -39,24 +39,29 @@ export default function Products() {
     <section>
       {error && <Modal toggle={toggle} heading="Something went wrong..." error={error} />}
       {loading && <Loader />}
-      <h2 className="heading">{title.toUpperCase()}</h2>
-      <div className="category-sortable-panel">
-        <div className="panel-options">
-          <SortByCategory
-            setTitle={setTitle}
-            products={products}
-            setFilteredProducts={setFilteredProducts}
-          />
-        </div>
-        <span className="product-quantity">{numberOfItems}</span>
-        <SortBy products={products} setFilteredProducts={setFilteredProducts} />
-      </div>
-      <div className="category-products">
-        {filteredProducts &&
-          filteredProducts.map(product => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
-      </div>
+
+      {products && (
+        <>
+          <h2 className="heading">{title.toUpperCase()}</h2>
+          <div className="category-sortable-panel">
+            <div className="panel-options">
+              <SortByCategory
+                setTitle={setTitle}
+                products={products}
+                setFilteredProducts={setFilteredProducts}
+              />
+            </div>
+            <span className="product-quantity">{numberOfItems}</span>
+            <SortBy products={products} setFilteredProducts={setFilteredProducts} />
+          </div>
+          <div className="category-products">
+            {filteredProducts &&
+              filteredProducts.map(product => {
+                return <ProductCard key={product.id} product={product} />;
+              })}
+          </div>
+        </>
+      )}
     </section>
   );
 }
