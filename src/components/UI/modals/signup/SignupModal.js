@@ -5,13 +5,12 @@ import Button from "components/UI/button/Button";
 import {Toaster} from "react-hot-toast";
 import {useFormik} from "formik";
 import {displayErrorMsg} from "utilities/helpers";
-import {sadness} from "utilities/images";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {actionObj} from "store/actions";
 import "./SignupModal.scss";
 
 export default function SignupModal({toggle, handleTransition}) {
-  const {handleUser, error} = useAuth(createUserWithEmailAndPassword, actionObj.login);
+  const {handleUser} = useAuth(createUserWithEmailAndPassword, actionObj.login);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -90,12 +89,6 @@ export default function SignupModal({toggle, handleTransition}) {
           />
         </form>
       </Modal>
-      {error && (
-        <Modal heading="Ups :(" toggle={toggle}>
-          <img style={{width: "100px"}} src={sadness} alt="Sad face" />
-          <h3>Something went wrong. Try again</h3>
-        </Modal>
-      )}
       <Toaster position="top-center" />
     </>
   );

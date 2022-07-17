@@ -23,6 +23,7 @@ My goal was to simulate a professional work environment.
   [Design](https://www.figma.com/file/HEgT03d9Kht0SUWiPWVvD3/Untitled?node-id=0%3A1)
 - I worked with tasks on a Trello board: [Kanban board]()
 - I used feature branches and Pull Requests
+- I added real newsletter using Mailchimp
 
 ## How to navigate this project
 
@@ -48,8 +49,7 @@ E-commerce ...
 
 - Sass is great for styling. To make styling easier I used variables, mixins, custom breakpoints.
 
-- My plan is to become a front-end developer eventually. I decided to use an existing API rather to
-  create a custom server.
-
+- My plan is to become a professional front-end developer eventually. I decided to use an existing API rather to create a custom server.
+<!-- 
 - Testing is an essential part of production applications. Testing Library is the go-to library in
-  the React community. I covered the essential features of the app with tests.
+  the React community. I covered the essential features of the app with tests. -->

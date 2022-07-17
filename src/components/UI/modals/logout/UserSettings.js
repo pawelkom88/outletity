@@ -12,7 +12,7 @@ import "./UserSettings.scss";
 export default function UserSettings({avatar, setAvatar, user, toggle, setIsUploaded}) {
   const [photo, setPhoto] = useState(null);
   const [uploadError, setUploadError] = useState(null);
-  const {logUserOut, error} = useLogout();
+  const {logUserOut} = useLogout();
 
   async function handlePhotoUpload() {
     const fileRef = ref(storage, user.uid);
@@ -60,12 +60,6 @@ export default function UserSettings({avatar, setAvatar, user, toggle, setIsUplo
         )}
         <Button content="Log out" className="btn" id="dark-background" onClick={handleLogout} />
       </Modal>
-      {error && (
-        <Modal toggle={toggle}>
-          <img className="sadFace" src={sadness} alt="sad face" />
-          <h3>{"Something went wrong"}</h3>
-        </Modal>
-      )}
       {uploadError && (
         <Modal toggle={toggle}>
           <img className="sadFace" src={sadness} alt="sad face" />
