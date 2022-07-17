@@ -1,4 +1,5 @@
 import {createContext, useContext} from "react";
+import useAuthContext from "hooks/useAuthContext";
 import useCollection from "hooks/useCollection";
 import {handleNewTotalChange} from "utilities/helpers";
 
@@ -10,13 +11,14 @@ export function CartContext() {
 
 // try to avoid contex and pass props
 export function ShoppingCartProvider({children}) {
-  const {products} = useCollection("PRODUCTS");
+  const {user} = useAuthContext();
+  const {data: products} = useCollection("PRODUCTS", user);
 
   let total = products && products.reduce((acc, {discountedPrice}) => acc + +discountedPrice, 0);
 
-  handleNewTotalChange({total});
-
   let numberOfItems = products && products.reduce((acc, {quantity}) => acc + quantity, 0);
+
+  handleNewTotalChange({total});
 
   return (
     <ShoppingCartContext.Provider value={{products, total, numberOfItems}}>
