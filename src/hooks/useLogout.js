@@ -1,21 +1,19 @@
-import {useState} from "react";
 import useAuthContext from "./useAuthContext";
 import {auth} from "../firebase/config";
 import {signOut} from "firebase/auth";
 import {actionObj} from "store/actions";
+import {notifyUser} from "utilities/helpers";
+import toast from "react-hot-toast";
 
 export default function useLogout() {
-  const [error, setError] = useState(null);
   const {dispatch} = useAuthContext();
-
   function logUserOut() {
-    setError(null);
     try {
       signOut(auth).then(() => dispatch({type: actionObj.logout}));
     } catch (error) {
-      setError(error.message);
+      notifyUser(toast.error, `Something went wrong : ${error.message}`);
     }
   }
 
-  return {error, logUserOut};
+  return {logUserOut};
 }

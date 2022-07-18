@@ -2,9 +2,9 @@ import {useState} from "react";
 import {displayErrorMsg} from "utilities/helpers";
 import {months, years, deliveryOptions} from "utilities/helpers";
 import Select from "components/UI/select/Select";
-import "./Form.scss";
+import "./PaymentForm.scss";
 
-export default function Form({formik, children, setDeliveryCharge}) {
+export default function PaymentForm({formik, children, setDeliveryCharge}) {
   const [creditCardNumber, setCreditCardNumber] = useState("");
 
   function handleCreditCardNumber(e) {

@@ -12,13 +12,11 @@ export default function SortBy({products, setFilteredProducts}) {
         }}
       />
       <Button
-        size={1}
         content="price (cheapest)"
         id="light-background"
         onClick={() => setFilteredProducts(sortByPrice(products))}
       />
       <Button
-        size={1}
         content="price (most expensive)"
         id="light-background"
         onClick={() => setFilteredProducts(sortByPrice(products, "desc"))}

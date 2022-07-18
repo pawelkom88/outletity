@@ -42,7 +42,7 @@ export default function ShoppingCartItem({product}) {
   async function handleRemove(id) {
     const docRef = doc(db, "PRODUCTS", id);
     await deleteDoc(docRef);
-    notifyUser(toast.success, " Product has been removed from basket");
+    notifyUser(toast.success, "Product has been removed from basket");
   }
 
   return (

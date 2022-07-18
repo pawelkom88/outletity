@@ -12,7 +12,6 @@ export default function Input({
   onChange,
   onBlur,
   value = "",
-  size = "60",
 }) {
   return (
     <>

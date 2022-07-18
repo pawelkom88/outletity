@@ -10,7 +10,7 @@ export default function Carousel() {
   const {currentImage} = useCarousel(carouselImages);
   return (
     <div className="container-slider">
-      <h1 className="slider-msg">
+      <h1 className="container-slider__heading">
         Favorite brands <br />
         and hottest trends.
       </h1>

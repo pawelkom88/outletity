@@ -1,5 +1,5 @@
 import Button from "../button/Button";
-import {sortByCategory, sortByTitle} from "utilities/helpers";
+import {sortByCategory, sortByTitle, categories} from "utilities/helpers";
 
 export default function SortByCategory({products, setFilteredProducts, setTitle}) {
   return (
@@ -12,38 +12,19 @@ export default function SortByCategory({products, setFilteredProducts, setTitle}
           setTitle("All");
         }}
       />
-      <Button
-        content="Mens"
-        id="dark-background"
-        onClick={() => {
-          setFilteredProducts(sortByCategory(products, "men's clothing"));
-          setTitle("men's clothing");
-        }}
-      />
-      <Button
-        content="Womens"
-        id="dark-background"
-        onClick={() => {
-          setFilteredProducts(sortByCategory(products, "women's clothing"));
-          setTitle("women's clothing");
-        }}
-      />
-      <Button
-        content="Jewelery"
-        id="dark-background"
-        onClick={() => {
-          setFilteredProducts(sortByCategory(products, "jewelery"));
-          setTitle("jewelery");
-        }}
-      />
-      <Button
-        content="Electronics"
-        id="dark-background"
-        onClick={() => {
-          setFilteredProducts(sortByCategory(products, "electronics"));
-          setTitle("electronics");
-        }}
-      />
+      {categories.map(({id, title, desc}) => {
+        return (
+          <Button
+            key={id}
+            content={title}
+            id="dark-background"
+            onClick={() => {
+              setFilteredProducts(sortByCategory(products, desc.toLowerCase()));
+              setTitle(desc.toLowerCase());
+            }}
+          />
+        );
+      })}
     </>
   );
 }
