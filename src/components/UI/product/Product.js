@@ -5,6 +5,7 @@ import Button from "components/UI/button/Button";
 import {calcDiscount, notifyUser, discount} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import Comments from "../comments/Comments";
+import {v4 as uuidv4} from "uuid";
 import "./Product.scss";
 
 export default function Product({product}) {
@@ -23,9 +24,9 @@ export default function Product({product}) {
       basePrice: productPrice,
       voucherApplied: false,
     };
-// try to add by id !!!!!!!!!!!!!!!!!!!!
-    const docRef = doc(db, "PRODUCTS", product.title);
+    const docRef = doc(db, "PRODUCTS", uuidv4());
     const docSnap = await getDoc(docRef);
+    console.log(user.uid);
 
     if (docSnap.exists()) {
       notifyUser(toast.error, "Product has already been added");
@@ -33,9 +34,6 @@ export default function Product({product}) {
       await setDoc(docRef, productObj);
       notifyUser(toast.success, "Product has been added to basket");
     }
-
-    // await setDoc(docRef, productObj);
-    // notifyUser(toast.success, "Product has been added to basket");
   }
 
   return (
