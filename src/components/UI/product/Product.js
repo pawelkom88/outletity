@@ -24,9 +24,8 @@ export default function Product({product}) {
       basePrice: productPrice,
       voucherApplied: false,
     };
-    const docRef = doc(db, "PRODUCTS", uuidv4());
+    const docRef = doc(db, "PRODUCTS", product.title + user.uid);
     const docSnap = await getDoc(docRef);
-    console.log(user.uid);
 
     if (docSnap.exists()) {
       notifyUser(toast.error, "Product has already been added");
