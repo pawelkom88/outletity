@@ -11,7 +11,7 @@ export default function userComments({email, avatar, timeStamp, rating, content}
         <p className="timestamp">Added : {timeStamp ? timeStamp.toDate().toLocaleString() : ""}</p>
         <div className="rating">
           {[...new Array(rating)].map((_, i) => (
-            <img key={i} className="rating-star" src={star} alt="" />
+            <img key={i} className="rating-star" src={star} alt="star icon" />
           ))}
         </div>
       </div>

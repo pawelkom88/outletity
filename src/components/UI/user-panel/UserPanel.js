@@ -27,6 +27,9 @@ export default function UserPanel({isShown, toggle}) {
   return (
     // if user is logged in
     <>
+      <button onClick={toggle} aria-label="show user-profile" className="user no-styles">
+        <img className="user-avatar" src={avatar ? avatar : userIcon} alt="User icon" />
+      </button>
       {isShown && isLoggedIn && (
         <LoginModal
           setIsUploaded={setIsUploaded}
@@ -37,10 +40,6 @@ export default function UserPanel({isShown, toggle}) {
           handleTransition={handleTransitionBetweenModals}
         />
       )}
-      <button onClick={toggle} aria-label="show user-profile" className="user no-styles">
-        <img className="user-avatar" src={avatar ? avatar : userIcon} alt="User icon" />
-      </button>
-
       {isShown && isSignedIn && (
         <SignupModal toggle={toggle} handleTransition={handleTransitionBetweenModals} />
       )}

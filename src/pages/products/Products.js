@@ -7,6 +7,7 @@ import SortBy from "components/UI/sort-options/SortBy";
 import SortByCategory from "components/UI/sort-by-category/SortByCategory";
 import {Toaster} from "react-hot-toast";
 import "./Products.scss";
+import SearchBar from "components/UI/search-bar/SearchBar";
 
 export default function Products() {
   const {data: products, loading} = useFetch("https://fakestoreapi.com/products/");
@@ -39,6 +40,7 @@ export default function Products() {
       {products && (
         <>
           <h2 className="heading">{title.toUpperCase()}</h2>
+          <SearchBar products={filteredProducts} />
           <div className="category-sortable-panel">
             <div className="panel-options">
               <SortByCategory

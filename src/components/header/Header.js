@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import useOverflow from "hooks/useOverflow.js";
 import useMatchMedia from "hooks/useMatchMedia";
 import useModal from "hooks/useModal";
-import SearchBar from "../UI/search-bar/SearchBar";
 import Basket from "../UI/basket/Basket";
 import UserPanel from "../UI/user-panel/UserPanel";
 import Hamburger from "../navigation/navigation-mobile/Hamburger";
@@ -42,7 +41,6 @@ export default function Header() {
             <img src={logo} alt="Outletity logo" />
           </Link>
           <div className="user-panel">
-            {!matches && <SearchBar />}
             <UserPanel toggle={toggle} isShown={isShown} />
             <Basket closeMobileMenu={closeMobileMenu} isShown={isShown} />
           </div>

@@ -13,10 +13,6 @@ export default function SubscribeForm({status, message, onValidated}) {
     onValidated({EMAIL: email});
     captchaRef.current.reset();
   }
-  
-  function onChange(value) {
-    console.log("Captcha value:", value);
-  }
 
   return (
     <>
@@ -36,7 +32,7 @@ export default function SubscribeForm({status, message, onValidated}) {
           onChange={e => setEmail(e.target.value)}
           value={email}
         />
-        <ReCAPTCHA ref={captchaRef} sitekey={process.env.REACT_APP_CAPTCHA} onChange={onChange} />
+        <ReCAPTCHA ref={captchaRef} sitekey={process.env.REACT_APP_CAPTCHA} />
         <Button id="dark-background" content="Subscribe" onClick={handleSubmit} />
       </div>
     </>

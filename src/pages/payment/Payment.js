@@ -5,10 +5,10 @@ import {useFormik} from "formik";
 import {db} from "../../firebase/config";
 import {doc, deleteDoc, setDoc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
-import Form from "components/UI/form/Form";
+import Form from "components/UI/form/PaymentForm";
 import {
   displayErrorMsg,
-  handleNewTotalChange,
+  calcNewTotal,
   deliveryOptionTypes,
   deliveryOptions,
 } from "utilities/helpers";
@@ -44,11 +44,11 @@ export default function Payment() {
   });
 
   useEffect(() => {
-    async function handleNewTotalChange() {
+    async function handleNewTotal() {
       await setDoc(doc(db, "voucher", "newTotal"), {total: total + Number(deliveryCharge)});
     }
     if (deliveryCharge) {
-      handleNewTotalChange();
+      handleNewTotal();
     }
   }, [deliveryCharge, total]);
 
@@ -108,7 +108,7 @@ export default function Payment() {
             formik.errors.isValidated
               ? () => {
                   setIsProcessed(true);
-                  handleNewTotalChange({total: 0});
+                  calcNewTotal({total: 0});
                   emptyCart();
                 }
               : undefined

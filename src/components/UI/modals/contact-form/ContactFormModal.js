@@ -69,6 +69,7 @@ export default function ContactFormModal({toggle}) {
               id="message"
               rows="6"
               placeholder="Enter message"
+              required
             />
             <Button type="submit" content="Send" id="dark-background" />
           </form>

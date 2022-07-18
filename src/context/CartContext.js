@@ -1,7 +1,7 @@
 import {createContext, useContext} from "react";
 import useAuthContext from "hooks/useAuthContext";
 import useCollection from "hooks/useCollection";
-import {handleNewTotalChange} from "utilities/helpers";
+import {calcNewTotal} from "utilities/helpers";
 
 const ShoppingCartContext = createContext({});
 
@@ -18,7 +18,7 @@ export function ShoppingCartProvider({children}) {
 
   let numberOfItems = products && products.reduce((acc, {quantity}) => acc + quantity, 0);
 
-  handleNewTotalChange({total});
+  calcNewTotal({total});
 
   return (
     <ShoppingCartContext.Provider value={{products, total, numberOfItems}}>

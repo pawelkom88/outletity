@@ -23,6 +23,7 @@ export default function Basket({isShown, closeMobileMenu}) {
 
   return (
     <>
+      {/* Depends on screen size display basket content in modal or page view */}
       {matches && user ? (
         <Link
           to="/BasketSummary"
@@ -41,7 +42,6 @@ export default function Basket({isShown, closeMobileMenu}) {
           {user && <span data-count={numberOfItems} className="basket-quantity"></span>}
         </button>
       )}
-
       {showCart && !isShown && user && (
         <ShoppingCart
           handleShoppingCart={handleShoppingCart}

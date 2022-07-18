@@ -23,7 +23,7 @@ export default function Product({product}) {
       basePrice: productPrice,
       voucherApplied: false,
     };
-
+// try to add by id !!!!!!!!!!!!!!!!!!!!
     const docRef = doc(db, "PRODUCTS", product.title);
     const docSnap = await getDoc(docRef);
 
@@ -33,6 +33,9 @@ export default function Product({product}) {
       await setDoc(docRef, productObj);
       notifyUser(toast.success, "Product has been added to basket");
     }
+
+    // await setDoc(docRef, productObj);
+    // notifyUser(toast.success, "Product has been added to basket");
   }
 
   return (

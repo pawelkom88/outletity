@@ -5,11 +5,11 @@
   @include mixins.flex(center, center);
 }
 
-.footer-nav_items {
+.footer-nav-items {
   display: flex;
 }
 
-.footer-nav_item {
+.footer-nav__item {
   font-size: 1.7rem;
   font-family: "Merriweather", san-serif;
   margin: 3rem;

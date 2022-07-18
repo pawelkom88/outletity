@@ -8,9 +8,12 @@ import {
   electronics,
   electronicsPng,
 } from "utilities/images";
+
 import {v4 as uuidv4} from "uuid";
 import {db} from "../firebase/config";
 import {doc, setDoc} from "firebase/firestore";
+
+// variables //
 
 export const voucherCode = "HX10TZ6";
 export const discount = 10;
@@ -29,13 +32,13 @@ export const months = [
   "December",
 ];
 
-export const years = [
-  new Date().getFullYear(),
-  new Date().getFullYear() + 1,
-  new Date().getFullYear() + 2,
-  new Date().getFullYear() + 3,
-  new Date().getFullYear() + 4,
-];
+const year = new Date().getFullYear();
+
+export let years = new Array(5).fill(null);
+
+for (var i = 0; i < years.length; i++) {
+  years[i] = year + i;
+}
 
 export const deliveryOptionTypes = {
   standard: "standard",
@@ -65,40 +68,48 @@ export const deliveryOptions = [
   },
 ];
 
+const categoriesTypes = {
+  title: ["Men's", "Women's", "Jewelery", "Electronics"],
+  desc: ["Men's clothing", "Women's clothing", "Jewelery", "Electronics"],
+  path: ["/men's clothing", "/women's clothing", "/jewelery", "/electronics"],
+};
+
 export const categories = [
   {
     id: uuidv4(),
     srcMobile: mens,
     src: mensPng,
-    title: "Men's",
-    desc: "Men's clothing",
-    path: "/men's clothing",
+    title: categoriesTypes.title[0],
+    desc: categoriesTypes.desc[0],
+    path: categoriesTypes.path[0],
   },
   {
     id: uuidv4(),
     srcMobile: womens,
     src: womensPng,
-    title: "Women's",
-    desc: "Women's clothing",
-    path: "/women's clothing",
+    title: categoriesTypes.title[1],
+    desc: categoriesTypes.desc[1],
+    path: categoriesTypes.path[1],
   },
   {
     id: uuidv4(),
     srcMobile: jewelery,
     src: jeweleryPng,
-    title: "Jewelery",
-    desc: "Jewelery",
-    path: "/jewelery",
+    title: categoriesTypes.title[2],
+    desc: categoriesTypes.desc[2],
+    path: categoriesTypes.path[2],
   },
   {
     id: uuidv4(),
     srcMobile: electronics,
     src: electronicsPng,
-    title: "Electronics",
-    desc: "Electronics",
-    path: "/electronics",
+    title: categoriesTypes.title[3],
+    desc: categoriesTypes.desc[3],
+    path: categoriesTypes.path[3],
   },
 ];
+
+// functions //
 
 export function sortByPrice(products, order) {
   const productsCopy = [...products];
@@ -119,7 +130,7 @@ export function sortByCategory(products, category) {
   return productsCopy.filter(product => product.category === category);
 }
 
-export async function handleNewTotalChange(obj) {
+export async function calcNewTotal(obj) {
   await setDoc(doc(db, "voucher", "code"), obj);
 }
 

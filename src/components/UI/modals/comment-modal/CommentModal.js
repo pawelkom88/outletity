@@ -21,8 +21,6 @@ export default function CommentModal({toggle, review, setReview, title}) {
       email: user.email,
     };
 
-    // await addDoc(collection(db, "COMMENTS"), commentObj);
-
     await setDoc(doc(db, "COMMENTS", `${title + uuidv4()}`), commentObj);
   }
 

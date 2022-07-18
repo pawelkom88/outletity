@@ -3,7 +3,7 @@
 
 .product-card {
   width: clamp(300px, 80vw, 400px);
-  height: 600px;
+  min-height: 600px;
   cursor: pointer;
   @include mixins.box-shadow;
 }

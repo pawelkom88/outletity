@@ -5,7 +5,7 @@ import {notifyUser} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import "./SearchBar.scss";
 
-export default function SearchBar() {
+export default function SearchBar({products}) {
   const navigate = useNavigate();
   const {user} = useAuthContext();
   const searchRef = useRef(null);
@@ -16,7 +16,7 @@ export default function SearchBar() {
       return;
     }
 
-    navigate("/Search", {state: {searchInput: searchRef.current.value}});
+    navigate("/Search", {state: {searchInput: searchRef.current.value, products}});
 
     // clear input
     searchRef.current.value = "";
@@ -28,7 +28,7 @@ export default function SearchBar() {
   }
 
   return (
-    <form onSubmit={user ? handleSubmit : handleNotify}>
+    <form className="search-form" onSubmit={user ? handleSubmit : handleNotify}>
       <label htmlFor="Search bar">
         <input
           id="Search bar"
