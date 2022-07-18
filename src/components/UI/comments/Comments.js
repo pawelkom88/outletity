@@ -26,13 +26,14 @@ export default function Comments({title}) {
                 timeStamp={comment.timestamp}
                 content={comment.content}
                 rating={comment.rating}
-                email={user?.email}
+                email={comment.email}
+                avatar={comment.url}
               />
             );
           }
           return null;
         })}
-      {!commentExists && <h3 className="first-comment">Be first who comment this product !</h3>}
+      {!commentExists && <h3 className="first-comment">Be the first who comment this product !</h3>}
       {user && <Button onClick={toggle} content="Add comment" id="dark-background" />}
       {isShown && (
         <CommentModal title={title} review={review} setReview={setReview} toggle={toggle} />

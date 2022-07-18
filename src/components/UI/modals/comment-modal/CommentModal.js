@@ -1,6 +1,7 @@
 import {useState} from "react";
 import Modal from "../modal/Modal";
 import Button from "components/UI/button/Button";
+import UseUserAvatar from "hooks/useUserAvatar";
 import {db} from "../../../../firebase/config";
 import {setDoc, doc, serverTimestamp} from "firebase/firestore";
 import {star, emptyStar as empty} from "utilities/images";
@@ -9,12 +10,15 @@ import "./CommentModal.scss";
 
 export default function CommentModal({toggle, review, setReview, title}) {
   const [numberOfStars, setNumberOfStars] = useState(0);
+  const {user, avatar} = UseUserAvatar(true);
 
   async function addComment(title) {
     const commentObj = {
       rating: numberOfStars,
       content: review,
       timestamp: serverTimestamp(),
+      url: avatar,
+      email: user.email,
     };
 
     // await addDoc(collection(db, "COMMENTS"), commentObj);
