@@ -1,8 +1,8 @@
 import {useState, useEffect} from "react";
 import UseUserAvatar from "hooks/useUserAvatar.js";
 import {user as userIcon} from "utilities/images";
-import LoginModal from "../modals/login/LoginModal";
-import SignupModal from "../modals/signup/SignupModal";
+import LoginModal from "../UI/modals/login/LoginModal";
+import SignupModal from "../UI/modals/signup/SignupModal";
 import "./UserPanel.scss";
 
 export default function UserPanel({isShown, toggle}) {

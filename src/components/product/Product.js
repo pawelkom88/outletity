@@ -1,5 +1,5 @@
 import useAuthContext from "hooks/useAuthContext";
-import {db} from "../../../firebase/config";
+import {db} from "../../firebase/config";
 import {setDoc, doc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import {calcDiscount, notifyUser, discount} from "utilities/helpers";

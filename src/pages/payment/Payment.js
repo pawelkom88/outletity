@@ -5,7 +5,7 @@ import {useFormik} from "formik";
 import {db} from "../../firebase/config";
 import {doc, deleteDoc, setDoc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
-import Form from "components/UI/form/PaymentForm";
+import Form from "components/payment-form/PaymentForm";
 import {
   displayErrorMsg,
   calcNewTotal,

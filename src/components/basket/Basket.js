@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {CartContext} from "context/CartContext";
 import useAuthContext from "hooks/useAuthContext";
 import useMatchMedia from "hooks/useMatchMedia";
-import ShoppingCart from "components/UI/shopping-cart/ShoppingCart";
+import ShoppingCart from "components/shopping-cart/ShoppingCart";
 import {cart} from "utilities/images";
 import "./Basket.scss";
 

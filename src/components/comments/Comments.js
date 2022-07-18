@@ -2,9 +2,9 @@ import {useState} from "react";
 import useCollection from "hooks/useCollection";
 import useAuthContext from "hooks/useAuthContext";
 import useModal from "hooks/useModal";
-import Button from "../button/Button";
+import Button from "../UI/button/Button";
 import UserComments from "../user-comments/userComments";
-import CommentModal from "../modals/comment-modal/CommentModal";
+import CommentModal from "../UI/modals/comment-modal/CommentModal";
 import "./Comments.scss";
 
 export default function Comments({title}) {

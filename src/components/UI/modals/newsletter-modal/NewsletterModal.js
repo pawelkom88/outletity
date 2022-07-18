@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Modal from "../modal/Modal";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
-import SubscribeForm from "components/UI/subscribe-form/SubscribeForm";
+import SubscribeForm from "components/subscribe-form/SubscribeForm";
 import "./NewsletterModal.scss";
 
 export default function NewsletterModal({toggle}) {

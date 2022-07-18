@@ -1,4 +1,4 @@
-import {db} from "../../../firebase/config";
+import {db} from "../../firebase/config";
 import {doc, deleteDoc, getDoc, updateDoc} from "firebase/firestore";
 import {add, remove} from "utilities/images";
 import toast, {Toaster} from "react-hot-toast";

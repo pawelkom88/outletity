@@ -1,4 +1,4 @@
-import Button from "../button/Button";
+import Button from "../UI/button/Button";
 import {sortByTitle, sortByPrice} from "utilities/helpers";
 
 export default function SortBy({products, setFilteredProducts}) {
