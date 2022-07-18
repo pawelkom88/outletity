@@ -28,19 +28,23 @@ export default function SearchBar({products}) {
   }
 
   return (
-    <form className="search-form" onSubmit={user ? handleSubmit : handleNotify}>
-      <label htmlFor="Search bar">
-        <input
-          id="Search bar"
-          name="Search bar"
-          className="search-input"
-          type="search"
-          placeholder="Search product"
-          aria-label="Search"
-          ref={searchRef}
-        />
-      </label>
-      <Toaster />
-    </form>
+    <>
+      {user && (
+        <form className="search-form" onSubmit={user ? handleSubmit : handleNotify}>
+          <label htmlFor="Search bar">
+            <input
+              id="Search bar"
+              name="Search bar"
+              className="search-input"
+              type="search"
+              placeholder="Search product"
+              aria-label="Search"
+              ref={searchRef}
+            />
+          </label>
+          <Toaster />
+        </form>
+      )}
+    </>
   );
 }

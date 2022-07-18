@@ -3,16 +3,16 @@ import {useParams} from "react-router-dom";
 import useFetch from "hooks/useFetch";
 import ProductCard from "components/UI/product-card/ProductCard";
 import Loader from "components/UI/loader/Loader";
-import SortBy from "components/UI/sort-options/SortBy";
-import SortByCategory from "components/UI/sort-by-category/SortByCategory";
+import SortBy from "components/sort-options/SortBy";
+import SortByCategory from "components/sort-by-category/SortByCategory";
 import {Toaster} from "react-hot-toast";
 import "./Products.scss";
-import SearchBar from "components/UI/search-bar/SearchBar";
+import SearchBar from "components/search-bar/SearchBar";
 
 export default function Products() {
   const {data: products, loading} = useFetch("https://fakestoreapi.com/products/");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("All");
   const {category} = useParams();
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import {useLocation} from "react-router-dom";
-import Product from "components/UI/product/Product";
+import Product from "components/product/Product";
 
 export default function ProductInfo() {
   const location = useLocation();

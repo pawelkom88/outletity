@@ -1,6 +1,6 @@
 import {CartContext} from "context/CartContext";
-import Checkout from "components/UI/checkout/Checkout";
-import ShoppingCartItem from "components/UI/shopping-cart-item/ShoppingCartItem";
+import Checkout from "components/checkout/Checkout";
+import ShoppingCartItem from "components/shopping-cart-item/ShoppingCartItem";
 import "./BasketSummary.scss";
 
 export default function BasketSummary() {

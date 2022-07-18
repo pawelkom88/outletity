@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Box from "components/UI/box/Box";
-import Delivery from "components/other/delivery/Delivery";
-import Collection from "components/other/collection/Collection";
+import Delivery from "components/UI/delivery/Delivery";
+import Collection from "components/UI/collection/Collection";
 import "./DeliveryCollection.scss";
 
 export default function DeliveryCollection() {

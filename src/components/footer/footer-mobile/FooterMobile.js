@@ -1,6 +1,6 @@
 import Details from "./Details";
-import Delivery from "../../other/delivery/Delivery";
-import Collection from "../../other/collection/Collection";
+import Delivery from "../../UI/delivery/Delivery";
+import Collection from "../../UI/collection/Collection";
 import ContactFormModal from "components/UI/modals/contact-form/ContactFormModal";
 import ReturnsRefunds from "pages/returns&refunds/ReturnsRefunds";
 

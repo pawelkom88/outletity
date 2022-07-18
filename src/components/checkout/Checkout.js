@@ -1,11 +1,11 @@
 import {useState} from "react";
-import {db} from "../../../firebase/config";
+import {db} from "../../firebase/config";
 import {doc, updateDoc} from "firebase/firestore";
 import {Link} from "react-router-dom";
 import {visa, mastercard, paypal} from "utilities/images";
 import {voucherCode, notifyUser} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
-import Button from "../button/Button";
+import Button from "../UI/button/Button";
 import "./Checkout.scss";
 
 export default function Checkout({products, total}) {
