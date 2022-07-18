@@ -5,7 +5,7 @@ import "./BasketSummary.scss";
 
 export default function BasketSummary() {
   const {products, total, numberOfItems} = CartContext();
-console.log(products)
+
   return (
     <section className="basket-summary-container">
       <div className="basket-products">
