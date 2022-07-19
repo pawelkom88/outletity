@@ -6,11 +6,11 @@ import Loader from "components/UI/loader/Loader";
 import SortBy from "components/sort-options/SortBy";
 import SortByCategory from "components/sort-by-category/SortByCategory";
 import {Toaster} from "react-hot-toast";
-import "./Products.scss";
 import SearchBar from "components/search-bar/SearchBar";
+import "./Products.scss";
 
 export default function Products() {
-  const {data: products, loading} = useFetch("https://fakestoreapi.com/products/");
+  const {data: products, loading} = useFetch(process.env.REACT_APP_PRODUCTS_API);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [title, setTitle] = useState("All");
   const {category} = useParams();
@@ -55,7 +55,7 @@ export default function Products() {
           <div className="category-products">
             {filteredProducts &&
               filteredProducts.map(product => {
-                return <ProductCard key={product.id} product={product} />;
+                return <ProductCard key={product.id} product={product} products={products}/>;
               })}
           </div>
           <Toaster position="top-center" />
