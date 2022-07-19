@@ -5,7 +5,6 @@ import Button from "components/UI/button/Button";
 import {calcDiscount, notifyUser, discount} from "utilities/helpers";
 import toast, {Toaster} from "react-hot-toast";
 import Comments from "../comments/Comments";
-import {v4 as uuidv4} from "uuid";
 import "./Product.scss";
 
 export default function Product({product}) {
