@@ -13,6 +13,7 @@ export default function Basket({isShown, closeMobileMenu}) {
   const [showCart, setShowCart] = useState(false);
   const {matches} = useMatchMedia("(max-width: 860px)");
 
+  // Open and close little modal with items in basket
   function handleShoppingCart() {
     if (showCart) {
       setShowCart(false);
@@ -23,7 +24,7 @@ export default function Basket({isShown, closeMobileMenu}) {
 
   return (
     <>
-      {/* Depends on screen size display basket content in modal or page view */}
+      {/* Depends on screen size display basket content in modal window or page view */}
       {matches && user ? (
         <Link
           to="/BasketSummary"

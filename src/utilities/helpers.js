@@ -11,7 +11,7 @@ import {
 
 import {v4 as uuidv4} from "uuid";
 import {db} from "../firebase/config";
-import {doc, setDoc} from "firebase/firestore";
+import {doc, setDoc, deleteDoc} from "firebase/firestore";
 
 // variables //
 
@@ -32,6 +32,7 @@ export const months = [
   "December",
 ];
 
+// Create array of years
 const year = new Date().getFullYear();
 
 export let years = new Array(5).fill(null);
@@ -130,8 +131,20 @@ export function sortByCategory(products, category) {
   return productsCopy.filter(product => product.category === category);
 }
 
-export async function calcNewTotal(obj) {
+// set total to 0 and update it in Firebase
+export async function setTotal(obj) {
   await setDoc(doc(db, "voucher", "code"), obj);
+}
+
+// calculate new total including delivery charge
+export async function calcNewTotal(total, deliveryCharge) {
+  await setDoc(doc(db, "voucher", "newTotal"), {total: total + Number(deliveryCharge)});
+}
+
+export async function emptyCart(products) {
+  await products.forEach(product => {
+    deleteDoc(doc(db, "PRODUCTS", product.id));
+  });
 }
 
 export function calcDiscount(product) {

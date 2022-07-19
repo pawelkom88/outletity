@@ -3,22 +3,24 @@ import {CartContext} from "context/CartContext";
 import {useNavigate, useLocation} from "react-router-dom";
 import {useFormik} from "formik";
 import {db} from "../../firebase/config";
-import {doc, deleteDoc, setDoc, getDoc} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
 import Button from "components/UI/button/Button";
 import Form from "components/payment-form/PaymentForm";
 import {
   displayErrorMsg,
-  calcNewTotal,
+  setTotal,
   deliveryOptionTypes,
   deliveryOptions,
+  emptyCart,
+  calcNewTotal,
 } from "utilities/helpers";
 import "./Payment.scss";
 
 export default function Payment() {
   const location = useLocation();
+  const navigate = useNavigate();
   const {products} = location.state || [];
   const {total} = CartContext();
-  const navigate = useNavigate();
   const [isProcessed, setIsProcessed] = useState(false);
   const [newTotal, setNewTotal] = useState();
 
@@ -44,15 +46,12 @@ export default function Payment() {
   });
 
   useEffect(() => {
-    async function handleNewTotal() {
-      await setDoc(doc(db, "voucher", "newTotal"), {total: total + Number(deliveryCharge)});
-    }
     if (deliveryCharge) {
-      handleNewTotal();
+      calcNewTotal(total, deliveryCharge);
     }
   }, [deliveryCharge, total]);
 
-  // get new total with delivery charge included and update state
+  // get new total from firebase with delivery charge included and update state
   useEffect(() => {
     async function getNewTotal() {
       const docRef = doc(db, "voucher", "newTotal");
@@ -62,14 +61,13 @@ export default function Payment() {
         throw new Error("document does not exists");
       }
       const {total} = docSnap.data();
-
       setNewTotal(total);
     }
 
     getNewTotal();
   }, [deliveryCharge]);
 
-  // fake transaction proccess
+  // imitate transaction proccess
   useEffect(() => {
     if (isProcessed) {
       const timer = setTimeout(() => {
@@ -80,12 +78,8 @@ export default function Payment() {
     }
   }, [isProcessed, navigate]);
 
-  // delete all products from collection
-  async function emptyCart() {
-    await products.forEach(product => {
-      deleteDoc(doc(db, "PRODUCTS", product.id));
-    });
-  }
+  // delete all products from collection once transaction is finished
+  emptyCart(products);
 
   return (
     <section className="payment-container">
@@ -96,7 +90,7 @@ export default function Payment() {
         {displayErrorMsg(formik.touched.year, formik.errors.year)}
       </div>
       <Form setDeliveryCharge={setDeliveryCharge} formik={formik}>
-        <h3>Amount due : £{total === 0 ? 0 : newTotal}</h3>
+        <h3>Amount due : £{total === 0 ? 0 : newTotal?.toFixed(2)}</h3>
         <div className="amount-breakdown">
           <span>Delivery : £{deliveryCharge}</span>
           <span>Total: £{total && total.toFixed(2)}</span>
@@ -108,7 +102,7 @@ export default function Payment() {
             formik.errors.isValidated
               ? () => {
                   setIsProcessed(true);
-                  calcNewTotal({total: 0});
+                  setTotal({total: 0});
                   emptyCart();
                 }
               : undefined
