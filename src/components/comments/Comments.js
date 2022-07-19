@@ -33,7 +33,11 @@ export default function Comments({title}) {
           }
           return null;
         })}
-      {!commentExists && <h3 className="first-comment">Be the first who comment this product !</h3>}
+      {!commentExists && (
+        <h3 className="first-comment">
+          Be the first who comment this product ! Login to your account.
+        </h3>
+      )}
       {user && <Button onClick={toggle} content="Add comment" id="dark-background" />}
       {isShown && (
         <CommentModal title={title} review={review} setReview={setReview} toggle={toggle} />
