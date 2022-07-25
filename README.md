@@ -27,22 +27,25 @@ My goal was to simulate a professional work environment.
 
 ## How to navigate this project
 
-- Stateful logic: [Link to example code on GitHub]
-
 - Responsive CSS using Sass:
   [Navigation bar](https://github.com/pawelkom88/outletity/blob/main/src/components/header/Header.scss)
 
 - The application fetches data from the Fake Store API: Examples for the request
-  [useFetch hook](https://github.com/pawelkom88/outletity/blob/main/src/hooks/useFetch.js) and data
-  transformation [to be done]()
+  [useFetch hook](https://github.com/pawelkom88/outletity/blob/main/src/hooks/) and data
+  transformation.
 
-- User data is saved in Firebase, which also handles authentication proccess. (to be done)
+- User data is saved in Firebase, which also handles authentication proccess.  [useAuth hook](https://github.com/pawelkom88/outletity/blob/main/src/hooks/)
 
-- Integration tests using React Testing Library: [Link to example test on GitHub] (to be done)
+- Integration tests using React Testing Library: (to be done)
 
 ## Why I built the project this way
 
-E-commerce ...
+E-commerce stores are great way to implement knowledge that every Front End Developer has to possess. This project has learnt me things such as :
+
+- how to integrate front and backend together
+- folders and files architecture
+- how to write reusable components and hooks
+- how to write tests
 
 - I didn't use a state management library like Redux on purpose. For this app simple `useState` and
   built-in `useReducer` is sufficient.
