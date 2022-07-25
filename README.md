@@ -40,19 +40,17 @@ My goal was to simulate a professional work environment.
 
 ## Why I built the project this way
 
-E-commerce stores are great way to implement knowledge that every Front End Developer has to possess. This project has learnt me things such as :
+E-commerce stores are great way to implement knowledge that every Front End Developer has to possess. This project has learnt me things such as:
 
-- how to integrate front and backend together
-- folders and files architecture
-- how to write reusable components and hooks
-- how to write tests
-
+- How to integrate front and backend together
+- Folders and files architecture
+- How to write reusable components and hooks
+- How to write tests
 - I didn't use a state management library like Redux on purpose. For this app simple `useState` and
   built-in `useReducer` is sufficient.
-
 - Sass is great for styling. To make styling easier I used variables, mixins, custom breakpoints.
-
 - My plan is to become a professional front-end developer eventually. I decided to use an existing API rather to create a custom server.
+- 
 <!-- 
 - Testing is an essential part of production applications. Testing Library is the go-to library in
   the React community. I covered the essential features of the app with tests. -->
