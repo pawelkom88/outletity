@@ -1,5 +1,4 @@
 import useAuth from "hooks/useAuth";
-import Modal from "../modal/Modal";
 import Input from "components/UI/input/Input";
 import Button from "components/UI/button/Button";
 import {Toaster} from "react-hot-toast";
@@ -34,61 +33,56 @@ export default function SignupModal({toggle, handleTransition}) {
 
   return (
     <>
-      <Modal toggle={toggle} heading={"Creating a new account"}>
-        <div className="create-account">
-          <span>Have an account? </span>
-          <button onClick={handleTransition} className="no-styles underline">
-            Login
-          </button>
-        </div>
-        <hr className="login-divider" />
-        <form
-          className="login-form"
-          onSubmit={formik.errors.isValidated ? e => handleSubmit(e) : undefined}>
-          <Input
-            type="email"
-            labelFor="email"
-            id="email"
-            placeholder="Enter email"
-            name="email"
-            {...formik.getFieldProps("email")}>
-            <div>E-mail:</div>
-            {displayErrorMsg(formik.touched.email, formik.errors.email)}
-          </Input>
-          <Input
-            type="password"
-            labelFor="password"
-            id="password"
-            placeholder="Enter password"
-            name="password"
-            // autocomplete="off"
-            {...formik.getFieldProps("password")}>
-            <div>Password:</div>
-            {displayErrorMsg(formik.touched.password, formik.errors.password)}
-          </Input>
-          <Input
-            type="password"
-            labelFor="passwordConfirmation"
-            id="passwordConfirmation"
-            placeholder="Confirm password"
-            name="passwordConfirmation"
-            {...formik.getFieldProps("passwordConfirmation")}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.passwordConfirmation}>
-            <div>Confirm password:</div>
-            {displayErrorMsg(
-              formik.touched.passwordConfirmation,
-              formik.errors.passwordConfirmation
-            )}
-          </Input>
-          <Button
-            type={formik.errors.isValidated ? "submit" : "button"}
-            content="Create account"
-            id={formik.errors.isValidated ? "dark-background" : "disabled"}
-          />
-        </form>
-      </Modal>
+      <div className="create-account">
+        <span>Have an account? </span>
+        <button onClick={handleTransition} className="no-styles underline">
+          Login
+        </button>
+      </div>
+      <hr className="login-divider" />
+      <form
+        className="login-form"
+        onSubmit={formik.errors.isValidated ? e => handleSubmit(e) : undefined}>
+        <Input
+          type="email"
+          labelFor="email"
+          id="email"
+          placeholder="Enter email"
+          name="email"
+          {...formik.getFieldProps("email")}>
+          <div>E-mail:</div>
+          {displayErrorMsg(formik.touched.email, formik.errors.email)}
+        </Input>
+        <Input
+          type="password"
+          labelFor="password"
+          id="password"
+          placeholder="Enter password"
+          name="password"
+          // autocomplete="off"
+          {...formik.getFieldProps("password")}>
+          <div>Password:</div>
+          {displayErrorMsg(formik.touched.password, formik.errors.password)}
+        </Input>
+        <Input
+          type="password"
+          labelFor="passwordConfirmation"
+          id="passwordConfirmation"
+          placeholder="Confirm password"
+          name="passwordConfirmation"
+          {...formik.getFieldProps("passwordConfirmation")}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.passwordConfirmation}>
+          <div>Confirm password:</div>
+          {displayErrorMsg(formik.touched.passwordConfirmation, formik.errors.passwordConfirmation)}
+        </Input>
+        <Button
+          type={formik.errors.isValidated ? "submit" : "button"}
+          content="Create account"
+          id={formik.errors.isValidated ? "dark-background" : "disabled"}
+        />
+      </form>
       <Toaster position="top-center" />
     </>
   );

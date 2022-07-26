@@ -42,3 +42,8 @@ label,
     align-self: center;
   }
 }
+
+.error-msg {
+  max-width: 400px;
+  color: colors.$red;
+}
