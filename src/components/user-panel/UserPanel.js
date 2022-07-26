@@ -1,8 +1,10 @@
 import {useState, useEffect} from "react";
 import UseUserAvatar from "hooks/useUserAvatar.js";
 import {user as userIcon} from "utilities/images";
-import LoginModal from "../UI/modals/login/LoginModal";
 import SignupModal from "../UI/modals/signup/SignupModal";
+import UserSettings from "components/UI/modals/logout/UserSettings";
+import Modal from "components/UI/modals/modal/Modal";
+import LoginModal from "components/UI/modals/login/LoginModal";
 import "./UserPanel.scss";
 
 export default function UserPanel({isShown, toggle}) {
@@ -31,17 +33,26 @@ export default function UserPanel({isShown, toggle}) {
         <img className="user-avatar" src={avatar ? avatar : userIcon} alt="User icon" />
       </button>
       {isShown && isLoggedIn && (
-        <LoginModal
-          setIsUploaded={setIsUploaded}
-          avatar={avatar}
-          setAvatar={setAvatar}
-          user={user}
-          toggle={toggle}
-          handleTransition={handleTransitionBetweenModals}
-        />
+        <>
+          {user ? (
+            <UserSettings
+              setIsUploaded={setIsUploaded}
+              avatar={avatar}
+              setAvatar={setAvatar}
+              user={user}
+              toggle={toggle}
+            />
+          ) : (
+            <Modal toggle={toggle} heading={"Log in to your account"}>
+              <LoginModal handleTransition={handleTransitionBetweenModals} />
+            </Modal>
+          )}
+        </>
       )}
       {isShown && isSignedIn && (
-        <SignupModal toggle={toggle} handleTransition={handleTransitionBetweenModals} />
+        <Modal toggle={toggle} heading={"Creating a new account"}>
+          <SignupModal toggle={toggle} handleTransition={handleTransitionBetweenModals} />
+        </Modal>
       )}
     </>
   );
