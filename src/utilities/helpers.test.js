@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import {sortByPrice, sortByTitle, sortByCategory} from "utilities/helpers";
+import {sortByPrice, sortByTitle, sortByCategory, calcDiscount} from "utilities/helpers";
 
 describe("sortByPrice function should", () => {
   const originalArray = [
@@ -56,7 +56,7 @@ describe("sortByTitle should", () => {
   });
 });
 
-describe("sortByCategory should filter", () => {
+describe("sortByCategory should filter an array base on", () => {
   test("given category", () => {
     const originalArray = [{category: "books"}, {category: "cosmetics"}, {category: "food"}];
     const filteredArray = [{category: "books"}];
@@ -70,5 +70,23 @@ describe("sortByCategory should filter", () => {
     expect(actualValue).toEqual(filteredArray);
     expect(actualValue1).toEqual(filteredArray1);
     expect(actualValue2).toEqual(filteredArray2);
+  });
+});
+
+describe("calcDiscount should", () => {
+  test("return discounted(10%) price of given input", () => {
+    const products = [
+      {name: "toiled paper", price: 80},
+      {name: "beer", price: 20},
+      {name: "coffee", price: 10},
+      {name: "washing poder", price: 50},
+    ];
+    const expectedValues = [72, 18, 9, 45];
+
+    for (let i = 0; i < products.length; i++) {
+      const {discountedPrice} = calcDiscount(products[i]);
+
+      expect(discountedPrice).toEqual(expectedValues[i]);
+    }
   });
 });
