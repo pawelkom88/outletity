@@ -9,7 +9,7 @@
 </p>
 
 Outletity is a fake fully responsive e-commerce store built with React and Firebase with a focus on
-accessibility. Project is still under development.
+accessibility.
 
 ## Demo
 
